@@ -1,0 +1,151 @@
+---
+title: "My work"
+description: "Find, claim, and stay on top of the tasks waiting on you across every project."
+icon: "inbox"
+---
+
+**My work** is your personal starting point each day. It pulls together every task waiting on you — across all your projects — and sorts them by urgency, so you always know what to do next.
+
+To open it, click **Home** in the sidebar.
+
+<Note>
+**My work** shows your tasks from every project you have access to, not just one. It's your personal list, not a project's. For notifications like @mentions and approval requests, see the [Inbox](/work/collaboration) instead.
+</Note>
+
+{/* TODO: Screenshot — The full My work page: greeting header, Work summary badge row, the My tasks grouped list, and the Up next card on the right */}
+
+## Read the page
+
+### The greeting
+
+The top of the page greets you by name and tells you, in one line, how much needs your attention:
+
+- **{n} task(s) need your attention today** — you have urgent items.
+- **Nothing urgent — you're on top of things** — you have tasks, but none are pressing.
+- **You're all caught up** — you have no open tasks.
+
+The current date shows on the right.
+
+### The Work summary
+
+Below the greeting, a row of colored badges counts your tasks by bucket. A badge only appears when its count is above zero:
+
+| Badge | What it counts |
+| --- | --- |
+| **{n} overdue** | Tasks past their due date. |
+| **{n} needs approval** | Tasks waiting for you to approve or reject. |
+| **{n} in progress** | Tasks you've claimed and are actively working. |
+| **{n} available** | Tasks you can claim and start. |
+| **{n} done today** | Tasks you completed today. |
+
+Each task lands in exactly one bucket. If a task is both overdue and available, it counts as **overdue** — the most urgent label always wins.
+
+### The My tasks list
+
+The **My tasks** card lists every task waiting on you, grouped under the same headers in order of urgency: **Overdue**, **Needs approval**, **In progress**, **Available**, then **Completed today**. The card header shows your total open count, for example **7 open**.
+
+Each row shows:
+
+- a status-colored dot,
+- the **task name**,
+- a **type chip** — **Form**, **File upload**, **Document**, **Action**, **AI task**, or **Form fill**,
+- a quiet line with the **playbook**, the **project**, and **Due {date}** (the due date turns red when overdue).
+
+Click any row to jump straight into the run with that task open and ready to work.
+
+{/* TODO: Screenshot — The My tasks card with grouped sections (Overdue / Needs approval / In progress / Available) and rows showing the type chips */}
+
+<Tip>
+The type chip tells you at a glance what a task expects of you. **Form** and **File upload** tasks are yours to do — see [Completing tasks](/work/completing-tasks). **Document**, **Action**, **AI task**, and **Form fill** chips usually mean Florent did the work and you need to review it — see [Reviewing AI work](/work/reviewing-ai-work).
+</Tip>
+
+### Up next
+
+On wider screens, the **Up next** card lifts your single most pressing task to the side, with an **Open task →** link. It picks the first overdue task, or — if nothing is overdue — the first one needing approval, then in progress, then available, then completed today. Use it when you just want to do the next right thing without scanning the list.
+
+{/* TODO: Screenshot — The Up next card highlighting the single most pressing task with its Open task → link */}
+
+### When you're caught up
+
+When you have no open tasks and nothing finished today, the page shows a calm empty state:
+
+> **You're all caught up**
+> Nothing needs your attention right now. New tasks land here as they're assigned to you.
+
+{/* TODO: Screenshot — The caught-up empty state with the briefcase icon */}
+
+## Claim a task
+
+Many tasks are offered to a group — anyone with a certain role, or any member of the project — rather than assigned to one named person. These show up in your **Available** bucket. Before a task is yours to work, you claim it.
+
+<Steps>
+<Step title="Open the task">
+Click the task in your **My tasks** list (or the **Up next** card). It opens inside the run.
+</Step>
+<Step title="Click Claim task">
+An **Available** task you can take shows a **Claim task** button. Below it, the work surface — the form fields or file dropzone — is greyed out, with the line **Claim this task to fill it out**.
+</Step>
+<Step title="The task becomes yours">
+Once you claim it, the status moves to **In progress**, your avatar appears on the task, and the work surface unlocks so you can edit it. The task now lives in your **In progress** bucket.
+</Step>
+</Steps>
+
+{/* TODO: Screenshot — A task in Available state showing the Claim task button and the greyed-out "Claim this task to fill it out" surface, then after claiming with status In progress and your avatar shown */}
+
+<Warning>
+**First to claim wins.** If a teammate claims the task before you, you can't edit it — you'll see **Claimed by {name} — you can't edit this form**, and a late claim is refused. If a task simply isn't yours to take yet, it reads **This task isn't yours to edit yet**.
+</Warning>
+
+### What you can't claim
+
+Some tasks are owned by Florent, the built-in AI assistant. You can't claim these — Florent works on them automatically and then hands you the result to review. Instead of a **Claim task** button, a Florent task shows a status banner such as **Florent will pick this up automatically when the run is ready** or **Florent is working on this task**. When it's done, you'll see **Florent drafted records for you to review**.
+
+<Note>
+Florent drafts; you decide. Whenever Florent or an automation produces data, it parks the result for your approval rather than committing it. Approving and correcting that output is covered in [Reviewing AI work](/work/reviewing-ai-work).
+</Note>
+
+## After you claim
+
+What you do next depends on the task type:
+
+- **Form** and **File upload** tasks are yours to fill in and submit — see [Completing tasks](/work/completing-tasks).
+- Tasks that need a human sign-off move to **Pending approval** after they're submitted, and land in the approver's **Needs approval** bucket.
+- To approve or correct what Florent produced, see [Reviewing AI work](/work/reviewing-ai-work).
+
+<AccordionGroup>
+<Accordion title="Statuses you'll see on a task">
+Each task carries a colored status badge. A few you'll see often in **My work**:
+
+- **Available** — ready to claim or start.
+- **In progress** — claimed and being worked.
+- **Pending approval** — waiting for a human to approve or reject.
+- **Approved** / **Completed** — accepted and finished.
+- **Rejected** — sent back with a reason.
+- **Blocked** (shown as **Waiting** in the run) — not your turn yet; an earlier task must finish first.
+
+Every status is defined once in [Concepts](/get-started/concepts). For who owns a task, who approves it, and what happens after a rejection, see [Assignments and approvals](/playbooks/assignments-and-approvals).
+</Accordion>
+<Accordion title="Due dates and overdue">
+A task can carry a due date, shown as **Due {date}** on its row and cards. Once it's past due, the date turns red, an **Overdue** badge appears, and the task jumps to the top of the **Overdue** group. Overdue is the only deadline state shown — there's no separate countdown.
+</Accordion>
+<Accordion title="The page won't load">
+If you see **We couldn't load your work just now. Refresh the page to try again**, refresh the browser. The list reloads on its own as new tasks are assigned to you.
+</Accordion>
+</AccordionGroup>
+
+## Where to go next
+
+<CardGroup cols={2}>
+<Card title="Completing tasks" icon="square-check" href="/work/completing-tasks">
+Fill in and submit the Form and File upload tasks you've claimed.
+</Card>
+<Card title="Reviewing AI work" icon="badge-check" href="/work/reviewing-ai-work">
+Approve, correct, or reject the records and documents Florent drafted.
+</Card>
+<Card title="Inbox and comments" icon="bell" href="/work/collaboration">
+Stay on top of @mentions, assignments, and approval requests.
+</Card>
+<Card title="Assignments and approvals" icon="user-check" href="/playbooks/assignments-and-approvals">
+Who owns a task, who signs it off, and how rejections work.
+</Card>
+</CardGroup>

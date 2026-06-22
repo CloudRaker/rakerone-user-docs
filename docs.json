@@ -1,8 +1,8 @@
 {
   "$schema": "https://mintlify.com/docs.json",
   "theme": "almond",
-  "name": "Product Guide",
-  "description": "Step-by-step guides for every product—platform setup, analytics, and integrations in one place.",
+  "name": "RakerOne user guide",
+  "description": "Set up document-heavy back-office processes once, then let Florent draft while you review and approve.",
   "colors": {
     "primary": "#166E3F",
     "light": "#26BD6C",
@@ -19,59 +19,86 @@
     "options": ["copy", "view", "assistant", "mcp", "add-mcp"]
   },
   "navigation": {
-    "global": {
-      "anchors": [
-        {
-          "anchor": "Home",
-          "icon": "house",
-          "href": "/"
-        },
-        {
-          "anchor": "Changelog",
-          "icon": "scroll-text",
-          "href": "https://www.mintlify.com/docs/changelog"
-        },
-        {
-          "anchor": "Help",
-          "icon": "life-buoy",
-          "href": "https://www.mintlify.com/docs/contact-support"
-        }
-      ]
-    },
     "directory": "card",
     "groups": [
       {
-        "group": "Platform",
-        "icon": "layers",
+        "group": "Get started",
+        "icon": "rocket",
         "expanded": true,
         "pages": [
-          "platform/quickstart",
-          "platform/key-concepts",
-          "platform/configuration/settings",
-          "platform/configuration/user-management",
-          "platform/administration/roles-permissions"
+          "index",
+          "get-started/introduction",
+          "get-started/quickstart",
+          "get-started/concepts"
         ]
       },
       {
-        "group": "Analytics",
-        "icon": "chart-bar",
+        "group": "Your daily work",
+        "icon": "inbox",
         "expanded": true,
         "pages": [
-          "analytics/quickstart",
-          "analytics/connect-data",
-          "analytics/dashboards/create-dashboard",
-          "analytics/reports/scheduled-reports"
+          "work/my-work",
+          "work/completing-tasks",
+          "work/reviewing-ai-work",
+          "work/florent",
+          "work/collaboration"
         ]
       },
       {
-        "group": "Integrations",
-        "icon": "plug",
+        "group": "Projects",
+        "icon": "folder",
         "expanded": true,
         "pages": [
-          "integrations/quickstart",
-          "integrations/authentication",
-          "integrations/connectors/crm",
-          "integrations/webhooks/configure"
+          "projects/overview",
+          "projects/create-a-project",
+          "projects/files",
+          "projects/run-a-playbook",
+          "projects/data",
+          "projects/project-templates"
+        ]
+      },
+      {
+        "group": "Playbooks",
+        "icon": "workflow",
+        "expanded": true,
+        "pages": [
+          "playbooks/overview",
+          "playbooks/build-a-playbook",
+          "playbooks/task-types",
+          "playbooks/assignments-and-approvals",
+          "playbooks/triggers"
+        ]
+      },
+      {
+        "group": "Record types",
+        "icon": "database",
+        "expanded": true,
+        "pages": [
+          "record-types/overview",
+          "record-types/build-a-record-type"
+        ]
+      },
+      {
+        "group": "Actions & documents",
+        "icon": "zap",
+        "expanded": true,
+        "pages": [
+          "actions/overview",
+          "actions/extract-data",
+          "actions/document-templates",
+          "actions/batch-runs"
+        ]
+      },
+      {
+        "group": "Administration",
+        "icon": "settings",
+        "expanded": true,
+        "pages": [
+          "admin/organization-settings",
+          "admin/members-and-invites",
+          "admin/roles-and-permissions",
+          "admin/api-keys",
+          "admin/language"
         ]
       }
     ]
@@ -84,14 +111,8 @@
     "links": [],
     "primary": {
       "type": "button",
-      "label": "Dashboard",
-      "href": "https://dashboard.mintlify.com"
-    }
-  },
-  "footer": {
-    "socials": {
-      "x": "https://x.com/yourcompany",
-      "linkedin": "https://linkedin.com/company/yourcompany"
+      "label": "Open RakerOne",
+      "href": "https://raker.one"
     }
   }
 }

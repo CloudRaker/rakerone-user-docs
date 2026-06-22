@@ -1,0 +1,137 @@
+---
+title: "Quickstart"
+description: "Run your first playbook end to end — from opening a project to approving Florent's work."
+icon: "rocket"
+---
+
+This walkthrough takes you from a blank screen to your first approved records in one sitting. You'll create a project, start a playbook, do a task, let Florent draft some records, and approve them — the full RakerOne loop in miniature.
+
+Each step here gives you just enough to act, then links to the page that covers the detail. If you only read one thing first, read this rule:
+
+<Info>
+**AI drafts, humans approve.** Florent and automated steps never commit data on their own. They produce drafts — proposed records, pre-filled forms, generated documents — and you review, edit, approve, or reject before anything becomes real data. You stay in control at every gate.
+</Info>
+
+## What you'll need
+
+- An account in a RakerOne **organization** (your sign-in is handled by your company's identity provider).
+- Permission to create a project, or an existing project someone has shared with you.
+- A **Published** playbook to run, or a few documents and a sentence describing what to do with them (Florent can shape the rest).
+
+<Note>
+New to the terms? Skim [Concepts](/get-started/concepts) for the glossary, or [Introduction](/get-started/introduction) for the big picture and a tour of the sidebar. This page assumes you've signed in and can see the left sidebar.
+</Note>
+
+## The happy path
+
+<Steps>
+  <Step title="Create a project">
+    A **project** is the workspace for one piece of work — it holds the files, records, runs, and people for that job.
+
+    In the sidebar, find the **Projects** group and click the **New project** button (the **+** next to the group label). Choose **Blank project** to start from scratch, give it a **name** and an **icon**, then click **Create project**. You land on the new project's page.
+
+    {/* TODO: Screenshot — The New project step 2 form: the Blank project label, the Name field, the project number hint, and the icon picker */}
+
+    <Tip>
+      If your team has set up **Project templates**, pick one instead of Blank project — it pre-loads the playbooks and record types you'll use, so you can skip straight to running. See [Create a project](/projects/create-a-project).
+    </Tip>
+  </Step>
+
+  <Step title="Start a playbook (or ask Florent)">
+    A **playbook** is a reusable process — the steps, their order, who's assigned, and what needs approval. A **run** is one live execution of that playbook inside your project.
+
+    Open the project's **Playbooks** tab. You have two ways to begin:
+
+    <Tabs>
+      <Tab title="Run a published playbook">
+        In the **Playbooks** table, find one with the **Published** status and click its **Run** button. The run starts and you drop straight into the run workspace.
+
+        Only **Published** playbooks show a **Run** button. If a playbook you want is still a **Draft**, it can't be run yet — someone with builder access has to publish it first. See [Playbooks overview](/playbooks/overview).
+      </Tab>
+      <Tab title="Ask Florent">
+        Scroll to the **Ask Florent** card, describe the work in plain English (for example, "Import these invoice PDFs and extract them into the Invoice record type, then send to finance for approval"), and click **Create plan**. Florent shapes your description into a reviewable playbook plan.
+
+        Florent never auto-runs anything — you review the plan and approve it before any work starts. Read more in [Run a playbook](/projects/run-a-playbook).
+      </Tab>
+    </Tabs>
+
+    {/* TODO: Screenshot — The project Playbooks page: the Playbooks table with a Run button on a Published row, and the Ask Florent card with the Create plan button */}
+  </Step>
+
+  <Step title="Find your way around the run workspace">
+    The **run workspace** is where the work happens. It has three columns:
+
+    - **Left** — the **task rail**: every step in the run, grouped **Open** (needs attention now), **Blocked** (shown as **Waiting** until earlier steps finish), and **Done**.
+    - **Middle** — the **Timeline**: comments, Florent's messages, and run events in one stream.
+    - **Right** — the task you've opened, or the **Run summary** once the run is finished.
+
+    Tasks light up automatically as they become available. Human tasks (**Form**, **File upload**) wait for a person; the rest (**Document**, **Action**, **AI task**) run on their own. For the full layout, see [Run a playbook](/projects/run-a-playbook).
+
+    {/* TODO: Screenshot — The run workspace three-column layout: task rail on the left with Open / Blocked (Waiting) / Done groups, the Timeline in the middle, and a task open on the right */}
+  </Step>
+
+  <Step title="Do your task">
+    Click the first task in the **Open** group of the rail. If it's a human task, you claim it first, then do the work.
+
+    - **Form** task — click **Claim task**, fill in the **Fields**, then **Submit task**.
+    - **File upload** task — click **Claim task**, **Upload** the requested files, then **Complete task**.
+
+    Claiming makes the task yours so two people don't work the same step. Required fields and uploads are checked before you can submit. Step-by-step detail lives in [Completing tasks](/work/completing-tasks).
+
+    <Note>
+      If a task is marked **Waiting**, it's just not its turn yet — an earlier task has to finish first. It flips to **Available** on its own.
+    </Note>
+  </Step>
+
+  <Step title="Let Florent do the heavy lifting">
+    For automated steps — a **Document** task reading files into records, an **Action** task, or an **AI task** — you don't start anything. Florent picks them up automatically when they become available.
+
+    You'll see progress messages like **Reading document** while Florent works. You can leave the page; the run keeps going. When Florent has results, the task moves to **Pending approval** and waits for you. Florent drafts; it never commits. What each task type does is covered in [Task types](/playbooks/task-types).
+  </Step>
+
+  <Step title="Review and approve Florent's work">
+    This is the gate that turns drafts into real data. Open the task that's **Pending approval** and you'll see the drafts Florent produced.
+
+    For extracted records, each value carries a **citation** — a pointer back to the exact spot in the source document it came from. Click a value to open the source and confirm it matches before you approve. Then:
+
+    - **Approve** the values you trust (the button reads **Approve values** or **Approve documents** depending on what's being approved).
+    - **Reject** anything wrong — rejecting requires a reason, so type why you're sending it back, then **Confirm rejection**.
+
+    Approving the task writes the records into your project. The full review experience — checking citations, locking values, and correcting fields — is in [Reviewing AI work](/work/reviewing-ai-work).
+
+    {/* TODO: Screenshot — The drafts-to-review panel: a drafted record with its fields, a citation chip, the "fields need verification" note, and the Approve values / Reject buttons */}
+
+    <Warning>
+      Rejecting a task requires a reason. Once you reject, the doer (or Florent) is notified and the task comes back for another try — be specific so they know what to fix.
+    </Warning>
+  </Step>
+
+  <Step title="See your records">
+    When the run finishes, the right column shows the **Run summary** — what got done and how many **records** were created.
+
+    To work with that data, open the project's **Data** tab. Your approved records are there as rows you can filter, sort, edit, and reuse. That's the payoff: a pile of documents turned into clean, structured data — with a human signature on every value. See [Project data](/projects/data).
+
+    {/* TODO: Screenshot — The Run summary panel on a finished run showing "Everything's done." and the Records created count */}
+  </Step>
+</Steps>
+
+## What just happened
+
+You ran the whole RakerOne loop: a **project** held the work, a **playbook run** broke it into **tasks**, you did the human steps, Florent drafted the rest, and your approval turned those drafts into committed **records**. Every consequential action — starting, submitting, approving — was yours.
+
+## Where to go next
+
+<CardGroup cols={2}>
+  <Card title="Find your tasks" icon="inbox" href="/work/my-work">
+    See everything waiting on you across all your projects, grouped by urgency, on the **My work** page.
+  </Card>
+  <Card title="Chat with Florent" icon="bot" href="/work/florent">
+    Ask Florent to look things up or draft projects, playbooks, and record types — in plain language.
+  </Card>
+  <Card title="Run a playbook" icon="play" href="/projects/run-a-playbook">
+    Go deeper on starting runs, the run workspace, and the Pause / Resume / Cancel controls.
+  </Card>
+  <Card title="Build a playbook" icon="book-open" href="/playbooks/build-a-playbook">
+    Ready to design your own process? Assemble tasks, set approvals, and publish in the no-code editor.
+  </Card>
+</CardGroup>

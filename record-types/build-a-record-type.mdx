@@ -1,0 +1,183 @@
+---
+title: "Build a record type"
+description: "Shape a record type's fields and settings in the schema editor."
+icon: "table-properties"
+---
+
+A record type defines the shape of the data a project collects — the fields every record of that kind carries. On this page you create a record type and use the schema editor to add, edit, reorder, and remove its fields. For what a record type is and the three places one can live, see [Record types overview](/record-types/overview).
+
+<Info>
+  Building record types is for **Builders** and **Admins**. Managers and Members don't see the **New record type** or **Add field** buttons. See [Roles and permissions](/admin/roles-and-permissions).
+</Info>
+
+## Create a record type
+
+You start a record type the same way from the org library and from a project's **Record types** tab: click **New record type**.
+
+<Steps>
+  <Step title="Open the New record type dialog">
+    Click **New record type**. The dialog opens with the line *"Name your record type and pick an icon. You'll define its fields next."*
+  </Step>
+  <Step title="Pick an icon and a name">
+    Choose an **Icon**, then type a **Singular name** (for example *Invoice*). The **Plural name** is optional — leave it blank to reuse the singular as-is.
+
+    <Note>
+      A blank plural name does **not** auto-add an "s". If you want *Invoices*, type it.
+    </Note>
+  </Step>
+  <Step title="Create it">
+    Click **Create record type**. The new type starts with a single required text field called **Name** so it's valid right away, and you land in the schema editor to add the rest.
+  </Step>
+</Steps>
+
+<Note>
+  If a record type with the same name already exists, you'll see an advisory banner. It's a warning only — you can still create the new one.
+</Note>
+
+{/* TODO: Screenshot — The New record type dialog with the icon picker, Singular name and Plural name fields */}
+
+## The schema editor
+
+The schema editor is where you shape a record type. It's the same editor everywhere a record type lives. It has two tabs: **Fields** and **Settings**. A **"…"** actions menu in the header holds **Delete record type**.
+
+### Fields tab
+
+The **Fields** tab lists the record type's current fields in order. Each row shows the field's label, a **type** badge (such as **Text** or **Currency**), and badges for **Title**, **Required**, and **Unique** where they apply.
+
+{/* TODO: Screenshot — Fields tab with a few fields, one carrying the Title badge and one carrying Required */}
+
+<Steps>
+  <Step title="Add a field">
+    Click **Add field**, fill in the field form, then save. See [Add or edit a field](#add-or-edit-a-field).
+  </Step>
+  <Step title="Edit a field">
+    Click the pencil on a field's row.
+  </Step>
+  <Step title="Reorder fields">
+    Drag rows up or down. This order is the order fields appear on the record form and the default column order in the table.
+  </Step>
+  <Step title="Remove a field">
+    Click the trash on a field's row.
+  </Step>
+</Steps>
+
+<Warning>
+  Removing a field **archives** it: the field leaves the schema, forms, and table, but the data already stored in it is kept. There is no in-product way to browse or restore that data yet. You can't remove the last remaining field, and removing the **Title** field automatically re-points the title to the first remaining field.
+</Warning>
+
+### Settings tab
+
+The **Settings** tab holds the record type's own details:
+
+- **Icon** and **Singular name** / **Plural name** — the names shown across the app.
+- **Identifier** — used in exports and integrations; safe to leave as-is. The singular form is fixed after creation.
+- **Description** — a short note on what the record type represents.
+- **Title field** — pick which field is shown as each record's title in tables and panels.
+
+Click **Save settings** to apply your changes. A **Changes saved.** banner confirms the save.
+
+{/* TODO: Screenshot — Settings tab showing Singular/Plural name, Description, and the Title field dropdown */}
+
+## Add or edit a field
+
+The **Add field** / **Edit field** form defines what a single field stores on every record.
+
+| Control | What it does |
+|---|---|
+| **Type** | The kind of data the field holds. Choose from the [field types](#field-types) below. |
+| **Label** | The human name shown on the form and as the column header. Required. |
+| **Key** | A stable machine identifier, auto-filled from the label. You rarely need to touch it. |
+| **Help text** | Optional guidance shown next to the field when entering a record. |
+| **Required** | When on, the field must be filled to create a record. |
+| **Unique** | When on, two records can't share the same value. |
+| **Default value** | Optional. Pre-fills the field on new records. |
+
+Click **Add field** (when adding) or **Save field** (when editing) to apply.
+
+<Warning>
+  **Type and Key are permanent once a field exists.** You can't change either after the field is created — and if the record type already has records, the type is hard-locked. Plan the type before you save. To change a type, remove the field and add a new one.
+</Warning>
+
+<Tip>
+  Renaming a field changes only its **Label** — it never touches the data already stored in that field.
+</Tip>
+
+{/* TODO: Screenshot — The Add field form with the Type dropdown open, showing the type list with descriptions */}
+
+## Field types
+
+Pick the type that matches the data the field captures. Some types have extra settings you configure in the same form.
+
+<AccordionGroup>
+  <Accordion title="Text">
+    A single line of text. Optional setting: **Maximum length**.
+  </Accordion>
+  <Accordion title="Long text">
+    A multi-line paragraph.
+  </Accordion>
+  <Accordion title="Number">
+    An integer or decimal value. Set the **Number type** (**Integer** or **Decimal**); for **Decimal**, set **Decimal places**. Set **Display** to **Plain** or **Percentage**.
+  </Accordion>
+  <Accordion title="Currency">
+    An amount with a currency code. Set the **Default currency**: USD, EUR, GBP, CAD, AUD, JPY, or CHF.
+  </Accordion>
+  <Accordion title="Boolean">
+    A true / false toggle.
+  </Accordion>
+  <Accordion title="Date">
+    A calendar date.
+  </Accordion>
+  <Accordion title="Date & time">
+    A date with a time of day.
+  </Accordion>
+  <Accordion title="Select">
+    One choice from a fixed list. You define the **Options** (see below). A Select field needs at least one option before it can be saved.
+  </Accordion>
+  <Accordion title="Multi-select">
+    Several choices from a fixed list. You define the **Options** and an optional **Maximum selections**.
+  </Accordion>
+  <Accordion title="Email">
+    One or more email addresses. Optional setting: **Maximum addresses**.
+  </Accordion>
+  <Accordion title="Phone">
+    A phone number with calling code.
+  </Accordion>
+  <Accordion title="URL">
+    A labelled web link.
+  </Accordion>
+  <Accordion title="Address">
+    A postal address — street, city, state/province, postcode, and country.
+  </Accordion>
+</AccordionGroup>
+
+### Select and Multi-select options
+
+When the type is **Select** or **Multi-select**, an **Options** editor appears. Each option has a **label** and a **color** (Gray, Green, Turquoise, Sky, Blue, Purple, Pink, Red, Orange, or Yellow), shown as a colored badge in the table and record panel. Use the arrows to reorder and the trash to remove, and click **Add option** to add more.
+
+<Note>
+  An option's stored value is frozen once saved — relabeling it later keeps existing records pointing at the right option. You must add at least one option before the field can be saved.
+</Note>
+
+{/* TODO: Screenshot — The Options editor with two or three colored options */}
+
+## Default values
+
+The **Default value** control matches the field's own type, so you set it the way a person would fill the field. A few types work a little differently:
+
+- **Boolean** — choose **No default**, **True**, or **False**.
+- **Date** / **Date & time** — choose **No default**, **Today** (or **Now** for date & time), or **Specific date** to pick one.
+- **Currency** — enter an amount; the currency comes from the field's **Default currency** setting.
+
+## Where to go next
+
+<CardGroup cols={2}>
+  <Card title="Record types overview" icon="table" href="/record-types/overview">
+    What record types are and the three scopes they live in.
+  </Card>
+  <Card title="Enter and edit records" icon="rows-3" href="/projects/data">
+    Add records by hand and work with the records table and views.
+  </Card>
+  <Card title="Review AI-extracted values" icon="circle-check" href="/work/reviewing-ai-work">
+    Approve, correct, or reject the values Florent writes into records.
+  </Card>
+</CardGroup>

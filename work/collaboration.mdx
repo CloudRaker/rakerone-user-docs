@@ -1,0 +1,148 @@
+---
+title: "Comments and notifications"
+description: "Discuss work with @mentions and keep up with your Inbox."
+icon: "messages-square"
+---
+
+RakerOne keeps the conversation next to the work. You discuss a task, a record, or a result right where it lives with **comments**, pull a teammate in with an **@mention**, and stay on top of what needs you through your **Inbox**.
+
+## Comments
+
+A comment thread is a lightweight discussion attached to a single piece of work. The same panel appears in several places, so it works the same way everywhere you find it.
+
+You'll find a **Comments** thread on:
+
+- A **task** inside a run — opens in the task detail panel.
+- A **record** — opens in the record panel when you're viewing the record.
+- A **review-grid row** in a batch action run — opens in the row's detail sheet.
+
+Open any of these and look for the thread. Its heading reads **Comments**, or **Comments on '[subject]'** when it's about a named thing. An empty thread shows *No comments yet.*
+
+{/* TODO: Screenshot — A task or record with the Comments thread panel open: the composer at the bottom and a posted comment above it */}
+
+### Post a comment
+
+<Steps>
+  <Step title="Open the thread">
+    Open the task, record, or review row you want to discuss, then find its **Comments** thread.
+  </Step>
+  <Step title="Write your message">
+    Type in the composer at the bottom (placeholder *Reply to thread…*). Use the **Text formatting** toolbar for **Bold**, **Italic**, **Code**, **Heading**, and **List**, or add an emoji with **Insert emoji**.
+  </Step>
+  <Step title="Post it">
+    Click **Post comment**. The box clears when the comment is sent.
+  </Step>
+</Steps>
+
+<Note>
+  A single comment can hold up to 10,000 characters.
+</Note>
+
+### @mention a teammate
+
+To pull a teammate into the conversation, mention them.
+
+<Steps>
+  <Step title="Type @">
+    In the composer, type **@**. The **Mention teammate** picker opens with matching names. If nobody matches, you'll see *No teammates found*.
+  </Step>
+  <Step title="Pick the person">
+    Choose the teammate. Their name appears in your comment as a highlighted mention badge.
+  </Step>
+  <Step title="Post the comment">
+    Click **Post comment**. The person you mentioned gets a notification in their [Inbox](#the-inbox).
+  </Step>
+</Steps>
+
+{/* TODO: Screenshot — The Mention teammate picker open in the composer, showing teammate suggestions after typing @ */}
+
+<Tip>
+  Typing a plain email address does not create a mention — only a true **@** mention highlights and notifies. You can write email addresses in a comment safely.
+</Tip>
+
+<Note>
+  A mention can take a moment to reach the other person. While a thread is open it refreshes itself roughly every 20 seconds, so a new mention surfaces shortly after you post it rather than instantly.
+</Note>
+
+### Edit or delete your comment
+
+Each comment has a **Comment actions** menu with **Edit** and **Delete**.
+
+- **Edit** opens the comment inline (placeholder *Edit your comment*) with **Save** and **Cancel**. An edited comment shows an **(edited)** marker afterward.
+- **Delete** removes the comment from the thread.
+
+{/* TODO: Screenshot — The per-comment Comment actions menu showing Edit and Delete, with an (edited) marker on a nearby comment */}
+
+<Warning>
+  You can edit only **your own** comments — even a project manager can't edit someone else's. You can always delete your own comment, and a project manager or admin can delete anyone's comment in their project.
+</Warning>
+
+### Who can comment
+
+If you can open a run, record, or review row, you can read its comments. To post, edit, or delete your own comment, you need to be able to work on tasks. In practice that means **Member** and up can comment. People who aren't on a project's access list can't see or post to its threads. For the full breakdown of what each role can do, see [Roles and permissions](/admin/roles-and-permissions).
+
+## The Inbox
+
+Your **Inbox** is a personal feed of things that need your attention: mentions, task assignments, and approval requests. It opens as an overlay from the sidebar, not as a full page.
+
+<Note>
+  The Inbox is your notification feed. It's different from [My work](/work/my-work), which is your personal list of the tasks waiting on you across all projects. Use the Inbox to catch what just happened; use My work to plan what to do next.
+</Note>
+
+### Open the Inbox
+
+In the sidebar, click **Inbox**. When you have unread notifications, the **Inbox** item shows a count badge (it reads **99+** above 99).
+
+{/* TODO: Screenshot — The sidebar Inbox item with an unread-count badge */}
+
+Inside the overlay you'll find a **Search inbox…** box at the top, notifications grouped under **Unread** and **Read** headings, and an **All** / **Unread** toggle with **Mark all read** along the bottom. Each notification shows a title and a type line, plus a **New** badge while it's unread.
+
+{/* TODO: Screenshot — The Inbox overlay open: search box, Unread and Read groups, a New badge on an item, and the All / Unread / Mark all read footer */}
+
+### What gets you a notification
+
+<AccordionGroup>
+  <Accordion title="Mention" icon="at-sign">
+    Someone **@mentioned** you in a comment. Opening it jumps to the thread where you were mentioned.
+  </Accordion>
+  <Accordion title="Task assigned" icon="user-check">
+    A task was assigned to you. Opening it takes you to the task so you can claim it or start work. To learn how assignment decides who owns a task, see [Assignments and approvals](/playbooks/assignments-and-approvals).
+  </Accordion>
+  <Accordion title="Approval required" icon="badge-check">
+    Something is waiting on your sign-off (shown as **Needs approval**). Opening it takes you to the item to approve. For how to review and approve AI output, see [Reviewing AI work](/work/reviewing-ai-work).
+  </Accordion>
+</AccordionGroup>
+
+### Work through your Inbox
+
+- **Open an item** — click a notification to jump straight to the task, record, or approval it's about.
+- **Filter** — switch the bottom tabs between **All** and **Unread**.
+- **Search** — type in **Search inbox…** to filter by text.
+- **Mark everything read** — click **Mark all read**. It's disabled when there's nothing unread.
+
+<AccordionGroup>
+  <Accordion title="States you might see">
+    - **Loading** — *Loading inbox…* while notifications load.
+    - **Caught up** — *You're all caught up* when there's nothing waiting.
+    - **Nothing unread** — *Nothing unread* on the Unread tab.
+    - **No search matches** — *No inbox matches* when your search finds nothing.
+    - **Error** — *We couldn't load your inbox* with *Refresh the page to try again.* Refresh the page to retry.
+  </Accordion>
+</AccordionGroup>
+
+## Where to go next
+
+<CardGroup cols={2}>
+  <Card title="My work" icon="list-checks" href="/work/my-work">
+    See the tasks waiting on you across every project.
+  </Card>
+  <Card title="Work in a run" icon="play" href="/projects/run-a-playbook">
+    Open the run workspace where task comments live.
+  </Card>
+  <Card title="Reviewing AI work" icon="badge-check" href="/work/reviewing-ai-work">
+    Approve, correct, or reject what Florent drafted.
+  </Card>
+  <Card title="Roles and permissions" icon="shield" href="/admin/roles-and-permissions">
+    Check who can comment and approve.
+  </Card>
+</CardGroup>

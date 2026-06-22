@@ -1,0 +1,146 @@
+---
+title: "Project templates"
+description: "Build reusable project starting points so teams spin up work the same way every time."
+icon: "layout-template"
+---
+
+A **project template** is a ready-made shape for a project. Instead of setting up the same playbooks, record types, and access list by hand every time, you build the setup once as a template — then anyone with access can start a fresh project from it in a couple of clicks.
+
+The library page sums it up: *"Ready-made project setups — start new projects with playbooks and record types included."*
+
+<Info>
+This page covers **building and maintaining** templates. To actually start a project from one, see [Create a project](/projects/create-a-project).
+</Info>
+
+<Note>
+Project templates are not the same as **Document templates**. A project template is a starting point for a whole project. A Document template is a Word file that a generate action fills with record data to produce a finished PDF or Word document. See [Document templates](/actions/document-templates).
+</Note>
+
+## What a template carries into a new project
+
+When someone creates a project from a template, the template copies the following into the new project:
+
+- The **prefix** — the project-number scheme. A template with the prefix `IMM` makes projects numbered `IMM-1`, `IMM-2`, and so on.
+- The **icon** — pre-fills the new project's icon.
+- The **default access** — the roles and people copied into the new project's access list (still editable on each project later).
+- The **playbooks** — the template's copies of its playbooks. See [Playbooks](/playbooks/overview).
+- The **record types** — the template's record types, copied so the new project tracks the right data from day one. See [Record types](/record-types/overview).
+
+<Warning>
+**Templates take their own copy.** When you add a playbook or record type to a template, the template grabs an independent copy. Editing the original library version later does **not** change the template's copy, and editing the template does not change the library. The same goes one step further: creating a project from a template snapshot-copies everything into that project, so later edits to the template never reach projects that already exist.
+</Warning>
+
+## Where templates live
+
+Project templates sit in the sidebar **Building Blocks** group, under **Project templates**. The entry only appears if your role includes builder access.
+
+{/* TODO: Screenshot — The Building Blocks sidebar group expanded, showing "Project templates" alongside Playbooks, Actions, Record types, Document templates */}
+
+<Info>
+You need a **Builder** or **Admin** role to view, create, or edit templates. If you don't see **Project templates** in the sidebar, ask an admin for access. See [Roles and permissions](/admin/roles-and-permissions).
+</Info>
+
+## The templates index
+
+The **Project templates** page lists every template as a card showing its icon, name, optional description, and the hint *"Projects get numbers like &#123;PREFIX&#125;-1."* Archived templates show an **Archived** badge.
+
+{/* TODO: Screenshot — Project templates index with a couple of template cards, one showing the "Archived" badge */}
+
+If there are no templates yet, the page reads **No templates yet**. If you can create one, it prompts *"Set one up so your team can spin up projects the same way every time."* with a **Create your first project template** button.
+
+## Create a template
+
+<Steps>
+  <Step title="Open the new-template form">
+    From the **Project templates** page, click **New project template**.
+  </Step>
+  <Step title="Name it and pick an icon">
+    Enter a **Name** (for example, *Client onboarding*) and choose an **Icon**. Both appear on the cards people pick from when they start a project.
+  </Step>
+  <Step title="Set the project number prefix">
+    Enter a **Project number prefix**. It builds project numbers like `OPS-1`, `OPS-2`. Use 2–6 letters or numbers, starting with a letter.
+
+    <Warning>
+    **The prefix is permanent.** Once the template is created, the prefix can't be changed — on edit it's locked and shows *"Prefix is fixed after creation."* Choose it carefully.
+    </Warning>
+  </Step>
+  <Step title="Add a description (optional)">
+    Briefly describe what kind of project this template creates, for example *Standard intake and document review*. It shows on the template card.
+  </Step>
+  <Step title="Set who can use the template">
+    Under **Who can use this template**, pick the roles and people who can create a project from it. Members with at least one matching role, or who are listed individually, can use the template.
+  </Step>
+  <Step title="Set the default access for new projects">
+    Under **Default access for new projects**, pick the roles and people automatically added to the access list of every project created from this template. These can still be changed on each project later.
+  </Step>
+  <Step title="Create it">
+    Click **Create project template**. It appears on the index, ready to use.
+  </Step>
+</Steps>
+
+{/* TODO: Screenshot — New project template form showing the prefix field, "Who can use this template", and "Default access for new projects" sections */}
+
+## Edit a template
+
+Open a template from the index to edit it. The editor has three tabs.
+
+<Tabs>
+  <Tab title="Details">
+    The name, icon, description, and access form — the same fields you set when creating the template. The **prefix is locked** here. Click **Save changes** to apply.
+  </Tab>
+  <Tab title="Playbooks">
+    The playbooks copied into every project created from this template — *"Playbooks copied into every project created from this template."*
+
+    - **New playbook** builds one directly in the template.
+    - **Add from library** pulls in an existing playbook. The dialog reminds you: *"The template takes its own copy — later library edits won't change it."*
+
+    The table shows **Name**, **Status**, **Tasks**, **Uses**, and **Updated**.
+  </Tab>
+  <Tab title="Record types">
+    The record types copied into every project created from this template — *"Record types copied into every project created from this template."*
+
+    - **New record type** creates one in the template.
+    - **Add from library** pulls in an existing record type — again, as an independent copy.
+
+    The table shows **Name** and **Fields**.
+  </Tab>
+</Tabs>
+
+{/* TODO: Screenshot — Template editor with the Details / Playbooks / Record types tabs and the Archive button */}
+
+<Tip>
+Build the template's record types and playbooks the same way you build them anywhere else — only here they live inside the template. The deep how-to lives on [Record types](/record-types/overview) and [Playbooks](/playbooks/overview).
+</Tip>
+
+## Archive and unarchive a template
+
+To retire a template, click **Archive** in the top-right of the editor. You're asked to confirm: *"Existing projects keep working. New projects can't be created from this template until you unarchive it."*
+
+An archived template:
+
+- Shows an **Archived** badge on the index.
+- Is hidden from the project-creation flow, so no one can start a new project from it.
+- Does **not** affect projects already created from it — they keep working.
+
+To bring it back, open it and click **Unarchive**. The confirmation reads *"Members will be able to create new projects from this template again."*
+
+<Warning>
+You can't start a project from an archived template. Unarchive it first.
+</Warning>
+
+## Where to go next
+
+<CardGroup cols={2}>
+  <Card title="Create a project" icon="folder-plus" href="/projects/create-a-project">
+    Start a project from a template — or build one from scratch.
+  </Card>
+  <Card title="Record types" icon="database" href="/record-types/overview">
+    Shape the data your template's projects will track.
+  </Card>
+  <Card title="Playbooks" icon="book-open" href="/playbooks/overview">
+    Build the processes your template's projects can run.
+  </Card>
+  <Card title="Document templates" icon="file-text" href="/actions/document-templates">
+    A different thing — Word templates that generate finished documents.
+  </Card>
+</CardGroup>

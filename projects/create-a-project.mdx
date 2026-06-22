@@ -1,0 +1,146 @@
+---
+title: "Create a project"
+description: "Start a project from scratch or a template, set who has access, and manage its status."
+icon: "folder-plus"
+---
+
+A **project** is the workspace for one piece of work. It holds the files, records, runs, and people for that work in one place. This page covers creating a project, choosing who can access it, and opening or closing it. For a tour of a project's tabs once it exists, see [Projects overview](/projects/overview).
+
+<Info>
+You need permission to create projects. If you don't have it, the **New project** page shows a banner: *"You don't have access to create projects. Ask an admin if you need it."* See [Roles and permissions](/admin/roles-and-permissions).
+</Info>
+
+## Start a new project
+
+Creating a project is a two-step flow: first you choose a starting point, then you fill in the details.
+
+<Steps>
+  <Step title="Open the new project flow">
+    Click **New project** at the top of the **Projects** list, or use the **New project** entry in the **Projects** group in the sidebar. You land on the **New project** page.
+  </Step>
+  <Step title="Choose a starting point">
+    Pick one of the cards:
+
+    - **Blank project** — *"Just a name, an icon, and the people who can see it."* Set everything up yourself.
+    - **A project template** — a ready-made setup. Each template card shows its icon, name, an optional description, and a hint like *"Projects get numbers like IMM-1."* Choosing a template pre-fills the icon and the access list for you.
+
+    {/* TODO: Screenshot — Step 1 card grid showing the "Blank project" card alongside a couple of template cards */}
+
+    <Note>
+      Templates are built and maintained separately. This page only consumes one — to create or edit templates, see [Project templates](/projects/project-templates).
+    </Note>
+  </Step>
+  <Step title="Fill in the details">
+    A header label shows what you picked: **Blank project** or **From "&#123;template name&#125;"**. Fill in the **Details** section:
+
+    - **Project name** (required) — for example, *Acme Corp* or *Pre-screening review*.
+    - **Project number** (read-only) — assigned automatically. Blank projects use the shared `PRJ` prefix (like `PRJ-1`); template-based projects inherit the template's prefix (like `IMM-1`). You can't choose or change the prefix.
+    - **Icon** — opens a picker. Search and pick one.
+    - **Description** (optional) — *"Optional notes for anyone working on this project."*
+
+    {/* TODO: Screenshot — Step 2 form with Details (name, project number hint, icon, description) and the Access section */}
+  </Step>
+  <Step title="Set who has access">
+    In the **Access** section, choose who can see and edit this project. See [Set who can access a project](#set-who-can-access-a-project) below for the rules.
+  </Step>
+  <Step title="Create the project">
+    Click **Create project**. The button stays disabled until you've set a name and an icon. You land on the new project's detail page.
+  </Step>
+</Steps>
+
+<Note>
+The project number is fixed once the project is created — neither the prefix nor the number can be changed later.
+</Note>
+
+## Set who can access a project
+
+Access is controlled by two pickers, both when you create a project and later in the **Settings** tab:
+
+- **Roles with access** — pick one or more roles. Everyone with a listed role can see and edit the project.
+- **People with access** — pick individual people by name.
+
+A person can open a project if **any** of these is true:
+
+- They're an **admin** — admins always have access.
+- They **created** the project — you always have access to projects you create.
+- They're listed individually under **People with access**.
+- One of their roles is listed under **Roles with access**.
+
+<Note>
+A blank project starts private: *"Only you will see this project until you add people or roles."* A project created from a template comes with the template's default access pre-filled — you can change it now or later.
+</Note>
+
+<Info>
+Roles are assigned in your identity provider, not in RakerOne. To understand what each role can do, see [Roles and permissions](/admin/roles-and-permissions). To find the people in your organization, see [Members and invites](/admin/members-and-invites).
+</Info>
+
+## Open and close a project
+
+Every project is either **Open** (green badge) or **Closed** (grey badge). Closing a project doesn't delete it — it stops new work and makes existing work read-only, while keeping everything visible to people with access.
+
+<Tabs>
+  <Tab title="Close a project">
+    Open the project, then either:
+
+    - Use the **"..."** menu in the project header and choose **Close project**, or
+    - Go to the **Settings** tab and use the **Close this project** card.
+
+    Closing a project: *"Runs stop and work becomes read-only. You can reopen it later."* A closed project drops out of the active project list, and its start and run buttons are hidden.
+
+    <Warning>
+    If a project still has runs in flight when you close it, those runs may keep going. A banner appears at the top of the project: *"This project is closed, but N run(s) is/are still active. Reopen the project to act on them, or let them finish on their own."*
+    </Warning>
+  </Tab>
+  <Tab title="Reopen a project">
+    Open the project, click the **"..."** menu in the header, and choose **Reopen project**. The project returns to **Open**, work becomes editable again, and start and run buttons reappear.
+  </Tab>
+</Tabs>
+
+<Info>
+Closing and reopening require the close-project permission. If you don't have it, the **Close project** / **Reopen project** options don't appear. See [Roles and permissions](/admin/roles-and-permissions).
+</Info>
+
+## The Settings tab
+
+The **Settings** tab is where you update a project's details, change its access, and close it. Its subtitle reads: *"Update this project's details and control who can access it."* Editing requires the manage permission — without it, you see the same information read-only. Click **Save** to apply changes.
+
+{/* TODO: Screenshot — Settings tab showing Project details, Access, the Close-this-project section, and the Summary card */}
+
+<AccordionGroup>
+  <Accordion title="Project details">
+    The name and description shown to everyone with access. Fields:
+
+    - **Name** (required)
+    - **Icon** (icon picker)
+    - **Description**
+  </Accordion>
+  <Accordion title="Access">
+    The same two pickers used at creation — **Roles with access** and **People with access**. If you can't edit, you see read-only lists, with **No roles** or **No people** when empty.
+  </Accordion>
+  <Accordion title="Close this project">
+    Appears only when the project is **Open** and you can close it. Closing stops runs and makes work read-only; you can reopen later.
+  </Accordion>
+  <Accordion title="Summary">
+    A reference panel showing **Status**, **Number**, **Created from** (*A template* or *Started blank*), the date **Created**, and the date **Updated**.
+  </Accordion>
+  <Accordion title="Created from a template">
+    If the project was created from a template, a banner reads: *"Created from a template — the setup stages are fixed, but you can still change the name, icon, description, and who has access."* The copied setup can't be edited here.
+  </Accordion>
+</AccordionGroup>
+
+## Where to go next
+
+<CardGroup cols={2}>
+  <Card title="Projects overview" icon="folder" href="/projects/overview">
+    Get to know the project workspace and all of its tabs.
+  </Card>
+  <Card title="Project templates" icon="copy" href="/projects/project-templates">
+    Build reusable templates so teams start projects the same way every time.
+  </Card>
+  <Card title="Roles and permissions" icon="shield" href="/admin/roles-and-permissions">
+    See what each role can do across the organization.
+  </Card>
+  <Card title="Members and invites" icon="users" href="/admin/members-and-invites">
+    See who's in your organization and how people are added.
+  </Card>
+</CardGroup>

@@ -1,0 +1,208 @@
+---
+title: "Run an action in bulk"
+description: "Run an action across many files or records and review every result before it lands."
+icon: "layers"
+---
+
+A batch action run takes one published action and runs it over many inputs at once — many files for an extract action, many records for a generate or fill action. Every input becomes a row in a review grid, and nothing is committed until you approve it. Extract approvals create records; generate and fill approvals add documents to the project's files.
+
+A run always lives inside a **project**, and it uses that project's files and records. Florent does the reading and drafting; you approve. For the citation chips and confidence scores you'll see while reviewing, see [Reviewing AI work](/work/reviewing-ai-work) — this page shows them in the batch grid, but that page owns the full explanation.
+
+<Info>
+You need permission to start playbooks to launch a run, and permission to approve to act on rows — see [Roles and permissions](/admin/roles-and-permissions). An action must be **Published** before you can run it — see [Actions overview](/actions/overview).
+</Info>
+
+## Launch a run
+
+There are two ways to start a batch run. Both land you on the same launcher.
+
+<Tabs>
+<Tab title="From the project">
+<Steps>
+<Step title="Open the Project actions tab">
+In your project, open the **Project actions** tab. It lists past and live runs.
+</Step>
+<Step title="Click Run project action">
+Click **Run project action**. You land on the launcher.
+</Step>
+</Steps>
+</Tab>
+<Tab title="From the action">
+<Steps>
+<Step title="Open the action and click Run">
+Open a published action and click **Run**. The **Run in which project?** dialog appears.
+</Step>
+<Step title="Pick a project">
+Choose a project. The run uses files from that project and saves its results there. You land on the launcher with the action already selected.
+</Step>
+</Steps>
+</Tab>
+</Tabs>
+
+### Pick the action and inputs
+
+The launcher has two steps: choose the action, then choose what it runs over. The input picker swaps automatically based on the action's kind — you don't pick the axis yourself.
+
+<Steps>
+<Step title="Choose an action">
+Pick from the **Action** dropdown. Only published custom actions appear. If the list is empty, there are no active actions yet — publish one first (see [Actions overview](/actions/overview)).
+</Step>
+<Step title="Select the inputs">
+- For an **extract** action, you get a **Files** picker — a checkbox table of the project's files. Tick the files to process, or use **Upload more** to add files first.
+- For a **generate** or **fill** action, you get a **Records** picker — a checkbox table of the bound record type's records. If the action uses a free-form template, choose a record type first. A generate action that combines records into one document shows the note "This action creates one document covering every record you select."
+</Step>
+<Step title="Click Run action">
+**Run action** stays disabled until you've picked an action and at least one input. Click it. The run starts immediately and you go straight to the live review grid.
+</Step>
+</Steps>
+
+{/* TODO: Screenshot — The launcher for an extract action: Action dropdown chosen, Files table with several files checked, and Run action enabled */}
+
+<Note>
+One run processes at most **1000** inputs. If your project has more, the picker shows the first 1000 with a note. Items process **4 at a time**, so a large run fills the grid gradually — you can leave the page and come back.
+</Note>
+
+## Review the grid
+
+The grid is where every input becomes a row you review. The heading is the action's name with a run-status badge. The summary line reads, for example, "12 approved · 3 to review · 1 failed · 16 files" and updates live as items finish.
+
+{/* TODO: Screenshot — The review grid header: action name, run status badge, summary counts, Export CSV link, and the Approve all clean button */}
+
+Each row shows:
+
+- A **status badge** for the item.
+- A **warning count** when something needs a closer look.
+- A **grounding/confidence chip** that points back to the source — see [Reviewing AI work](/work/reviewing-ai-work).
+
+Columns are the action's output fields. Generate and fill runs lead with a **Records** column (the source record) and a **Document** column (the generated filename) instead.
+
+### Approve in bulk
+
+You have two fast paths and a per-row path.
+
+<AccordionGroup>
+<Accordion title="Approve all clean">
+**Approve all clean** approves every row that needs review **and has no warnings**. Rows with warnings are skipped on purpose — open and handle those by hand. The button's count tells you exactly how many clean rows it will approve.
+</Accordion>
+<Accordion title="Select rows for the bulk bar">
+Tick the checkbox on one or more rows (or the header checkbox to select all) to reveal the bulk bar:
+
+- **Approve selected** — approves the chosen rows that need review.
+- **Retry failed** — re-queues the chosen failed rows.
+- **Clear** — clears your selection.
+</Accordion>
+<Accordion title="Edit a value in the grid">
+For an extract row that needs review, you can fix a wrong value inline in its cell. The value re-validates when you save. Editing a cell removes its citation chip, because the value is now yours, not the AI's.
+</Accordion>
+</AccordionGroup>
+
+{/* TODO: Screenshot — The grid with a few rows selected, showing the bulk bar with Approve selected / Retry failed / Clear */}
+
+<Tip>
+Use **Export CSV** in the header to download every row — filename, status, each output field, and the record id — to share or archive the results.
+</Tip>
+
+## Review one row at a time
+
+Click **Review** on a row (or click a field's citation chip) to open the full per-row review dialog. It fills the screen with two columns: the source on the left, the fields on the right.
+
+<Steps>
+<Step title="Check the source">
+The left column shows the source. For an extract row, it's the source PDF, scrolled to the selected field's citation with the cited region highlighted. For a generate or fill row, it's an inline preview of the generated document. Word documents can't preview here — use **Download** to open the file.
+</Step>
+<Step title="Verify each field">
+The right column lists one card per output field: the label, the value, a confidence score, and a count of cited sources. Select a field to see its citations and jump the source viewer to that evidence. Read the cited text and confirm the highlight says what the value claims. The full citation behavior is covered in [Reviewing AI work](/work/reviewing-ai-work).
+</Step>
+<Step title="Fix anything wrong">
+While the row needs review, the values are editable. Make your changes, then click **Save changes**. You must save before you can approve — **Approve** stays disabled while there are unsaved edits.
+</Step>
+<Step title="Approve or reject">
+- **Approve** commits the row. For extract, it creates the record (with each field's citation carried as provenance). For generate and fill, it moves the generated document into the project's files.
+- **Reject** opens a reason box. Type why it's wrong, then click **Confirm rejection**. For generate and fill, rejecting deletes the generated file.
+- **Retry** re-queues a failed row.
+</Step>
+</Steps>
+
+{/* TODO: Screenshot — The per-row review dialog: source PDF on the left with a highlighted citation, the field cards on the right, and the Approve / Reject / Save changes buttons */}
+
+<Warning>
+Approving is what makes a result real. An extract approval creates a record; a generate or fill approval adds a document to the project's [files](/projects/files). Rejecting a generate or fill row deletes the produced file — the row stays as a record of what happened.
+</Warning>
+
+## Statuses you'll see
+
+<AccordionGroup>
+<Accordion title="Run statuses (the whole run)">
+| Status | What it means |
+|---|---|
+| **Processing** | Items are still queued or being processed. |
+| **Needs review** | Processing finished; at least one row is waiting on a person. |
+| **Completed** | Every row is settled (approved or rejected) with no failures left. |
+| **Failed** | Some rows failed and nothing is left processing. |
+| **Cancelled** | The run was cancelled. |
+</Accordion>
+<Accordion title="Row statuses (per item)">
+| Status | What it means |
+|---|---|
+| **Queued** | Waiting its turn (the run processes up to 4 at a time). |
+| **Processing** | Being worked on now. |
+| **Reading document** | (Extract) the document is being read and values pulled out. |
+| **Filling form** | (Fill) the form is being filled. |
+| **Needs review** | Ready for you to approve, correct, or reject. A row with warnings shows a stronger orange badge. |
+| **Approved** | Approved — a record was created (extract) or the document was added to project files (generate/fill). |
+| **Rejected** | Rejected (generate/fill: the file was deleted). |
+| **Failed** | Something went wrong; the row can be retried. |
+</Accordion>
+</AccordionGroup>
+
+## Run history
+
+The **Project actions** tab keeps a history of every run in the project. Each row shows the **Action**, its **Status**, **Progress** (approved out of total), how many rows are still **To review**, and when it **Started**. Click any run to reopen its review grid.
+
+{/* TODO: Screenshot — The Project actions run-history table with runs at different statuses (Processing, Needs review, Completed) */}
+
+## When a row fails
+
+A failed row shows a short message explaining what went wrong. Most are fixable — correct the cause, then retry the row (or use **Retry failed** in the bulk bar).
+
+<AccordionGroup>
+<Accordion title="The file or record went missing">
+- **This file is no longer in the project** — it was deleted after the run started. Re-upload it and run again.
+- **A record this document needs was deleted from the project** — re-add the record, then retry.
+</Accordion>
+<Accordion title="The document couldn't be read or converted">
+- **We couldn't read this document. It may be corrupted or password-protected** — fix or replace the file.
+- **We couldn't convert this document to PDF** — usually temporary; retry.
+- **Generating this document took too long and was stopped** — usually temporary; retry.
+</Accordion>
+<Accordion title="The action or its template needs attention">
+- **This action is no longer available** — it may have been deleted.
+- **This action is no longer active. Activate it again, then retry.**
+- **This action's template is missing or no longer active** — check the action's template, then retry.
+- **The template changed after this action was last activated** — re-activate the action, then retry.
+- **The template has placeholder errors** — fix the template, re-activate, then retry.
+- **The selected records don't match the record type this action's template expects** — pick records of the right type and run again.
+</Accordion>
+<Accordion title="The result couldn't be saved">
+- **A required field was empty, so we stopped rather than generate an incomplete document** — fill in the record, then retry.
+- **The generated document is larger than 50 MB, the project file limit** — the document is too big to save.
+- **This project is out of file storage** — free up space, then retry.
+</Accordion>
+</AccordionGroup>
+
+## Where to go next
+
+<CardGroup cols={2}>
+<Card title="Build an extract action" icon="file-search" href="/actions/extract-data">
+Set up an action that reads files and pulls out structured data.
+</Card>
+<Card title="Document templates" icon="file-text" href="/actions/document-templates">
+Set up a Word template and the generate action that fills it.
+</Card>
+<Card title="Reviewing AI work" icon="badge-check" href="/work/reviewing-ai-work">
+How citations, confidence scores, and field review work.
+</Card>
+<Card title="Project files" icon="folder" href="/projects/files">
+Where approved documents land and how to find them.
+</Card>
+</CardGroup>

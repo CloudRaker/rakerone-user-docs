@@ -1,0 +1,143 @@
+---
+title: "Roles and permissions"
+description: "The four roles and exactly what each one can do."
+icon: "shield-check"
+---
+
+Every person in your organization has a **role**. Their role decides which menu items they see and which actions they can take across RakerOne. There are four roles: **Admin**, **Manager**, **Builder**, and **Member**.
+
+This page is the authoritative reference for what each role can do. To open it, go to **Admin → Roles** in the sidebar.
+
+<Info>The Roles page is admin-only, like the rest of the **Admin** group. If you open it without the admin role, you see "You don't have access to this page. Ask an admin if you need it." instead of the table.</Info>
+
+{/* TODO: Screenshot — The Roles page table with the Role and Capabilities columns, showing all four roles and their capability sentences */}
+
+## Where roles are assigned
+
+The Roles page is read-only. Roles are not assigned in RakerOne — they're assigned in your **identity provider**, the external sign-in system your organization uses. RakerOne only displays who has which role.
+
+<Note>A role change only takes effect after the person signs out and back in. Their permissions are carried in their login, so they refresh on next sign-in. See [Members and invites](/admin/members-and-invites) for how people are added and how roles get assigned.</Note>
+
+## The four roles at a glance
+
+<CardGroup cols={2}>
+  <Card title="Admin" icon="shield">
+    Full access. Manages people, settings, and everything in the workspace.
+  </Card>
+  <Card title="Manager" icon="users">
+    Starts projects, runs playbooks, and reviews the team's work.
+  </Card>
+  <Card title="Builder" icon="wrench">
+    Creates and edits playbooks, actions, and record types.
+  </Card>
+  <Card title="Member" icon="user">
+    Works on assigned tasks and comments on runs.
+  </Card>
+</CardGroup>
+
+A quick way to think about each role:
+
+- **Member** is the most limited. They work on assigned tasks, read and write records, and comment — but they can't build playbooks, can't delete or review records, and can't manage projects.
+- **Manager** is the people-and-process operator. They start runs, manage and close projects, and review the team's work — but they don't build playbooks or record types.
+- **Builder** is the toolmaker. They build playbooks, actions, record types, project templates, and triggers — but they can't create or close projects.
+- **Admin** has everything.
+
+## What each role can do
+
+The table below lists every capability and which roles have it. "Yes" means the role can do it.
+
+| Capability | Admin | Manager | Builder | Member |
+|---|:---:|:---:|:---:|:---:|
+| Create playbooks | Yes | No | Yes | No |
+| Start playbook runs | Yes | Yes | Yes | No |
+| Publish playbooks | Yes | No | Yes | No |
+| Archive playbooks | Yes | No | No | No |
+| View runs | Yes | Yes | Yes | Yes |
+| Manage runs (pause / cancel) | Yes | Yes | Yes | No |
+| Work on tasks | Yes | Yes | Yes | Yes |
+| Approve tasks | Yes | Yes | Yes | Yes |
+| Create project templates | Yes | No | Yes | No |
+| Use project templates | Yes | Yes | Yes | Yes |
+| Archive project templates | Yes | No | Yes | No |
+| Create projects | Yes | Yes | No | Yes |
+| Manage projects | Yes | Yes | No | No |
+| Close projects | Yes | Yes | No | No |
+| View record types | Yes | Yes | Yes | Yes |
+| Manage record types | Yes | No | Yes | No |
+| Read records | Yes | Yes | Yes | Yes |
+| Write records | Yes | Yes | Yes | Yes |
+| Delete records | Yes | Yes | Yes | No |
+| Review record fields | Yes | Yes | Yes | No |
+| Manage views | Yes | Yes | Yes | No |
+| Manage triggers | Yes | No | Yes | No |
+
+<Note>Everyone can comment on work they can see. To read a comment thread you need to be able to view the run; to post, edit, or delete your own comment you need the "work on tasks" capability — which all four roles have. See [Comments, mentions, and the Inbox](/work/collaboration).</Note>
+
+## What each capability means
+
+Some rows in the table need a plain-language explanation. Expand a group to see what the capability actually lets a person do.
+
+<AccordionGroup>
+  <Accordion title="Playbooks and runs">
+    - **Create playbooks** — Build new playbooks (process definitions).
+    - **Start playbook runs** — Start a run of a playbook in a project.
+    - **Publish playbooks** — Make a playbook live so it can be run.
+    - **Archive playbooks** — Retire a playbook so it's no longer used.
+    - **View runs** — Open runs and their details. (Also needed to see comment threads.)
+    - **Manage runs** — Pause, cancel, or reconfigure a run.
+    - **Work on tasks** — Do assigned tasks in a run. (Also needed to post, edit, or delete your own comments.)
+    - **Approve tasks** — Sign off on tasks that need approval before their output is committed.
+  </Accordion>
+  <Accordion title="Projects and templates">
+    - **Create project templates** — Build reusable project starting points.
+    - **Use project templates** — Start a new project from a template.
+    - **Archive project templates** — Retire a project template.
+    - **Create projects** — Start new projects.
+    - **Manage projects** — Change project settings or who's a member. (Also lets a person delete anyone's comment in that project.)
+    - **Close projects** — Close a project.
+  </Accordion>
+  <Accordion title="Records, record types, and views">
+    - **View record types** — See record-type definitions so tables and forms can render.
+    - **Manage record types** — Create, edit, or delete record types.
+    - **Read records** — See records (still limited to projects the person can access).
+    - **Write records** — Create or update records.
+    - **Delete records** — Delete records. Deliberately withheld from Members.
+    - **Review record fields** — Approve, reject, or dismiss individual record fields during field review. Withheld from Members. See [Reviewing AI work](/work/reviewing-ai-work).
+    - **Manage views** — Create, edit, or delete saved table views.
+  </Accordion>
+  <Accordion title="Triggers">
+    - **Manage triggers** — Set up automatic starts and view delivery history. See [Triggers](/playbooks/triggers).
+  </Accordion>
+</AccordionGroup>
+
+## Admins bypass per-project access
+
+Roles set what someone can do across the whole organization. On top of that, each **project** has its own access list — who can see and work in that specific project.
+
+For a normal user, the two work together. They can open a project only if one of these is true:
+
+- They created it.
+- They were added to it individually.
+- One of their roles was granted access to it.
+
+**Admins are the exception.** An admin can read and write in *every* project in the organization, regardless of the project's access list, and always counts as able to manage projects.
+
+{/* TODO: Screenshot — A project's Access list showing Roles with access and People with access, illustrating scoped per-project access alongside the admin-always rule */}
+
+<Warning>Because admins see everything, give the admin role only to people who should have full visibility into all projects and data. For everyone else, use scoped project access instead — add them to the specific projects they need.</Warning>
+
+The practical rule: if you need someone to see everything, make them an admin. If you need scoped access, add them to specific projects. Project access lists are set per project — see [Create a project](/projects/create-a-project).
+
+## Where to go next
+
+<CardGroup cols={2}>
+  <Card title="Members and invites" icon="users" href="/admin/members-and-invites">
+    Where people are added and roles are assigned — in your identity provider.
+  </Card>
+  <Card title="Create a project" icon="folder-plus" href="/projects/create-a-project">
+    Set per-project access for people who shouldn't see everything.
+  </Card>
+  <Card title="API keys" icon="key" href="/admin/api-keys">
+    Keys carry their own permissions, drawn from this same list.
+  </Card>
+</CardGroup>

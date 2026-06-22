@@ -1,0 +1,116 @@
+---
+title: "Playbooks overview"
+description: "What playbooks are, and the difference between a playbook and a run."
+icon: "workflow"
+---
+
+A **playbook** is a reusable, step-by-step process you set up once and run over and over. Think of it as a checklist with brains: it lays out the tasks that make up a piece of work, the order they happen in, who owns each one, and which ones need a sign-off. People and Florent work through the tasks together.
+
+You define the process once, then run it inside a [project](/projects/overview) whenever that work comes up. One playbook can be run as many times as you need.
+
+## A playbook has two shapes
+
+The same playbook shows up in two forms, and you will meet both. Keeping them straight is the key to everything else.
+
+<CardGroup cols={2}>
+  <Card title="The definition (the blueprint)" icon="pencil-ruler">
+    The reusable design that lives in **Building Blocks**. Nobody does work here — you build the steps, set who owns them, and decide what needs approval. It has a status and a version number.
+  </Card>
+  <Card title="The run (the live work)" icon="play">
+    One live execution of that blueprint inside a single project. This is where work actually happens: tasks light up, Florent chimes in, files and records get produced, and approvals get granted.
+  </Card>
+</CardGroup>
+
+The relationship in one line: a **definition** is the recipe; a **run** is one time you cook it. You write the recipe once and cook from it again and again. Each run is numbered (for example `PT-001`, `PT-002`) so you can tell them apart.
+
+{/* TODO: Screenshot — Side by side: the Playbooks library list (Name, Status, Tasks, Uses, Version columns) on the left as the "definition" shape, and a live run workspace three-column layout on the right as the "run" shape */}
+
+<Note>
+  Editing a definition never disturbs runs already in flight. An active run finishes on the version it started with, so you can safely improve a playbook while older runs are still going.
+</Note>
+
+## Where playbooks live
+
+Playbooks appear on three surfaces. The labels and what you can do differ on each.
+
+| Surface | What it is |
+|---|---|
+| **Playbooks** library | The org-wide list of reusable definitions. You build and publish them here. Reach it from the **Building Blocks** sidebar group; the page reads "Reusable processes that any project can run." |
+| The playbook editor | The no-code authoring screen for one definition — where you add tasks, set the order, and publish. |
+| A project's **Playbooks** page | Inside one project: the playbooks you can run here, plus past runs and the **Ask Florent** option. |
+
+{/* TODO: Screenshot — Sidebar with the Building Blocks group expanded and Playbooks highlighted */}
+
+<Info>
+  Building and publishing playbooks is a [Builder](/admin/roles-and-permissions) job. If you open the library and see "You don't have access to playbooks," ask an admin for the access you need.
+</Info>
+
+## The definition lifecycle
+
+Every playbook definition carries a status, shown as a colored badge. A playbook moves through three states over its life.
+
+<Steps>
+  <Step title="Draft">
+    Being built. Not yet usable in a project. You can edit it freely. A Draft playbook has no **Run** button in projects — it can't be started until you publish it.
+  </Step>
+  <Step title="Published">
+    Live and usable. Projects can run it, and a **Run** button appears next to it. You publish a Draft by clicking **Activate** in the editor.
+  </Step>
+  <Step title="Archived">
+    Retired. Kept for history but no longer offered for new runs. Use this when a process is replaced or no longer needed.
+  </Step>
+</Steps>
+
+### Versions go up when you publish
+
+Each time you publish changes, the version number increases — `v1`, `v2`, and so on. The current version is shown as a chip in the editor header.
+
+This matters for one reason: **active runs keep the version they started with.** Improving a published playbook never changes a run that's already underway. New runs use the newest version; in-flight runs finish on the version they began with.
+
+{/* TODO: Screenshot — The editor header showing the playbook name, the v2 version chip, the Published status badge, and the Validate and Activate buttons */}
+
+<Warning>
+  You must **publish** a playbook before anyone can run it. A Draft playbook shows no **Run** button in a project. Publishing also **validates** the playbook first — if anything is wrong, it won't publish and lists each issue by task name. Fix those, then publish again.
+</Warning>
+
+<Note>
+  Once a run has started from a playbook, some edits lock down — for example, you can't rename its internal identifier, and a project-attached playbook can't be edited once a live run references it. This protects work in progress. Build and check a playbook before you put it to use.
+</Note>
+
+## When to build a playbook vs. ask Florent
+
+You don't always have to build a playbook from scratch. There are two ways to get work running.
+
+<Tabs>
+  <Tab title="Build a playbook">
+    Best for **repeatable** processes you'll run again and again — the same intake, the same review, the same approvals every time. You design it once in the editor, publish it, and your team runs it the same way every time. This is the right choice when consistency, fixed approvals, and a known set of steps matter.
+
+    See [Build a playbook](/playbooks/build-a-playbook) for the no-code editor.
+  </Tab>
+  <Tab title="Ask Florent">
+    Best for a **one-off** or a quick start. Inside a project you type a plain-English description of what you want done — for example, "Import the invoice PDFs and extract them into the Invoice record type, then send to finance for approval" — and Florent drafts a playbook plan you can review and run. No library definition required.
+
+    Florent only drafts the plan; nothing runs until you choose to start it. See [Start a run](/projects/run-a-playbook) for the Ask Florent path inside a project.
+  </Tab>
+</Tabs>
+
+<Tip>
+  A good rule of thumb: if you'll do this more than a few times, build a playbook so it's consistent and reusable. If it's a one-time job or you're still figuring out the steps, ask Florent.
+</Tip>
+
+## Where to go next
+
+<CardGroup cols={2}>
+  <Card title="Build a playbook" icon="pencil-ruler" href="/playbooks/build-a-playbook">
+    Assemble tasks, set the order, validate, and publish in the no-code editor.
+  </Card>
+  <Card title="Task types" icon="list-checks" href="/playbooks/task-types">
+    The five task types a playbook is made of, and when to use each.
+  </Card>
+  <Card title="Start a run" icon="play" href="/projects/run-a-playbook">
+    Run a published playbook in a project and work through its tasks.
+  </Card>
+  <Card title="Assignments and approvals" icon="user-check" href="/playbooks/assignments-and-approvals">
+    Who owns each task, who signs it off, and how deadlines work.
+  </Card>
+</CardGroup>

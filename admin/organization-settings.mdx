@@ -1,0 +1,79 @@
+---
+title: "Organization settings"
+description: "Configure your organization and switch between organizations."
+icon: "settings"
+---
+
+Your **organization** is your whole RakerOne workspace — your people, projects, Building Blocks, and data. This page covers the two things you do at the organization level: set your organization's logo on the **Organization settings** page, and switch between organizations if you belong to more than one.
+
+<Info>
+**Organization settings** is admin-only. If you're not an admin and you open it, you'll see a banner that reads *"You don't have access to this page. Ask an admin if you need it."* The whole **Admin** group works this way.
+</Info>
+
+## Set your organization's logo
+
+The logo is the image people see when they switch between organizations — it's how your organization is recognized in the switcher. Right now the logo is the only thing you configure on the **Organization settings** page.
+
+To get there, click **Settings** under the **Admin** group in the sidebar. The page heading reads **Organization settings**, with the subtext *"Set the logo people see when they switch between organizations."*
+
+{/* TODO: Screenshot — The Organization settings page showing the square "Preview" avatar, the "Logo" section, the "Choose logo" dropzone, and the "Save logo" button */}
+
+<Steps>
+  <Step title="Open Organization settings">
+    In the sidebar, under **Admin**, click **Settings**.
+  </Step>
+  <Step title="Choose an image">
+    Click the dashed upload box labelled **Choose logo**. It reads "No file selected" until you pick a file, then shows the file name. Pick a square image — PNG, JPG, WebP, GIF, or SVG, under 2 MB.
+  </Step>
+  <Step title="Check the preview">
+    The **Preview** avatar updates right away to show your chosen image, so you can see how it will look before you commit.
+  </Step>
+  <Step title="Save the logo">
+    Click **Save logo**. On success, **Logo saved.** appears in green next to the button.
+  </Step>
+</Steps>
+
+{/* TODO: Screenshot — The success state: the Preview avatar updated to the new logo and the green "Logo saved." confirmation next to the Save logo button */}
+
+<Note>
+**Save logo** stays disabled until you've selected a file. If the upload fails, you'll see *"We couldn't upload the logo. Check the file and try again."* — pick a supported image type under 2 MB and retry.
+</Note>
+
+## Switch between organizations
+
+If your account belongs to more than one organization, you switch between them from the **organization switcher** at the top of the sidebar. It shows the current organization's name and logo.
+
+<Steps>
+  <Step title="Open the switcher">
+    Click the organization name and logo at the top of the sidebar. A dropdown labelled **Organizations** opens, listing every organization you belong to.
+  </Step>
+  <Step title="Pick an organization">
+    Click the one you want to switch to.
+  </Step>
+</Steps>
+
+{/* TODO: Screenshot — The organization switcher dropdown open in the sidebar header, listing two or more organizations with their logos */}
+
+<Warning>
+Switching organizations **fully reloads the app**. Expect a brief refresh — this is intentional, so nothing from the previous organization carries over. Finish or save what you're doing before you switch.
+</Warning>
+
+<Tip>
+If your account belongs to only one organization, there's nothing to switch — the switcher simply shows your current organization.
+</Tip>
+
+## Where to go next
+
+The rest of organization administration lives on its own pages.
+
+<CardGroup cols={2}>
+  <Card title="Members and invites" icon="users" href="/admin/members-and-invites">
+    See who's in your organization. Inviting people, removing them, and assigning roles all happen in your identity provider.
+  </Card>
+  <Card title="Roles and permissions" icon="shield-check" href="/admin/roles-and-permissions">
+    The four roles and exactly what each one can do across the organization.
+  </Card>
+  <Card title="Language" icon="languages" href="/admin/language">
+    Switch the interface between English and Français (Canada) from your profile menu.
+  </Card>
+</CardGroup>

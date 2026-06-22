@@ -1,0 +1,104 @@
+---
+title: "Complete a task"
+description: "Fill in Form tasks, upload files, and submit your work for approval."
+icon: "square-check"
+---
+
+This page covers the two task types **you** do by hand: a **Form** task, where you fill in fields, and a **File upload** task, where you provide documents. The other task types run on their own or are handled by Florent — see [Task types](/playbooks/task-types) for what each one is.
+
+To find the tasks waiting on you, start from [My work](/work/my-work). Click any task to open it inside its run.
+
+## Claim the task first
+
+Most tasks are shared with a group, so you take ownership before you start. Until you claim a task, its fields are greyed out and you'll see **Claim this task to fill it out.** Click **Claim task** and the task becomes yours: its status moves to **In progress**, your avatar appears on it, and the fields become editable.
+
+Claiming is covered in full — including first-to-claim-wins and what you can't claim — on [My work](/work/my-work).
+
+<Note>
+  Tasks already assigned to you specifically don't need claiming. For how assignment decides who can claim, see [Assignments and approvals](/playbooks/assignments-and-approvals).
+</Note>
+
+## Do the task
+
+Once the task is **In progress**, the work surface depends on its type. Pick the tab that matches.
+
+<Tabs>
+  <Tab title="Form task">
+    A **Form** task asks you to fill in a set of fields — intake details, a decision, or data that becomes a record.
+
+    <Steps>
+      <Step title="Fill in the Fields">
+        Under the **Fields** panel, complete each field. The helper line reads **Complete the fields below to submit this task.** Required fields are marked, and you can't submit until they're filled.
+      </Step>
+      <Step title="Review any AI suggestions">
+        If Florent pre-filled some fields, they're marked **Suggested by AI**. Check each one — accept it as-is, edit it, or clear it. Suggestions are a starting point; you still submit the form yourself.
+      </Step>
+      <Step title="Click Submit task">
+        The button reads **Submitting…** while it saves. If a required field is empty, you'll see a message like **{field} is required** — fill it in and submit again.
+      </Step>
+    </Steps>
+
+    {/* TODO: Screenshot — A claimed Form task with editable Fields and the Submit task button */}
+
+    <Note>
+      Some Form tasks create or update a [record](/projects/data) when you submit; others just save their values for later steps. Either way, your job is the same: fill the fields and submit.
+    </Note>
+  </Tab>
+  <Tab title="File upload task">
+    A **File upload** task asks you to provide one or more documents — a signed agreement, invoice PDFs, an insurance card.
+
+    <Steps>
+      <Step title="Upload a file for each field">
+        Each upload field (for example, **Insurance card (front)**) has an **Upload** button. Click it and choose your file. The field shows **Uploading…**, then **Uploaded {date}** when it's done.
+      </Step>
+      <Step title="Add more files where allowed">
+        Some fields accept multiple files; others take just one. A field may limit the file types or show a size cap. The largest a single file can be is 50 MiB.
+      </Step>
+      <Step title="Click Complete task">
+        The button reads **Completing…** while it saves. If a required field has no file, you'll see **Upload at least one file to complete this task** — add the file and complete again.
+      </Step>
+    </Steps>
+
+    {/* TODO: Screenshot — A File upload task with per-field Upload buttons and the Complete task button */}
+
+    <Note>
+      Files you upload belong to the whole project, not just this task. Every later step in the run — and other runs in the same project — can reuse them. See [Project files](/projects/files).
+    </Note>
+  </Tab>
+</Tabs>
+
+<Warning>
+  Once you submit, your form becomes read-only. You'll see **Submitted by {name}** at the top, and you can't edit the fields afterward. Double-check your values before you submit.
+</Warning>
+
+{/* TODO: Screenshot — A submitted task showing the read-only "Submitted by {name}" banner with the fields locked */}
+
+## What happens after you submit
+
+What you see next depends on whether the task needs a sign-off.
+
+- **No approval needed** — the task moves to **Completed** and the run continues. Anything downstream that was waiting on this task can now start.
+- **Approval needed** — the task moves to **Pending approval** and the approver is notified. You're done; the work counts once they approve it.
+
+You can leave the page either way — the run keeps going. Track the task's status from [My work](/work/my-work).
+
+<Info>
+  If your task is sent back, it returns to you marked **Rejected** with the reviewer's reason at the top, and your earlier work is kept as a starting point. Make the fix and submit again. The rules for who approves and what rejection means live in [Assignments and approvals](/playbooks/assignments-and-approvals).
+</Info>
+
+## Where to go next
+
+<CardGroup cols={2}>
+  <Card title="My work" icon="house" href="/work/my-work">
+    Find and claim the tasks waiting on you across every project.
+  </Card>
+  <Card title="Task types" icon="list-checks" href="/playbooks/task-types">
+    See all five task types and which ones a person versus Florent handles.
+  </Card>
+  <Card title="Review AI work" icon="badge-check" href="/work/reviewing-ai-work">
+    Approve, correct, or reject what Florent drafted, with citations to the source.
+  </Card>
+  <Card title="Assignments and approvals" icon="user-check" href="/playbooks/assignments-and-approvals">
+    Understand who owns a task and who has to sign it off.
+  </Card>
+</CardGroup>

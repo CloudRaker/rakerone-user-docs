@@ -1,0 +1,199 @@
+---
+title: "Run a playbook"
+description: "Start a run and work through its tasks in the run workspace."
+icon: "play"
+---
+
+A **playbook** is a reusable process. When you start one inside a project, you get a **run** — one live execution made of **tasks** that people and **Florent** work through together. This page covers how to start a run and how to work in the run workspace day to day.
+
+<Note>
+  A playbook must be **Published** before you can run it, and you need access to the project. New to playbooks? Start with [Playbooks overview](/playbooks/overview).
+</Note>
+
+## Start a run
+
+Every run starts from a project's **Playbooks** page. Open a project, then open its **Playbooks** tab. From here you have three ways to begin.
+
+{/* TODO: Screenshot — The project Playbooks page showing the top Playbooks table with a Run button, the "From the library" section, the Ask Florent card, and the Recent work table */}
+
+<Tabs>
+  <Tab title="Run a project playbook">
+    The top **Playbooks** table lists the playbooks already available in this project, with their **Name**, **Status**, and **Tasks**.
+
+    Only playbooks with status **Published** show a **Run** button (a play icon). Click **Run** to start — you go straight into the new run's workspace.
+
+    <Warning>
+      A **Draft** playbook can't be run, so no **Run** button appears next to it. Someone with the right access must publish it first in [the playbook editor](/playbooks/build-a-playbook).
+    </Warning>
+  </Tab>
+
+  <Tab title="From the library">
+    The **From the library** section offers proven processes from your organization's library: "One click creates this project's own copy and starts a run."
+
+    Click **Use in this project** on a row. This copies the playbook into the project *and* starts a run in one step. If it's already here, the button reads **Use again** or shows **Already in this project**.
+  </Tab>
+
+  <Tab title="Ask Florent">
+    The **Ask Florent** card lets you describe the work in plain English and have Florent draft a playbook plan for this project. This proposal is called a **brief**.
+
+    Type what you want done in the box (for example, "Import the 400 invoice PDFs and extract them into the Invoice record type, then send to finance for approval"), then click **Create plan**.
+
+    <Info>
+      **Create plan** only drafts a proposal — nothing runs yet. You review every detail and click **Run it** to create and start the work. Florent never starts a run on its own. For how briefs work and what you can ask, see [Florent](/work/florent).
+    </Info>
+  </Tab>
+</Tabs>
+
+The **Recent work** table below lists past and current runs in this project — the run number (a link), **Playbook**, **Status**, task progress, and when it **Started**. Click a run number to reopen its workspace.
+
+<Tip>
+  If you don't see a way to add a library playbook, you likely lack project access. The page tells you so: "You don't have permission to add playbooks to this project. Ask an administrator for access."
+</Tip>
+
+## The run workspace
+
+Once a run starts, you land in the **run workspace** — your day-to-day work surface. It has three columns:
+
+- **Left:** the **task rail** (every task and its status) and, below it, the **Files** panel.
+- **Middle:** the **Timeline** — comments, Florent replies, and run events in one stream.
+- **Right (widest):** the task you've opened, or the **Run summary** once the run is finished.
+
+{/* TODO: Screenshot — The full run workspace three-column layout: task rail on the left with Files below, the Timeline in the middle with a composer, and an open task on the right */}
+
+### Run header
+
+At the top you'll see the **run number** (for example, RUN-7), the **playbook name**, and a **status badge**. An **Overdue** badge appears in red if the run has passed its due date. A link beneath takes you back to the project, alongside a short progress summary.
+
+The **run lifecycle controls** sit on the right. They appear only while the run is active and only if you have permission to manage the run — covered in [Pause, resume, or cancel](#pause-resume-or-cancel) below.
+
+### Overall progress
+
+The **Tasks** card header shows how far the run has gotten — "&#123;completed&#125; of &#123;total&#125; done" — plus a one-line read like "&#123;N&#125; active tasks, &#123;M&#125; waiting tasks." It's your at-a-glance status for the whole run.
+
+### The task rail
+
+The rail shows **every task in the playbook, always** — nothing is hidden. Tasks are grouped into three sections:
+
+<AccordionGroup>
+  <Accordion title="Open — needs attention now">
+    Tasks that are ready or in motion: **Available**, **In progress**, **Pending approval**, **Submitted**, **Escalated**, **Rejected**, or **Failed**. This is where you spend most of your time.
+  </Accordion>
+  <Accordion title="Waiting — not your turn yet">
+    Tasks still waiting on an earlier task to finish. In the rail this group reads **Waiting** (the underlying status is **Blocked**). Hover to see what it's waiting for: "Starts after '&#123;task&#125;' is done." A waiting task flips to **Available** automatically when its turn comes.
+  </Accordion>
+  <Accordion title="Done — finished">
+    Tasks that reached a final state: **Approved**, **Completed**, **Skipped**, or **Cancelled**. Collapsed behind a "Done (N)" disclosure to keep the rail tidy.
+  </Accordion>
+</AccordionGroup>
+
+Each rail row carries a **task-type icon**, the task name, small avatars for who claimed or approved it, and a **status badge**. Click a row to open that task on the right.
+
+<Tip>
+  The workspace auto-focuses the most actionable task as the run loads — usually the one that needs you. Once you click a task, your choice sticks until you pick another.
+</Tip>
+
+If you can approve tasks, a **Pending approval** row shows compact **Approve** and **Reject** controls right in the rail. Approve fires immediately; Reject asks for a reason inline. The full review experience lives in [Reviewing AI work](/work/reviewing-ai-work).
+
+### Opening and working a task
+
+Click a rail row and the right column shows that task's detail — its status, type, who it's assigned to, and the work surface for that task type. (When nothing is selected, it reads "Select a task from the list to see its details.")
+
+What you do depends on the task type:
+
+- **Form** and **File upload** tasks are done by a person. You **Claim** the task, fill it out, then **Submit** or **Complete** it. See [Completing tasks](/work/completing-tasks).
+- **Document**, **Action**, and **AI** tasks run automatically — Florent or the automation handles them when they become available. You don't (and can't) start them; the panel shows Florent's progress instead of a form, such as "Florent works on this automatically when it becomes available."
+
+<Note>
+  For what each task type is and who does it, see [Task types](/playbooks/task-types). Anything Florent or an automated step produces is a **draft** — you approve before it becomes real data. That review happens in [Reviewing AI work](/work/reviewing-ai-work).
+</Note>
+
+If an automated task is sitting still, check whether a task it **Waits for** is still in the **Waiting** group — its turn simply hasn't come yet.
+
+### Files panel
+
+Below the task rail, the **Files** panel lists files attached to this run, each with a **Download** link ("Attachments available to this run."). When empty it reads "No files attached to this run."
+
+<Note>
+  This is a quick view of the run's files. To upload, organize, tag, and reuse files across the whole project, use the project [Files](/projects/files) pool.
+</Note>
+
+## Florent inside a run
+
+If the playbook has Florent enabled, Florent works alongside you in the run — and stays inside the same rule: **Florent drafts; you decide.** Florent never submits, approves, starts, or cancels anything for you.
+
+### The Timeline
+
+The middle column is the **Timeline**, a chronological stream that mixes:
+
+- **Comments** people post (the composer is pinned at the bottom).
+- **Florent replies**, shown under the name **Florent**.
+- **Run events** phrased plainly: "started the run," "made &#123;task&#125; available," "claimed &#123;task&#125;," "submitted &#123;task&#125;," "approved &#123;task&#125;," "The run completed," and so on.
+
+Events tied to a task include an **Open task** button so you can jump straight there without leaving the stream.
+
+{/* TODO: Screenshot — The Timeline with a human comment, a "Florent replied" message with the F avatar, and a "completed {task}" event showing an Open task button; composer at the bottom */}
+
+### Asking Florent in the run
+
+If Florent chat is turned on for the playbook, the Timeline composer doubles as **Ask Florent**. Type your question and Florent's reply appears inline in the Timeline.
+
+You can ask things like "Why is task X blocked?" or "Re-run the extract with a different column." Florent answers or proposes a change — but a person always confirms anything consequential.
+
+<Info>
+  If you don't see the **Ask Florent** button, the playbook has Florent chat turned off. You'll see "Florent chat is disabled for this playbook." The comment box still works for teammate comments and @mentions. For the standalone Chat surface and the full list of what you can ask Florent, see [Florent](/work/florent).
+</Info>
+
+## Pause, resume, or cancel
+
+You manage a run from the controls in the run header. They appear only while the run is active and only if you have permission to manage runs — if you expect a control and don't see it, it's almost always a missing permission.
+
+<Steps>
+  <Step title="Pause a run">
+    Open the **Run actions** menu (the three-dots overflow) and choose **Pause run**. No tasks advance while a run is paused. Use this when you need a temporary hold.
+  </Step>
+  <Step title="Resume a run">
+    A paused run shows a **Resume** button in the header. Click it to pick up where you left off.
+  </Step>
+  <Step title="Cancel a run">
+    Open the **Run actions** menu and choose **Cancel run…**. A dialog asks you to confirm: "Cancel this run? Tasks stop and the run is marked cancelled. This can't be undone." Click **Cancel run** to confirm, or **Keep working** to back out.
+  </Step>
+</Steps>
+
+{/* TODO: Screenshot — The run header Run actions overflow menu open, showing Pause run and Cancel run…, and the Resume button on a paused run */}
+
+<Warning>
+  Cancelling a run can't be undone — tasks stop and the run is marked **Cancelled**. If you only need a temporary hold, use **Pause** instead.
+</Warning>
+
+## When a run finishes
+
+When a run reaches a final state — **Done**, **Cancelled**, or **Failed** — the right column defaults to the **Run summary** instead of a task. It shows the outcome and the detail behind it:
+
+- **Done:** "Everything's done." with "&#123;N&#125; tasks completed &#123;date&#125;."
+- **Failed:** "&#123;N&#125; task(s) failed" — "Open the failed task below to see what happened."
+- **Cancelled:** "Run cancelled" — "&#123;completed&#125; of &#123;total&#125; tasks finished before the run stopped."
+
+The summary also lists **All tasks** (click any to inspect it) and a **Records created** count when the run produced records. A **Back to summary** button returns you here after you drill into a task.
+
+{/* TODO: Screenshot — The Run summary panel on a completed run: the "Everything's done." headline, the All tasks list, and the Records created count */}
+
+<Tip>
+  Records a run created live in the project's [Data](/projects/data) tab, where you can search, filter, and edit them after the run is over.
+</Tip>
+
+## Where to go next
+
+<CardGroup cols={2}>
+  <Card title="Task types" icon="list-checks" href="/playbooks/task-types">
+    What each of the five task types is and who does the work.
+  </Card>
+  <Card title="Completing tasks" icon="square-check" href="/work/completing-tasks">
+    Claim, fill, and submit Form and File upload tasks.
+  </Card>
+  <Card title="Reviewing AI work" icon="badge-check" href="/work/reviewing-ai-work">
+    Approve, correct, and reject the drafts Florent produces.
+  </Card>
+  <Card title="Assignments and approvals" icon="user-check" href="/playbooks/assignments-and-approvals">
+    Who owns a task, who signs it off, and the deadline rules.
+  </Card>
+</CardGroup>

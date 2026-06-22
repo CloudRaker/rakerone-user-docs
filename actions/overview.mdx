@@ -1,0 +1,167 @@
+---
+title: "Actions overview"
+description: "What actions are, and the difference between built-in and custom actions."
+icon: "zap"
+---
+
+An **action** is a reusable, single-purpose automation. You set it up once, test it, and then reuse it — either on its own across many files or records at once, or as a single step inside a [playbook](/playbooks/overview).
+
+Think of an action as a small, dependable tool: it does one job (reads documents, generates documents, or fills a form), and it does that same job everywhere you point it. Florent and your playbooks lean on actions to do the repetitive heavy lifting — but, as always, **AI drafts and a person approves** before anything becomes committed data.
+
+## Two families of actions
+
+Actions split into two groups, and the [Actions library](#the-actions-library) shows them separately.
+
+<CardGroup cols={2}>
+  <Card title="Built-in actions" icon="puzzle">
+    Ready-made steps that ship with RakerOne. You can't edit them, and they're only meant to be used as steps inside a playbook — not run on their own.
+  </Card>
+  <Card title="Custom actions" icon="wand-sparkles">
+    Actions someone on your team builds, tests, and activates. These are the ones you create, run across many items, and reuse in playbooks.
+  </Card>
+</CardGroup>
+
+### Built-in actions
+
+Built-in actions appear in the **Building blocks** section of the Actions library. They're the everyday plumbing a playbook uses to move work along. Each one has an info button that explains what it does; there's no editor, because you can't change them.
+
+| Built-in action | What it does |
+|---|---|
+| **Add a record** | Adds a new record of a chosen type when a run reaches this step. |
+| **Update a record** | Changes fields on an existing record. |
+| **Find records** | Finds records that match your criteria so later steps can use them. |
+| **Florent comment** | Posts a comment on the run for everyone to see. |
+| **Send notification** | Sends an in-app notification to a person or role. |
+| **Wait** | Pauses the run until a delay or set time has passed. |
+
+<Note>
+Built-in actions only work as playbook steps. You can't run one across many items — that's reserved for custom actions. See [task types](/playbooks/task-types) for how an **Action** task uses one inside a playbook.
+</Note>
+
+### Custom actions
+
+A custom action is one of three kinds, chosen when you create it. The kind decides what the action reads, what it produces, and which page owns the how-to.
+
+<CardGroup cols={3}>
+  <Card title="Read documents" icon="file-search" href="/actions/extract-data">
+    AI reads files and pulls structured values into fields your team reviews. Produces **records** (or inline fields).
+  </Card>
+  <Card title="Generate documents" icon="file-output" href="/actions/document-templates">
+    Fills a Word template with record data. Produces **Word or PDF documents** in the project's files.
+  </Card>
+  <Card title="Fill forms" icon="file-pen" href="/actions/document-templates">
+    Fills a blank PDF or image form with record data. Produces **filled documents** in the project's files.
+  </Card>
+</CardGroup>
+
+<Info>
+Read documents actions run over **files**. Generate and Fill actions run over **records**. You don't pick which — RakerOne swaps the input picker to match the action's kind when you run it. See [batch action runs](/actions/batch-runs).
+</Info>
+
+## The Actions library
+
+The Actions library is where every action lives. Open it from **Actions** under the **Building Blocks** group in the sidebar.
+
+{/* TODO: Screenshot — The sidebar Building Blocks group expanded, with the Actions item highlighted */}
+
+The page is split into two parts: your team's custom actions on top, and the read-only built-in actions below.
+
+{/* TODO: Screenshot — The Actions library showing the "Your actions" table (with a Published action and a Draft action) plus the "Building blocks" list below */}
+
+### Your actions
+
+The **Your actions** table lists every custom action your team has built. Each row shows:
+
+- **Name** — opens the action's editor.
+- **Status** — a badge: **Draft**, **Published**, or **Archived** (see [the action lifecycle](#the-action-lifecycle)).
+- **Output** — what the action produces: the record type's name, **Inline fields**, **Generated documents**, or **Filled forms**.
+- **Used by** — how many playbooks reference this action (for example, **Not in use** or **1 playbook**).
+
+If no custom actions exist yet, you'll see **No actions yet** with a prompt to define one. If you don't have permission to create actions, it reads "Actions will show up here once someone on your team creates one."
+
+### Building blocks
+
+Below your actions, the **Building blocks** section lists the built-in actions described above. Each row has an info button that opens a short description. There are no links here — built-ins have no editor.
+
+<Info>
+Anyone signed in can browse the library, but creating, editing, and activating actions requires a builder or admin role. Without it, you won't see the **New action** button, and opening an editor link directly shows "You don't have access to actions." See [roles and permissions](/admin/roles-and-permissions).
+</Info>
+
+## Create an action
+
+Creating an action only names it and picks its kind — you build out the details afterward in the editor.
+
+<Steps>
+  <Step title="Click New action">
+    From the Actions library, click **New action** in the top-right. (You'll only see this button if you have permission to create actions.)
+  </Step>
+  <Step title="Choose what it should do">
+    Under **What should it do?**, pick one of the three kinds:
+
+    - **Read documents** — "AI reads files and fills in fields your team review."
+    - **Generate documents** — "Fill a Word template with record data to create PDF or Word files."
+    - **Fill forms** — "Fill a blank PDF or image form with record data to create finished documents."
+  </Step>
+  <Step title="Name it">
+    Give the action a clear **Name** (required) and an optional **Description** — the description shows in the actions list, so make it say what the action does. Then click **Create action**.
+  </Step>
+  <Step title="Build it in the editor">
+    You land straight in the editor with a new **Draft** action. From here, fill in its output and instructions, then activate it. The steps differ by kind — follow the page for the kind you chose.
+  </Step>
+</Steps>
+
+{/* TODO: Screenshot — The New action dialog with the "What should it do?" radio cards visible */}
+
+<CardGroup cols={2}>
+  <Card title="Build a Read documents action" icon="file-search" href="/actions/extract-data">
+    Set the output fields, instructions, and model, then prove it on sample files before activating.
+  </Card>
+  <Card title="Build a Generate or Fill action" icon="file-output" href="/actions/document-templates">
+    Point it at a Word template or blank form, set the output format, and activate.
+  </Card>
+</CardGroup>
+
+## The action lifecycle
+
+Every custom action moves through three states, shown as a status badge in the library.
+
+| Status | What it means |
+|---|---|
+| **Draft** | Being built. Not yet runnable. |
+| **Published** | Active and runnable — both across many items and as a playbook step. |
+| **Archived** | Retired. Can't be edited, tested, or run. |
+
+A new action starts as a **Draft**. When it's complete and valid, you **activate** it, which turns it **Published** and makes it runnable. To retire one, you **archive** it — there's no delete. Unarchiving returns an action to **Draft** so you can edit it again.
+
+<Warning>
+An action must be **Published** to run. Draft and Archived actions don't appear in the run launcher's action list. If you can't find your action when starting a run, check that it's been activated.
+</Warning>
+
+<AccordionGroup>
+  <Accordion title="Versions and playbooks">
+    Each action carries a version number. Changing its output or how it runs bumps that version. If a playbook was built against an older version, re-activate the action so the playbook can adopt the change.
+  </Accordion>
+  <Accordion title="Renaming vs. identity">
+    You can rename an action at any time, but its underlying identity is fixed when it's created. Renaming changes the label everywhere; it doesn't break any playbook that already uses it.
+  </Accordion>
+  <Accordion title="Archive, not delete">
+    There's no way to delete an action — archiving is how you remove one from use. Archived actions can't be edited, tested, or run. Unarchive to bring one back to **Draft**.
+  </Accordion>
+</AccordionGroup>
+
+## Where to go next
+
+<CardGroup cols={2}>
+  <Card title="Read documents (extract)" icon="file-search" href="/actions/extract-data">
+    Build and test an action that reads files into reviewable records.
+  </Card>
+  <Card title="Generate and fill documents" icon="file-output" href="/actions/document-templates">
+    Set up a template and the action that fills it.
+  </Card>
+  <Card title="Run an action over many items" icon="layers" href="/actions/batch-runs">
+    Process many files or records at once and review every result in a grid.
+  </Card>
+  <Card title="Use an action in a playbook" icon="list-checks" href="/playbooks/task-types">
+    Add an action as a step inside a multi-step process.
+  </Card>
+</CardGroup>

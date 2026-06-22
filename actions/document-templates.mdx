@@ -1,0 +1,205 @@
+---
+title: "Generate documents"
+description: "Turn a Word template and your records into finished PDFs or Word files."
+icon: "file-text"
+---
+
+A **document template** is an ordinary Word (.docx) file with placeholders in it — like `{{ clientName }}` — that get filled in with your data. A **generate action** is the automation that fills the template with a record's values and produces a finished **PDF** or **Word** file. Same record plus same template always gives the same document — there's no AI in this step, just a reliable fill.
+
+This page covers two building blocks you set up once and reuse: the **document template** and the **generate action** that fills it. It also shows how documents get reviewed and approved when a run produces them.
+
+<Note>
+  A **document template** is a Word file you fill with data. A **project template** is a starting point for a whole project. They are different things — this page is only about document templates. For project templates, see [Project templates](/projects/project-templates).
+</Note>
+
+<Info>
+  Anyone in your organization can view the document templates library. Creating, editing, activating, or deleting a template — and building generate actions — needs builder-level access. Without it you'll see "You don't have access to templates. Ask an admin if you need it." See [Roles and permissions](/admin/roles-and-permissions).
+</Info>
+
+## How it fits together
+
+To produce documents, three pieces work in order:
+
+1. A **record type** defines the shape of your data (for example, "Client"). See [Record types](/record-types/overview).
+2. A **document template** is the Word file whose placeholders pull from that record type.
+3. A **generate action** fills the template with each record's values and produces the finished files.
+
+The template and the action are both **Building Blocks** — you set them up once and reuse them across projects.
+
+## Set up a document template
+
+Document templates live under **Document templates** in the **Building Blocks** group of the sidebar. The library lists every template in a table with **Name**, **Status**, **Kind**, **Binding**, **Version**, **Used by**, and **Updated**. The **Status** badge reads **Draft**, **Active**, or **Archived** (a template must be **Active** before a generate action can use it). **Used by** tells you how many generate actions reference the template — for example "Not in use" or "2 actions".
+
+{/* TODO: Screenshot — The Document templates library table showing the Name / Status / Kind / Binding / Version / Used by / Updated columns, with a Draft and an Active template */}
+
+### Create the template
+
+<Steps>
+  <Step title="Click New document template">
+    The **New template** dialog opens.
+  </Step>
+  <Step title="Choose Word document">
+    Under **What kind of template?**, pick **Word document** — "A .docx with placeholders, filled with record data to make PDF or Word files." (The other option, **PDF or image form**, is for blank fillable forms.)
+  </Step>
+  <Step title="Add your Word file">
+    Drop the file on the zone or click **Choose a Word file**. Only `.docx` files up to **20 MB** are accepted. A wrong file type shows "Only Word documents (.docx) can be used as templates."
+  </Step>
+  <Step title="Name it">
+    The **Name** prefills from the filename (for example, "Engagement letter.docx" becomes "Engagement letter"). Add an optional **Description**.
+  </Step>
+  <Step title="Click Create template">
+    You land in the template editor, with the template in **Draft**.
+  </Step>
+</Steps>
+
+{/* TODO: Screenshot — The "New template" dialog with the "Word document" option selected and a .docx file chosen */}
+
+### Bind it and check the placeholders
+
+In the editor, the header shows the template name, its **Status** badge, a **Version** badge, and the **Save** and **Activate** buttons. Below it you'll bind the template, review its placeholders, and preview the result.
+
+<Steps>
+  <Step title="Bind to a record type">
+    Use the **Record type binding** select to pick the record type whose fields fill this template — or choose **Not bound — free-form data**. Binding lets RakerOne check every placeholder against that record type's fields and offer record-based previews. Changing the binding re-checks the file and bumps the version.
+  </Step>
+  <Step title="Review What it expects">
+    The **What it expects** panel lists every placeholder found in the file, its type (Value, Loop, or Loop item), how often it's used, and what it maps to. A placeholder that doesn't match a field on the bound record type is flagged **Unknown variable**.
+  </Step>
+  <Step title="Read the Checks panel">
+    **Checks** validates your placeholders every time the file or binding changes. **Errors block activation; warnings don't.** When everything is fine it reads "Template looks good." Broken or unknown placeholders show up here with the offending text.
+  </Step>
+</Steps>
+
+{/* TODO: Screenshot — The template editor showing the header (Save / Activate), the "Record type binding" select, the "What it expects" variables list, and the "Checks" panel */}
+
+<Tip>
+  Need to fix the file? Click **Download** to open it in Word, make your edits, then use **Replace file** to upload the new version. Re-uploading re-runs **Checks** and bumps the version.
+</Tip>
+
+### Preview before you activate
+
+The **Try it** panel renders a throwaway preview — nothing is saved to any project. Provide **Sample data (JSON)** or, for a bound template, **Pick a record** to use real data, then click **Render preview**. PDFs preview inline; Word output can't preview ("Preview isn't available for Word output. Download the file to review it."). If any placeholders came out blank, you'll see "Some placeholders were left blank." Click **Save as sample data** to keep your preview inputs as the default.
+
+{/* TODO: Screenshot — The "Try it" render-preview panel with an inline PDF preview after clicking "Render preview" */}
+
+### Activate
+
+Click **Activate** to move the template from **Draft** to **Active**. The button is enabled only when there are zero check errors and the binding is valid; any blockers are listed inline. A generate action can only use an **Active** template.
+
+### What you can put in a template
+
+The editor's **Writing templates** help panel explains the placeholder language. The essentials:
+
+<AccordionGroup>
+  <Accordion title="Single values">
+    Write `{{ fieldName }}` to drop in a value. Dot paths work for nested data — for example `{{ client.name }}`.
+  </Accordion>
+  <Accordion title="Loops and conditionals">
+    Repeat content per item with a loop (put the loop tags inside a table row to repeat that row for each item). Use a conditional to show content only when a condition holds.
+  </Accordion>
+  <Accordion title="Built-in objects">
+    Every render has `_record`, `_org`, `_project`, and `_now` available, plus `_records` when one document covers several records. These appear in the variables panel as "Provided automatically."
+  </Accordion>
+  <Accordion title="Filters">
+    Format a value by chaining a filter after it with a pipe — for example to format a number or a date. The help panel lists the available string, number, date, conditional, and array filters.
+  </Accordion>
+  <Accordion title="Images, barcodes, and rich text">
+    Draw a text box in Word, give it a **red border**, and put a single expression inside it. It renders as an embedded image, a barcode (such as a QR code), or Markdown turned into real Word paragraphs.
+  </Accordion>
+  <Accordion title="Editing safely">
+    It's safe to edit the text around placeholders. If Word splits a placeholder while you type, RakerOne repairs it automatically; anything it can't repair shows up in **Checks**.
+  </Accordion>
+</AccordionGroup>
+
+## Build the generate action
+
+A template doesn't produce anything on its own — a generate action does. You create it from the **Actions** library; see [Actions](/actions/overview) for the **New action** dialog and the three action kinds. Choose **Generate documents** as the kind. The editor then has two parts.
+
+### How it's built
+
+This is where you point the action at its Word template:
+
+- **Library template** — pick a published template from the document templates library, or
+- **Upload here** — a `.docx` that belongs only to this action and won't appear in the library.
+
+The pickers read **Pick a template**, **View template**, and **Replace template file** / **Upload template**.
+
+### What it produces
+
+This section controls the finished output:
+
+| Setting | Options |
+|---|---|
+| **Format** | **PDF** or **Word (DOCX)** |
+| **Documents** | **One document per record**, or **One combined document for all records** |
+| **Filename template** | A name pattern where placeholders fill in each record's values — for example `Letter — {{ name }}.pdf`. A live preview shows the result. |
+| **Tags** | Tags added to every generated file. Generated files always also get the **generated** tag. |
+| **Add a watermark** | Turn on, then set **Watermark text**. Watermarks apply to **PDF output only**. |
+
+### Activate and the version pin
+
+Activating the generate action **pins** it to the template's current version. If someone later replaces the template file, that pin goes stale and a banner appears: **A newer template version is available**. You must **Re-activate** the action to adopt the new version. Until you do, generation refuses with a version-mismatch message.
+
+<Warning>
+  A template **can't be deleted while a generate action uses it** ("Templates used by a generation action can't be deleted"). Archive it instead. Old versions are kept so a pinned action keeps rendering the version it expects.
+</Warning>
+
+## Generate documents from a run
+
+When a playbook includes a generate action as a task, the run produces documents for you. The task panel is **Generated documents**.
+
+If the task needs approval, it parks at **Pending approval** and shows **Documents to review (N)**. Each document previews inline (Word files show a **Download** instead), along with any render warnings such as "Some placeholders were left blank." The prompt reads "Open each document to confirm it reads correctly, then approve. Approved documents become part of the project's files." Click **Approve documents** to finish.
+
+{/* TODO: Screenshot — A generate task panel "Documents to review (N)" with an inline PDF preview, a warnings banner, and the "Approve documents" button */}
+
+<Note>
+  Approving these documents is the same kind of human gate as approving any other AI or automated work — the documents only become real project files once you approve. See [Reviewing AI work](/work/reviewing-ai-work) for the act of approving, and [Assignments and approvals](/playbooks/assignments-and-approvals) for when approval is required.
+</Note>
+
+## Generate documents in a batch
+
+You can also run a generate action over many records at once from a project's **Project actions** area. Because it's a generate action, you pick **Records** (rather than files) to merge, and each one produces a document you review and approve in a grid. One run handles up to **1000** records.
+
+[Batch action runs](/actions/batch-runs) owns the launcher, the review grid, and how you approve, reject, or retry each generated document.
+
+## Where the documents land
+
+Approved generated documents become **project files**. They carry a **Generated** badge and a line noting which action, template version, and records produced them. [Project files](/projects/files) covers the file pool, badges, and how to find and reuse those documents.
+
+## Limits and gotchas
+
+<AccordionGroup>
+  <Accordion title="File size and type">
+    A template file must be a `.docx` no larger than **20 MB** — only Word templates can be rendered (XLSX and PPTX aren't supported). A generated file must be under **50 MB** (the project file limit); larger output fails with a clear message.
+  </Accordion>
+  <Accordion title="A required field was empty">
+    If a placeholder maps to a required field that has no value, generation stops rather than produce an incomplete document. Fill in the record, then retry. Optional blanks just render empty and show a "Some placeholders were left blank" warning.
+  </Accordion>
+  <Accordion title="The template changed after the action was activated">
+    Replacing the template file makes a pinned action's version stale, so generation refuses. **Re-activate** the action to adopt the new file, then retry.
+  </Accordion>
+  <Accordion title="Watermarks are PDF-only">
+    A watermark only appears on **PDF** output. It has no effect when the action produces Word files.
+  </Accordion>
+</AccordionGroup>
+
+<Note>
+When a generate run fails on a specific row, the review grid shows the exact cause and a retry. [Batch action runs](/actions/batch-runs) lists every per-row error message and its fix.
+</Note>
+
+## Where to go next
+
+<CardGroup cols={2}>
+  <Card title="Actions overview" icon="zap" href="/actions/overview">
+    What actions are, built-in versus custom, and the three kinds.
+  </Card>
+  <Card title="Batch action runs" icon="layers" href="/actions/batch-runs">
+    Run a generate action over many records and review every document.
+  </Card>
+  <Card title="Record types" icon="database" href="/record-types/overview">
+    The shape of the data your templates pull from.
+  </Card>
+  <Card title="Project files" icon="folder" href="/projects/files">
+    Where generated documents land and how to reuse them.
+  </Card>
+</CardGroup>

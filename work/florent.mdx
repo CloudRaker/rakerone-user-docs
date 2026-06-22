@@ -1,0 +1,183 @@
+---
+title: "Chat with Florent"
+description: "Ask Florent to look things up and draft work — and know what it will and will not do."
+icon: "bot"
+---
+
+Florent is RakerOne's built-in AI assistant. You talk to it in plain language, and it helps you two ways: it **looks things up** across your work, projects, playbooks, record types, and records, and it **drafts new things** for you — projects, playbooks, project templates, and record types.
+
+This page covers **Chat**, the standalone surface where you have a conversation with Florent. The one rule to hold onto: **Florent drafts, you decide.** It proposes; you approve, activate, submit, start, or delete. See [AI drafts, humans approve](/get-started/introduction) for the rule that governs everything Florent does across the product.
+
+<Note>
+Florent also works **inside a project** (describe a process and get a playbook plan) and **inside a run** (it works the run's tasks and posts to the activity feed). Both of those live with the run workspace — see [Start a run](/projects/run-a-playbook). This page is just about Chat.
+</Note>
+
+## Open Chat
+
+**Chat** lives in the **Work** section at the top of the left sidebar, alongside **Home** and **Inbox**. It has a chat-bubble icon.
+
+- The first time, before you have any conversations, **Chat** is a single item that opens Florent's welcome screen.
+- Once you have at least one conversation, **Chat** becomes a collapsible group. Expand it to see a **New chat** item and your six most-recent conversations, newest first. The conversation you're in is highlighted.
+
+{/* TODO: Screenshot — The sidebar Work section with the Chat group expanded, showing New chat and a few recent conversation titles */}
+
+<Note>
+Clicking **Home** opens [My work](/work/my-work), not Florent. To start a conversation, click **Chat**.
+</Note>
+
+## Start a conversation
+
+Click **Chat** (or **New chat**) to land on the welcome screen. You'll see the **Ask Florent** eyebrow, a time-of-day greeting with your first name, and the promise line **"Tell Florent what you need. Florent drafts. You decide what to approve."**
+
+Below that is a large text box — the composer — with the placeholder **"Describe a process, a project, or a question…"** and four suggestion chips. Clicking a chip sends a ready-made prompt; it's the same as typing it yourself.
+
+| Chip | What it asks |
+|---|---|
+| **What needs my attention?** | An overview of tasks waiting on you and anything overdue. |
+| **Draft a playbook** | Florent structures a process you describe into playbook steps. |
+| **Set up a project** | Florent drafts a new project from what you describe. |
+| **What data do we track?** | The record types in your organization and what's in them. |
+
+{/* TODO: Screenshot — The Chat welcome screen: Ask Florent eyebrow, greeting, promise line, composer with placeholder, and the four suggestion chips */}
+
+<Steps>
+  <Step title="Type a message or click a chip">
+    Describe a process, a project, or a question. Keep it specific — that's what gets you the best result.
+  </Step>
+  <Step title="Send it">
+    Press **Enter** to send, or click the **Send** button (paper-plane icon). Use **Shift + Enter** for a new line.
+  </Step>
+  <Step title="Florent gets to work">
+    A new conversation is created and your first message is delivered. Florent replies, and you keep going from there.
+  </Step>
+</Steps>
+
+<Info>
+Chat is open to **every signed-in member** — there's no permission gate on chatting itself. What Florent can *do* on your behalf is gated by your role; see [What Florent will and won't do](#what-florent-will-and-wont-do) below.
+</Info>
+
+<Tip>
+If starting fails, you'll see **"We couldn't start the conversation. Try again."** Your typed text is kept, so just send again.
+</Tip>
+
+## Inside a conversation
+
+Your messages appear as bubbles on the right. Florent's replies appear as text, with small **tool-call cards** mixed in whenever it looks something up or drafts something. While Florent is working, you'll see a spinner and **"Florent is working…"**.
+
+The composer sits at the bottom — same placeholder, same **Enter** to send. While Florent is replying, the **Send** button turns into a **Stop** button; click it to cancel.
+
+{/* TODO: Screenshot — A live conversation: a user message bubble, a Florent reply, an inline tool-call card, and the "Florent is working…" indicator */}
+
+<Note>
+Clicking **Stop** cancels between steps. A step that's already running finishes first, then Florent stops.
+</Note>
+
+### Reading tool-call cards
+
+Each tool-call card narrates one thing Florent is doing right now, in plain language. The collapsed card shows a short result summary (for example **3 results**, **No results**, or a name). Click a card to expand it and see **Parameters** (what Florent asked for) and **Result** (what came back). A spinner shows while a step runs; a red mark shows if it failed.
+
+The wording tells you whether Florent is reading or building:
+
+<AccordionGroup>
+  <Accordion title="Looking things up (read-only)">
+    These cards mean Florent is reading, not changing anything:
+
+    - **Checking your work**
+    - **Looking through projects** / **Opening a project**
+    - **Browsing project templates** / **Opening a project template**
+    - **Looking through playbooks** / **Opening a playbook** / **Checking a project's playbooks**
+    - **Listing record types** / **Opening a record type**
+    - **Querying records**
+    - **Checking playbook runs**
+  </Accordion>
+  <Accordion title="Drafting (always a draft, never live)">
+    These cards always use draft language, so it's clear Florent is proposing — never committing:
+
+    - **Creating a project** (creates a draft project)
+    - **Drafting a brief**
+    - **Drafting a playbook**
+    - **Adding a playbook to a project**
+    - **Updating a playbook draft**
+    - **Drafting a project template**
+    - **Defining a record type**
+  </Accordion>
+</AccordionGroup>
+
+### Rename or delete a conversation
+
+Each conversation has a title, auto-generated from your first message. Use the **⋯** menu in the conversation header to manage it:
+
+- **Rename** — opens a dialog with a **Conversation title** field. Edit it and click **Rename**.
+- **Delete** — opens a confirm dialog. Click **Delete conversation** to remove the conversation and all its messages.
+
+{/* TODO: Screenshot — The conversation header with the ⋯ menu open, showing Rename and Delete */}
+
+<Warning>
+Deleting a conversation is permanent — "This cannot be undone." There's no way to recover it afterward.
+</Warning>
+
+### Your conversation history is private
+
+Your six most-recent conversations live under the **Chat** group in the sidebar. Conversations are **private to you** — teammates never see them, and you never see theirs. If you open a link to a conversation that was deleted or isn't yours, you'll see **"This conversation is no longer available"** with a **Go to chat** button to start fresh.
+
+## What you can ask Florent
+
+Florent acts like a colleague: it does the lookup or the drafting, tells you what it found or made, and points you to the next step. A few examples that map to what it can really do:
+
+- **"What needs my attention?"** — a summary of tasks waiting on you and anything overdue.
+- **"What projects are open?"** or **"Open my onboarding project."** — list and open projects.
+- **"What record types do we have, and what's in them?"** — list record types and query records.
+- **"Show me runs for the invoice playbook."** — list playbook runs.
+- **"Draft a playbook for vendor onboarding."** — Florent structures the steps into a playbook draft.
+- **"Set up a new project for the Q3 audit."** — Florent drafts a project.
+- **"Define a record type for purchase orders."** — Florent drafts a record type.
+
+<Tip>
+Keep requests specific — a process, a project, or a question. That's exactly what the composer placeholder invites, and it gives Florent enough to act on.
+</Tip>
+
+## What Florent will and won't do
+
+The reason you can trust Florent with your data is that it can't take the final step. It produces drafts and points you to them; you do the consequential action yourself in the app.
+
+**Florent will:**
+
+- Read your work, projects, playbooks, runs, record types, and records — within your own permissions.
+- Draft a project, a playbook, a project template, and a record type.
+- Add a playbook to a project as a draft, and update a playbook draft.
+- Tell you where the draft is and what to do next.
+
+**Florent will never:**
+
+- Activate or publish a draft.
+- Approve or reject a task.
+- Submit or complete a task for you.
+- Start or cancel a run.
+- Delete anything.
+- Set who can access something.
+
+After Florent makes a draft, it links you to it and names your next step — for example, "review it and activate it from the playbook editor." You always perform that step yourself.
+
+### Permissions still apply
+
+Florent acts as **you**, so it can only do what your role allows. If you ask it to draft something you don't have permission to create, Florent won't pretend it worked — it explains, in plain language, that you'd need a certain permission (or a teammate who has it). So you may see Florent succeed at lookups but be told it can't create a particular draft. That's the permission model doing its job, not a bug.
+
+{/* TODO: Screenshot — A Florent reply that explains a permission limit conversationally, e.g. "I can't create that — you'd need the … permission" */}
+
+<Info>
+To see which role grants which capability, check [Roles and permissions](/admin/roles-and-permissions).
+</Info>
+
+## Where to go next
+
+<CardGroup cols={2}>
+  <Card title="Start a run" icon="play" href="/projects/run-a-playbook">
+    Ask Florent to plan a playbook inside a project, and see Florent work a live run.
+  </Card>
+  <Card title="Concepts" icon="book-open" href="/get-started/concepts">
+    The glossary — every term Florent uses, defined once.
+  </Card>
+  <Card title="Roles and permissions" icon="users" href="/admin/roles-and-permissions">
+    What your role lets you (and Florent, acting as you) do.
+  </Card>
+</CardGroup>

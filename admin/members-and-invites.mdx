@@ -1,0 +1,77 @@
+---
+title: "Members and invites"
+description: "See who is in your organization and understand how people are added and removed."
+icon: "users"
+---
+
+The **Users** page is a read-only directory of everyone in your organization. It shows who exists today — but it is not where you add, remove, or change people. That all happens in your organization's **identity provider** (the sign-in system your team logs in through). RakerOne only displays who is there.
+
+<Info>
+The **Users** page lives under **Admin** in the sidebar and is admin-only. If you're not an admin, you'll see "You don't have access to this page. Ask an admin if you need it." instead of the directory.
+</Info>
+
+## The Users page
+
+Click **Users** in the **Admin** group of the sidebar. The page heading is **Users** with the subtext "Everyone in your organization."
+
+You'll see a simple table with two columns:
+
+- **Name** — the person's display name.
+- **Email** — the email they sign in with.
+
+Below the table is a reminder: "Roles are managed in your identity provider."
+
+{/* TODO: Screenshot — The Users table showing Name and Email columns and the "Roles are managed in your identity provider" note below it */}
+
+<Note>
+The Users page is a directory, not a control panel. There are no buttons to invite, edit, or deactivate anyone here. To make changes to people, go to your identity provider.
+</Note>
+
+If the list looks empty or won't load:
+
+- **No users found** — "Invite and manage members in your identity provider." Nobody has been added there yet.
+- **We couldn't load your organization's members right now** — a temporary problem. Click **Retry**.
+
+{/* TODO: Screenshot — The empty "No users found" state with its "Invite and manage members in your identity provider" message, and the error state with its Retry button */}
+
+## People are managed in your identity provider
+
+Your organization signs in through an external identity provider. That system — not RakerOne — is the source of truth for who your people are. Everything about an account happens there:
+
+<AccordionGroup>
+  <Accordion title="Adding a person (inviting)">
+    Invite the new person in your identity provider. Once their account exists there, they appear in the RakerOne **Users** table automatically. There is no separate invite to send from inside RakerOne.
+  </Accordion>
+  <Accordion title="Removing or deactivating a person">
+    Deactivate or remove the account in your identity provider. Once it's gone there, that person can no longer sign in to RakerOne.
+  </Accordion>
+  <Accordion title="Changing someone's role">
+    Roles — **Admin**, **Manager**, **Builder**, **Member** — are assigned in your identity provider, not in RakerOne. RakerOne reads whatever role the identity provider hands over at sign-in. To see what each role can do, see [Roles and permissions](/admin/roles-and-permissions).
+  </Accordion>
+</AccordionGroup>
+
+<Note>
+If you're not sure who runs your identity provider or how to get into it, ask your IT or security team. They own that system.
+</Note>
+
+## After a change: sign out and back in
+
+A person's permissions are read once when they sign in and carried with them for that session. So when you change someone's role or access in the identity provider, the change does **not** appear in RakerOne right away.
+
+<Warning>
+For a new role to take effect, the person must **sign out and sign back in**. Until they re-authenticate, RakerOne still treats them with their old permissions. If a teammate says "I was given access but still can't see it," have them sign out and back in first.
+</Warning>
+
+## Where to go next
+
+<CardGroup cols={2}>
+  <Card title="Roles and permissions" icon="shield" href="/admin/roles-and-permissions">
+    See exactly what an Admin, Manager, Builder, or Member can do.
+  </Card>
+  <Card title="Project access" icon="folder" href="/projects/create-a-project">
+    Give specific people or roles access to an individual project.
+  </Card>
+  <Card title="API keys" icon="key" href="/admin/api-keys">
+    Let an external system call RakerOne without being a person.
+  </Card>
+</CardGroup>

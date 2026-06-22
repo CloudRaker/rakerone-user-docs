@@ -1,0 +1,101 @@
+---
+title: "API keys"
+description: "Create and revoke keys that let other systems work with RakerOne."
+icon: "key"
+---
+
+An **API key** is a credential that lets an outside system — a script, an integration, or another app — work with RakerOne on its own. The key is not a person. It carries its own permissions and acts as its own identity, and the things it does are recorded under its name.
+
+Use an API key when you want another system to do something in RakerOne without a person clicking through the app — for example, a service that starts a [playbook run from a webhook](/playbooks/triggers), or a tool that pushes records in.
+
+<Info>
+  The whole **Admin** group, including this page, is admin-only. If you don't see it, ask an admin.
+</Info>
+
+## The API keys page
+
+Open **Admin → API keys** in the sidebar. The page lists every key in your organization.
+
+{/* TODO: Screenshot — The API keys page: the table with Name, Permissions, Last used, and Created columns, a "Revoke" button on a row, and the "Create API key" button top-right */}
+
+Each row shows:
+
+- **Name** — what the key is for.
+- **Permissions** — small badges for what the key can do. A key that can act as a user shows a **Can impersonate** badge; a key with no permissions shows **No permissions**.
+- **Last used** — when the key last called RakerOne, or **Never** if it hasn't yet.
+- **Created** — when the key was made.
+- A **Revoke** button.
+
+If there are no keys yet, you'll see **No API keys yet** with a prompt to create one.
+
+<Note>
+  The badges show *which* permissions a key has, not what each one means. For the meaning of every permission, see [Roles and permissions](/admin/roles-and-permissions). Give a key only the permissions it actually needs.
+</Note>
+
+## Create a key
+
+<Steps>
+  <Step title="Open the create dialog">
+    On the **API keys** page, click **Create API key** in the top right.
+  </Step>
+  <Step title="Name the key">
+    Enter a **Name** that says what the key is for — for example, "Data import service." The name is how you'll recognize the key in the table and how its actions are recorded, so make it descriptive.
+  </Step>
+  <Step title="Pick its permissions">
+    Under **Permissions**, tick only the capabilities this key needs. Each checkbox maps to one capability — the same capabilities described in [Roles and permissions](/admin/roles-and-permissions). Grant the fewest you can; you can always create a separate key for a different job.
+  </Step>
+  <Step title="Decide on impersonation (optional)">
+    Leave **Can impersonate users** off unless you specifically need it. When it's on, the key can act on behalf of a named user, and those actions are recorded under that person instead of the key.
+  </Step>
+  <Step title="Create the key">
+    Click **Create key**. The dialog moves to a second screen showing the key value.
+  </Step>
+</Steps>
+
+{/* TODO: Screenshot — The "Create API key" dialog: the Name field, the Permissions checkbox grid, and the "Can impersonate users" switch */}
+
+## Copy the key now
+
+After you create a key, RakerOne shows you the full value once, on a screen titled **Copy your API key**.
+
+<Warning>
+  This is the only time you'll see the full key. RakerOne can't show it to you again. Click **Copy** and store the key somewhere safe before you close the dialog. If you lose it, you'll have to revoke the key and create a new one.
+</Warning>
+
+On this screen, click **Copy** (it changes to **Copied**), paste the key into your secure store, then click **Done** to close. Clicking outside the dialog won't close it here — that's deliberate, so you don't lose an uncopied key by accident.
+
+{/* TODO: Screenshot — The "Copy your API key" screen: the full key value, the "Copy" button, the "You won't be able to view this key again" banner, and the "Done" button */}
+
+## Revoke a key
+
+Revoke a key when it's no longer needed or might be exposed. Revoking takes effect at once.
+
+<Steps>
+  <Step title="Click Revoke">
+    On the **API keys** table, click **Revoke** on the key's row.
+  </Step>
+  <Step title="Confirm">
+    A dialog asks **Revoke this API key?** and warns that any system using the key will immediately lose access. Click **Revoke key** to confirm, or **Cancel** to keep it.
+  </Step>
+</Steps>
+
+{/* TODO: Screenshot — The "Revoke this API key?" confirmation dialog with the "Revoke key" and "Cancel" buttons */}
+
+<Warning>
+  Revoking is immediate and permanent. Any integration using that key stops working right away, and the key can't be brought back. If you only meant to rotate the key, create the new one first, switch your integration over to it, then revoke the old one.
+</Warning>
+
+<Accordion title="Lost a key, or not sure if it leaked?">
+  You can't look up a key's value again — RakerOne never stores it in a way you can read. If a key is lost or you suspect it's been exposed, revoke it and create a fresh one. Update any system that used the old key with the new value.
+</Accordion>
+
+## Where to go next
+
+<CardGroup cols={2}>
+  <Card title="Roles and permissions" icon="shield-check" href="/admin/roles-and-permissions">
+    See what each permission lets a key (or a person) do.
+  </Card>
+  <Card title="Triggers" icon="webhook" href="/playbooks/triggers">
+    Start playbook runs automatically from an outside system.
+  </Card>
+</CardGroup>

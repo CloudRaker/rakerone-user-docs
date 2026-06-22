@@ -1,0 +1,74 @@
+---
+title: "Triggers"
+description: "Start runs without anyone clicking Run, such as from a webhook."
+icon: "webhook"
+---
+
+Most runs start when a person opens a project and clicks **Run**. But a playbook can also start on its own — for example, the moment an email arrives or another system sends a signal. This page explains the two settings that control how a playbook can be started, and what an automatic start means for you day to day.
+
+<Note>
+  These two switches live on the **Starting runs** card inside the playbook editor's **Settings** tab. For the rest of the editor, see [Build a playbook](/playbooks/build-a-playbook).
+</Note>
+
+## The two ways a playbook can start
+
+A playbook has two independent on/off switches that decide who — or what — is allowed to start a run.
+
+| Setting | What it allows | Default |
+|---|---|---|
+| **People can start this playbook** | A person can start a run by hand from the project's **Playbooks** page. | On |
+| **Start from a webhook** | Another system can start a run automatically by sending a signal to RakerOne. | Off |
+
+These are not either/or. You can leave both on so a playbook can be started by hand *and* automatically. Turning **People can start this playbook** off hides the manual **Run** button, which is useful when a playbook should only ever be triggered by another system.
+
+{/* TODO: Screenshot — The Starting runs card on the Settings tab showing both switches: "People can start this playbook" and "Start from a webhook" */}
+
+## What "Start from a webhook" means
+
+A **webhook** is a way for an outside system to start a run automatically, without anyone in RakerOne lifting a finger. The setting's own description says it plainly: it "lets other systems start this playbook — for example when an email arrives."
+
+In practice, you connect another tool — your email inbox, an intake form, an accounting system — to RakerOne. When the agreed event happens in that tool, it sends a signal to RakerOne, and a new run of this playbook starts. From there the run behaves exactly like one you'd started by hand: tasks light up, people get their assignments, and [Florent](/work/florent) gets to work where it's enabled.
+
+<Steps>
+  <Step title="Turn the switch on">
+    In the playbook editor, open the **Settings** tab and switch on **Start from a webhook** on the **Starting runs** card.
+  </Step>
+  <Step title="Connect the outside system">
+    Connecting the other tool to RakerOne is a technical, one-time setup. The system that calls RakerOne needs an [API key](/admin/api-keys) to identify itself. Hand this part to whoever sets up integrations — once it's wired up, you don't touch it again.
+  </Step>
+  <Step title="Let it run">
+    From then on, each agreed event starts a fresh run on its own. You'll see new runs appear under **Recent work** on the project's **Playbooks** page, and the people assigned to the first tasks get notified as usual.
+  </Step>
+</Steps>
+
+<Info>
+  Setting up the connection itself — and the credentials it uses — is handled with an API key. See [API keys](/admin/api-keys).
+</Info>
+
+## What an automatic start means for you
+
+An automatically started run is a normal run. The only difference is that nobody clicked **Run** — so there are a couple of things worth knowing.
+
+- **You'll find new runs under Recent work.** Because no one launched them by hand, automatic runs show up in the project's **Recent work** list rather than being something you kicked off. Check there to see what's come in.
+- **You still do and approve the work.** Automatic starts only handle the *starting*. Everything after that follows the usual rules: people claim and complete their tasks, and a human still approves anything Florent or an automated step drafts. **AI drafts, humans approve** — an automatic start never changes that.
+- **Assignments still apply.** Whoever is assigned to the first tasks gets notified the moment the run begins, the same as a hand-started run.
+
+<Warning>
+  An automatic start does **not** skip approvals or assignments. It only removes the manual click that begins the run. Every sign-off and hand-off still happens as designed.
+</Warning>
+
+{/* TODO: Screenshot — The Recent work table on a project's Playbooks page with a newly auto-started run at the top */}
+
+## Where to go next
+
+<CardGroup cols={2}>
+  <Card title="Build a playbook" icon="hammer" href="/playbooks/build-a-playbook">
+    Where the Starting runs switches live, alongside the rest of a playbook's settings.
+  </Card>
+  <Card title="Start a run by hand" icon="play" href="/projects/run-a-playbook">
+    Click Run in a project and work through the run workspace.
+  </Card>
+  <Card title="API keys" icon="key" href="/admin/api-keys">
+    Create the credential an outside system uses to start a run via webhook.
+  </Card>
+</CardGroup>

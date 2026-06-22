@@ -1,0 +1,151 @@
+---
+title: "Extract data from documents"
+description: "Build an action that reads documents and pulls structured records out of them."
+icon: "file-search"
+---
+
+A **Read documents** action — also called an **extract** action — has Florent read your files and pull the values you care about into fields your team reviews. Set it up once, test it on a few sample files, then run it over many documents at once or use it as a step inside a playbook.
+
+This page covers building and activating an extract action. For what an action is and the other kinds, see [Actions overview](/actions/overview). To run a finished action over many files and review every result, see [Batch action runs](/actions/batch-runs).
+
+<Info>
+Building, testing, and activating actions is for **Builders** and **Admins**. If you open an action editor without access, you'll see "You don't have access to actions." Ask an admin if you need it. See [Roles and permissions](/admin/roles-and-permissions).
+</Info>
+
+## Create the action
+
+<Steps>
+  <Step title="Open the Actions library">
+    In the sidebar, under **Building Blocks**, click **Actions**.
+  </Step>
+  <Step title="Start a new action">
+    Click **New action**. In the **New action** dialog, under **What should it do?**, choose **Read documents** — "AI reads files and fills in fields your team review."
+  </Step>
+  <Step title="Name it">
+    Give it a clear **Name** (for example, "Extract key details"). Add an optional **Description** — this is what teammates see in the actions list. Then click **Create action**.
+  </Step>
+</Steps>
+
+You land straight in the action editor with a **Draft** badge. A draft can't be run yet — you'll set its output and instructions, test it, then activate it.
+
+{/* TODO: Screenshot — The New action dialog with the "What should it do?" radio cards visible and "Read documents" selected */}
+
+## The extract action editor
+
+The editor is a single page with two setup panels — **Output** and **How it runs** — and a **Test bench** on the right. The header shows the action name, the **Draft** badge, a **Save** button (active only when you have unsaved changes), and an **Activate** button.
+
+While the action is a draft, the header lists anything still blocking activation, such as:
+
+- "Add extraction instructions before activating."
+- "Pick a record type for the output."
+- "Add at least one output field."
+
+Work through both panels until those blockers clear and **Activate** lights up.
+
+{/* TODO: Screenshot — The extract action editor header with the Draft badge, the activation blockers listed, and the Save / Activate buttons */}
+
+## Set the output — what each run extracts
+
+The **Output** panel decides what comes out of every document. A toggle picks where the extracted data lands.
+
+<Tabs>
+  <Tab title="Record type">
+    Choose **Record type** to write each result into rows of an existing [record type](/record-types/overview) — for example, an "Invoice" record type. Pick one from the **Pick a record type** dropdown. Each option shows the record type's name, its field count, and its description, so two similarly named types stay distinct.
+
+    The fields you extract are the record type's fields. When the action runs and a result is approved, it becomes a record in the project.
+
+    <Note>
+    If the dropdown is empty, you have no record types yet. Create one in **Building Blocks → Record types** first — see [Build a record type](/record-types/build-a-record-type) — then come back.
+    </Note>
+  </Tab>
+  <Tab title="Inline fields">
+    Choose **Inline fields** to define fields that live only on this action, when you don't need a reusable record type.
+
+    - Click **Add field** to define each field (its label, key, and type).
+    - Each field shows a type badge, its label, its key, and a remove button.
+    - Use the **Label field** select to pick which field becomes each extracted record's title.
+  </Tab>
+</Tabs>
+
+{/* TODO: Screenshot — The Output panel with the Record type / Inline fields toggle and a record type selected */}
+
+## Set how it runs — instructions, mode, and model
+
+The **How it runs** panel tells Florent what to look for and how to process your files.
+
+### Instructions
+
+Write plain-language **Instructions** describing what to pull from each document — for example, "Extract the title, date, and key details from each document." This is the single biggest lever on quality. Be specific about what each field means and where it usually appears.
+
+### Mode
+
+The **Mode** dropdown sets how files map to results:
+
+| Mode | What it does |
+|---|---|
+| **Extract from each file** | One result per input file. Use this when each document is its own record (one invoice per PDF). |
+| **Extract one combined result** | One result drawn from all the files together. Use this when several files describe a single thing. |
+| **Extract table rows from documents** | Pulls table rows out of documents — one result per row. Use this for line items or tabular data. |
+
+### Model
+
+The **Model preset** picker chooses which AI model reads your documents. The default works for most cases; switch presets only if you have a reason to. For an exact model, set the **Provider** and **Model** below the preset.
+
+{/* TODO: Screenshot — The "How it runs" panel showing Instructions, the Mode dropdown open with its three options, and the Model preset selector */}
+
+## Test it on sample files
+
+The **Test bench** on the right is a dry run. It proves your instructions and output fields work before you activate — and **nothing it produces is saved**. No records, no drafts, no files.
+
+<Steps>
+  <Step title="Add sample files">
+    Click **Add sample files** and pick up to three representative documents. Only PDF and DOCX files are accepted. If you add more than three, only the first three are used.
+  </Step>
+  <Step title="Run the test">
+    Click **Run test**. Florent reads each file and fills a results table with one row per field, showing the **Field**, the extracted **Value**, and a **Score** (how confident Florent is in that value).
+  </Step>
+  <Step title="Read the results and adjust">
+    Check that each value is right. If a file yields nothing, you'll see "No fields extracted." If something looks off, refine your **Instructions** or **Output** fields and run the test again. Warnings appear in an amber banner above the table.
+  </Step>
+</Steps>
+
+{/* TODO: Screenshot — The Test bench after a Run test, showing extracted Field / Value / Score rows with confidence scores */}
+
+<Tip>
+Test with your messiest, most awkward documents, not your cleanest ones. If the action handles the hard cases, the easy ones take care of themselves.
+</Tip>
+
+<Note>
+The score you see here is a preview of the same **confidence** signal you'll use during review. When the action runs for real, each value also carries a **citation** back to the exact page and text it came from, so reviewers can verify before approving. See [Reviewing AI work](/work/reviewing-ai-work).
+</Note>
+
+## Activate the action
+
+When the activation blockers are gone — you have instructions and either a record type or at least one inline field — click **Activate**. The badge changes to **Published**, and the action becomes runnable: as its own [batch action run](/actions/batch-runs) and as an [Action task](/playbooks/task-types) inside a playbook.
+
+<Warning>
+A **Draft** or **Archived** action can't be run. It won't appear in the batch launcher's action list until it's **Published**.
+</Warning>
+
+## After it's live
+
+To edit a published action, open it, make your changes, and click **Save**. Changing the output or the run settings bumps the action's **version** — if a playbook pinned an older version, re-activate the action so that playbook adopts the change.
+
+The **Draft** / **Published** / **Archived** lifecycle, versioning, and the archive-not-delete rule are the same for every action and are covered in [Actions overview](/actions/overview).
+
+## Where to go next
+
+<CardGroup cols={2}>
+  <Card title="Run it over many files" icon="layers" href="/actions/batch-runs">
+    Launch a batch action run and review every extracted result in a grid.
+  </Card>
+  <Card title="Review what Florent extracted" icon="circle-check" href="/work/reviewing-ai-work">
+    Approve, correct, or reject each value using its citation back to the source.
+  </Card>
+  <Card title="Record types" icon="database" href="/record-types/overview">
+    Shape the record type your extracted values are written into.
+  </Card>
+  <Card title="Actions overview" icon="zap" href="/actions/overview">
+    See the action kinds and how built-in and custom actions differ.
+  </Card>
+</CardGroup>

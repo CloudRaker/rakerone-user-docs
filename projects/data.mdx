@@ -1,0 +1,188 @@
+---
+title: "Project data"
+description: "Work with the records a project has collected using tables and saved views."
+icon: "table"
+---
+
+A project collects its data as **records** — rows of a [record type](/record-types/overview) such as *Invoice* or *Vendor*. This page shows you how to open that data in a table, shape what you see with saved **Views**, and add or edit records by hand.
+
+People enter records by hand, and Florent writes them when it extracts data from documents — but AI-written values always wait for your review before they count (see [Reviewing AI work](/work/reviewing-ai-work)). This page covers the table, views, and manual editing. For what a record type is, where it lives, and the field types it can hold, see [Record types](/record-types/overview).
+
+## Open the records table
+
+Each record type in a project has its own table of records.
+
+<Steps>
+  <Step title="Open the project's Record types tab">
+    In a project, click the **Record types** tab. You'll see a table of the project's record types, each showing its **Name** and **Fields** count.
+  </Step>
+  <Step title="Click a record type">
+    Click a record type's name to open its **records table** — one row per record.
+  </Step>
+</Steps>
+
+{/* TODO: Screenshot — A records table with several rows, the Title column pinned first, and a colored Select badge in one column */}
+
+The table header shows the record type's icon and name, an **Edit fields** button (which opens the schema editor — see [Build a record type](/record-types/build-a-record-type)), and a **New record** button. Below the header sits the [view toolbar](#shape-the-table-with-views), then the table itself.
+
+### How to read the table
+
+- The columns come from the active view: which fields show, and in what order. The **Title** field is always pinned first.
+- Cells show formatted values — dates and currency formatted, **Select** and **Multi-select** shown as colored badges, **Boolean** as Yes/No, an address as a small block.
+- Click any row to open that record in a full panel.
+- A **Load more** button appears at the bottom when there are more records than the current page shows.
+
+<Note>
+  Fields that Florent wrote may show a small status dot next to the value — **Approved** or **Rejected** — and a review control in the column header. That's [field review](/work/reviewing-ai-work), which is where you approve or correct AI output. This page is about the table itself.
+</Note>
+
+If a record type has no records yet, the table shows **No records yet** with an **Add the first record** button.
+
+## Shape the table with views
+
+A **view** is a saved table layout: which columns show and in what order, plus filters and sorts. Set up a view once and the whole team gets it — every view is shared with everyone who has access to the project. There are no private, per-person views.
+
+The toolbar across the top of the table holds everything you need to switch and shape views.
+
+{/* TODO: Screenshot — The view toolbar with the View switcher, Filter and Sort buttons, and the "…" Options menu open */}
+
+### Switch views
+
+The view switcher on the left shows the active view's name. Open it to pick another view. Every project starts with one default view, always named **All records**, plus any custom views the team has created. Picking one re-lays the table instantly.
+
+### Filter to the records you need
+
+Click **Filter** to open the filter builder. It shows a count when filters are set, like **Filter (2)**.
+
+<Steps>
+  <Step title="Add a condition">
+    Click **Add filter**, pick a **field**, pick a **condition**, then enter a value. Conditions include **Is**, **Is not**, **Is empty**, **Is not empty**, **Contains**, **Does not contain**, **Greater than**, **Less than**, **Is before**, **Is after**, and more — the list adapts to the field's type.
+  </Step>
+  <Step title="Combine conditions">
+    Add more rows for more conditions. With more than one, a **Match** dropdown appears: choose **All conditions (AND)** to require every condition, or **Any condition (OR)** to match any of them.
+  </Step>
+  <Step title="Remove a condition">
+    Click the trash icon on a row to drop it.
+  </Step>
+</Steps>
+
+{/* TODO: Screenshot — The Filter builder popover with a field/condition/value row and the Match (All/Any) dropdown */}
+
+<Note>
+  Some field types — currency, email, phone, URL, and address — can't be filtered or sorted in this version. They won't appear in the field picker.
+</Note>
+
+### Sort the rows
+
+Click **Sort** to order the rows. Click **Add sort**, pick a **field**, then a direction — **Ascending** or **Descending**. Add more sorts to break ties; they apply in order. With no sort set, records show newest first.
+
+### Show, hide, and reorder columns
+
+Open the **"…"** options menu and choose **Fields** to open the columns panel.
+
+- Each visible field has a checkbox — uncheck it to hide that column — and a drag handle to reorder it. The order here is the order columns appear in the table.
+- Open **Hidden fields** to bring a hidden column back.
+- The **Title** field is pinned first and can't be hidden or moved.
+
+<Tip>
+  Filter, sort, and column changes save to the active view automatically as you make them — there's no separate save step.
+</Tip>
+
+### The "…" options menu
+
+The **"…"** button next to the toolbar opens a few more actions:
+
+- **Default View** — jump back to the **All records** view.
+- **Fields** — open the columns panel above.
+- **Create custom view** — start a new saved view.
+- **Copy link to view** — copy a link that opens the table on the exact view you're looking at.
+- **Delete view** — delete the current custom view (the default view can't be deleted).
+
+### Create a custom view
+
+To save a layout your team can return to, create a custom view.
+
+<Steps>
+  <Step title="Open Create custom view">
+    From the **"…"** menu, choose **Create custom view**. The new view starts from your current columns, filters, and sorts, so set those up first if you can.
+  </Step>
+  <Step title="Name it and create">
+    Give the view a **Name** — something like *Open this week* — then click **Create view**. You're switched straight into the new view, where you can keep adjusting its filters, sorts, and columns.
+  </Step>
+</Steps>
+
+### Share a specific layout
+
+There's no separate share step — views are already shared with everyone on the project. To point a teammate at a particular layout, open that view and use **Copy link to view**. The link opens the table on that exact view.
+
+<Info>
+  Switching views and copying links are open to everyone. Creating, editing, or deleting views needs the right permission — Members can browse views but can't change them. See [Roles and permissions](/admin/roles-and-permissions).
+</Info>
+
+<Warning>
+  The default **All records** view can't be renamed or deleted. You can still change which columns it shows.
+</Warning>
+
+## Add a record by hand
+
+You can enter records directly, without waiting for Florent.
+
+<Steps>
+  <Step title="Open the new record dialog">
+    From the records table, click **New record** (or **Add the first record** on the empty state). A **New record** dialog opens.
+  </Step>
+  <Step title="Fill the fields">
+    Each field uses the control that fits its type — a text box, a number, a currency amount, a Yes/No switch, a date picker, a **Select** dropdown, **Multi-select** tags, and so on. Required fields are marked with a red asterisk (*).
+  </Step>
+  <Step title="Create the record">
+    Click **Create record**. If something's wrong — a required field is empty, or a value isn't valid — an inline error points you to it. Once it saves, the new record opens in its panel.
+  </Step>
+</Steps>
+
+{/* TODO: Screenshot — The New record dialog with required fields marked with the red asterisk */}
+
+## View and edit a record
+
+Click any row to open the record in a full panel.
+
+The header shows the record's **Title** value (or *Untitled* if it's blank). Fields are grouped into sections, and the panel has two panes: the **Fields** pane on the right, and a **Source document** pane on the left that shows the source behind AI-extracted values. For a record you entered by hand, the left pane just says *"Select a field's cited source to preview it here."*
+
+{/* TODO: Screenshot — The record panel in view mode showing grouped fields, with the source document pane on the left */}
+
+### Edit a field
+
+<Steps>
+  <Step title="Click the field">
+    Click a field to edit it in place. Its control appears with **Save** (check) and **Cancel** (X) buttons.
+  </Step>
+  <Step title="Save your change">
+    Click **Save**. Only that field is updated — every other field is left untouched.
+  </Step>
+</Steps>
+
+To empty an optional field that holds a value, use the **Clear** (trash) button on it. Required fields have no **Clear** button — they must always hold a value.
+
+<Note>
+  Fields that Florent wrote carry a citation and per-field review controls so you can check the AI's value against its source before approving it. That's covered in [Reviewing AI work](/work/reviewing-ai-work).
+</Note>
+
+<Warning>
+  Deleting a record is a separate permission from editing. Members can add and edit records but can't delete them. See [Roles and permissions](/admin/roles-and-permissions).
+</Warning>
+
+## Where to go next
+
+<CardGroup cols={2}>
+  <Card title="Record types" icon="shapes" href="/record-types/overview">
+    What a record type is and where it lives.
+  </Card>
+  <Card title="Build a record type" icon="pencil" href="/record-types/build-a-record-type">
+    Shape the fields each record captures.
+  </Card>
+  <Card title="Reviewing AI work" icon="badge-check" href="/work/reviewing-ai-work">
+    Approve and correct the values Florent extracts.
+  </Card>
+  <Card title="Roles and permissions" icon="shield" href="/admin/roles-and-permissions">
+    Who can edit records, delete them, and manage views.
+  </Card>
+</CardGroup>

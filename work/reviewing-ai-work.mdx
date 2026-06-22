@@ -1,0 +1,185 @@
+---
+title: "Review AI work"
+description: "Approve, correct, or reject what Florent drafted — value by value, with citations to the source."
+icon: "badge-check"
+---
+
+When Florent reads a document and writes values onto a record, every value arrives **unverified**. Reviewing AI work is how you check each value against its source and decide, one value at a time: this is correct (**Approve**), or this is wrong (**Reject**). Florent drafts; you decide what becomes trusted data.
+
+This page covers two things you do constantly: verifying a value against its source with a **citation**, and locking it in with **field review**.
+
+<Note>
+  Reviewing AI values is a permission. **Admin**, **Manager**, and **Builder** can approve and reject; a **Member** sees the values and their citations but the controls are read-only. See [Roles and permissions](/admin/roles-and-permissions).
+</Note>
+
+## Two gates, don't confuse them
+
+You meet two different "approval" moments around AI work, and they answer different questions.
+
+- **Task approval** — "May these drafted records be written at all?" A one-time gate inside a [run](/projects/run-a-playbook): an approver lets the drafted values land. This page does not own that model — see [Assignments and approvals](/playbooks/assignments-and-approvals).
+- **Field review** — "Is each individual value human-verified?" Ongoing, per-value state on the record, done **after** the values have landed. This is what this page is about.
+
+The normal sequence: the task is approved, the values land on records as **Pending review**, then you approve or reject each value. Approving the task does not approve the fields, and approving the fields does not approve the task.
+
+## Verify before you approve: citations
+
+Every value Florent extracts carries a **citation** — a pointer back to exactly where it came from: the file, the page, the highlighted region on that page, and the quoted text the AI relied on. Click a value to see the original passage instead of taking Florent's word for it.
+
+Two small chips sit next to each AI value:
+
+- **The confidence chip.** A small badge that rates how sure Florent is about the value (an icon out of 5 — green for 4–5, amber for 3, red for 1–2). Hover it to see the score and the AI's reasoning in a tooltip. For an empty value, the chip reads either **Confirmed absent** (Florent is confident the field genuinely isn't in the document) or **Not found — review** (Florent couldn't find it and you should check). You may also see **Scoring…** while scoring is in progress, or **Not scored**.
+- **The source-count chip.** A small quote-mark badge with a number — how many citations back this value. A value with one citation opens its source directly; a value with several opens a short **Cited sources** list first so you pick which one to inspect.
+
+{/* TODO: Screenshot — A record field value showing the confidence icon, the quote-mark source-count chip, and the hover tooltip with the confidence score and the AI's reasoning */}
+
+<Tip>
+  The reasoning in the hover tooltip lets you tell a confidently-absent field from a missed one **before** you even open the source. A **Confirmed absent** value is usually safe to approve; a **Not found — review** value is worth opening.
+</Tip>
+
+### What the source viewer shows
+
+Click a citation to open the cited source.
+
+<Steps>
+  <Step title="Open the cited source">
+    Press the confidence chip or the source-count chip on the value. The source viewer opens — filling the document pane in the record panel, or as a modal titled **Source for {field}** from a standalone chip.
+  </Step>
+  <Step title="Confirm the page and region">
+    The original file renders inline, scrolled to the cited page (shown as a **Page N** badge) with the cited region highlighted. Read the **Cited text** banner underneath — the exact quote Florent used — and check that the highlighted passage actually says what the value claims.
+  </Step>
+  <Step title="Check the reasoning, if you need it">
+    The viewer repeats the confidence chip and shows the AI's reasoning for the score (or, for an empty value, why it judged the field absent). A **Download** button pulls the original file if you want to open it yourself.
+  </Step>
+</Steps>
+
+{/* TODO: Screenshot — The source viewer with a PDF open, the "Page N" badge, a highlighted region, the confidence chip, and the "Cited text" banner beneath */}
+
+<AccordionGroup>
+  <Accordion title="Audio and video sources">
+    For a transcribed recording, the viewer shows a **Transcript** pane with speaker and timestamp lines instead of a PDF, scrolled to and highlighting the cited passage. The header reads **Transcript** with the recording's duration.
+
+    {/* TODO: Screenshot — A transcript source: the Transcript pane with a highlighted line at a timestamp */}
+  </Accordion>
+  <Accordion title="Files that can't be previewed">
+    A non-PDF, non-transcript source can't be shown inline. The viewer reads **This source can't be previewed here** and prompts you to use **Download** to open it. You still get the quoted **Cited text**.
+  </Accordion>
+  <Accordion title="A missing source file">
+    If the cited file was deleted from the project, the viewer reads **This field cites a source file that couldn't be found.** The value is still there; only the linked file is gone.
+  </Accordion>
+</AccordionGroup>
+
+## Field review: approve, reject, lock
+
+Once you've verified a value, you record your decision. Each AI value shows a status badge that doubles as the menu trigger.
+
+| Badge | Meaning | Locked? |
+|---|---|---|
+| **Pending review** | Awaiting your decision | No |
+| **Approved** | You confirmed it's correct | Yes |
+| **Rejected** | You flagged it as wrong | Yes |
+
+A fresh AI value lands as **Pending review**. You pick **Approve** or **Reject**, and the value locks. To re-open a locked value, use **Dismiss**, which returns it to **Pending review**. Dismiss is the only way to unlock.
+
+<Warning>
+  **Approved** and **Rejected** both lock the value — they protect it identically and differ only in meaning. **Rejecting does not delete or blank the value**; it flags it as wrong and surfaces it as follow-up work in [My work](/work/my-work). To actually fix a wrong value, **Dismiss** it first, then edit it (see [The project Data tab](/projects/data)).
+</Warning>
+
+### Review one value at a time
+
+<Steps>
+  <Step title="Open the record">
+    Open a record from the [records table](/projects/data) to slide out the record panel. Each AI-written field shows its citation chip and its review status badge next to the label.
+  </Step>
+  <Step title="Verify the value">
+    Use the citation chip to check the value against its source, as above.
+  </Step>
+  <Step title="Approve, Reject, or Dismiss">
+    Press the status badge to open its menu — **Approve**, **Reject**, **Dismiss**. The item matching the current state is greyed out (when a value is already **Approved**, **Approve** is disabled).
+  </Step>
+</Steps>
+
+{/* TODO: Screenshot — A record panel field row showing the field label, the citation chip, and the "Pending review" badge with its Approve / Reject / Dismiss menu open */}
+
+<Note>
+  Only **AI-written fields** carry review controls — a value has something to verify only when there's a citation behind it. A value a person typed by hand shows no review badge. If a field you expected to review has no badge, it was entered by a person, or Florent didn't ground it.
+</Note>
+
+### Review a whole record or a whole column at once
+
+<Tabs>
+  <Tab title="A whole record">
+    At the bottom of the record panel, **Approve all on this record** approves every AI-written value on that record in one click. It appears only when you have review permission and the record actually has AI fields.
+  </Tab>
+  <Tab title="A whole column">
+    In the records table, the column header for an AI-written field has a small dropdown (a down-arrow). Its menu — **Approve this column**, **Reject this column**, **Dismiss this column** — reviews that one field across every record in the current table that has an AI value for it. Use it to bulk-approve a field you trust across a whole import.
+
+    {/* TODO: Screenshot — A records table with a column header menu open showing Approve this column / Reject this column / Dismiss this column */}
+  </Tab>
+</Tabs>
+
+## What locking protects against
+
+Approving or rejecting a value locks it, which matters in three concrete ways.
+
+<AccordionGroup>
+  <Accordion title="Later runs leave it alone">
+    If a playbook re-runs and would have updated that field, it skips your locked value — neither the value nor its citation changes. Approve the values you trust to freeze them before any re-run.
+  </Accordion>
+  <Accordion title="Florent leaves it alone">
+    When Florent proposes changes to an existing record, it strips out any locked fields from its proposal and tells you which fields it left untouched.
+  </Accordion>
+  <Accordion title="No silent hand-edits">
+    A direct edit to a locked field is refused with a message telling you to **Dismiss the review first**. There's no silent overwrite path — unlocking is always deliberate.
+  </Accordion>
+</AccordionGroup>
+
+<Warning>
+  A run can finish (**Done**) with values still **Pending review** or **Rejected** — review is decoupled from run completion. Don't expect the run to wait for you. Chase outstanding review from [My work](/work/my-work) instead.
+</Warning>
+
+## Reviewing inside a run
+
+When a [Document or AI task](/playbooks/task-types) drafts records, the approver opens a **Drafts to review** panel inside the run before anything is written. Each drafted record shows its fields, the confidence chips, and citations — and a per-draft state of **Ready** or **Needs changes**.
+
+<Steps>
+  <Step title="Open each source to verify">
+    Use the citation chips to confirm the drafted values against their sources, exactly as on a record.
+  </Step>
+  <Step title="Fix anything that needs it">
+    Edit a draft and **Save changes**, or **Discard** a draft you don't want. A draft marked **Needs changes** must be fixed or discarded before the rest can go through. Partial approval is allowed — some rows save, the others stay parked with a per-row reason.
+  </Step>
+  <Step title="Approve or reject">
+    **Approve values** writes the drafts into the record type as records. **Reject** sends the task back — rejecting requires a reason, so type why before you confirm.
+  </Step>
+</Steps>
+
+For generated documents, the in-run panel reads **Documents to review** — open each one to confirm it reads correctly, then **Approve documents**. Approved documents become part of the [project's files](/projects/files).
+
+<Info>
+  Approving the task is one gate; the values it writes still land as **Pending review** for field-level review. The rules for who can approve a task — including the assignee's manager — live in [Assignments and approvals](/playbooks/assignments-and-approvals).
+</Info>
+
+## Reviewing a batch
+
+When an action runs over many files or records at once, every result is reviewed in a grid rather than one record panel — same citations, same Approve/Reject, shown in a two-column view per row. That flow is covered in full on [Batch action runs](/actions/batch-runs).
+
+<Note>
+  One difference to remember: rejecting a **field** never deletes anything, but rejecting a generated document in a batch run **deletes** the generated file. See [Batch action runs](/actions/batch-runs).
+</Note>
+
+## Where to go next
+
+<CardGroup cols={2}>
+  <Card title="Assignments and approvals" icon="user-check" href="/playbooks/assignments-and-approvals">
+    Who can approve a task, and when approval is forced.
+  </Card>
+  <Card title="Batch action runs" icon="layout-grid" href="/actions/batch-runs">
+    Run an action over many items and review every result in a grid.
+  </Card>
+  <Card title="The project Data tab" icon="database" href="/projects/data">
+    Browse, filter, and edit the records your reviews produce.
+  </Card>
+  <Card title="Task types" icon="list-checks" href="/playbooks/task-types">
+    How Document and AI tasks draft the records you review.
+  </Card>
+</CardGroup>

@@ -1,0 +1,204 @@
+---
+title: "Key concepts"
+description: "Plain-language definitions of every term you will meet in RakerOne."
+icon: "book-a"
+---
+
+This page defines every term used across RakerOne, grouped so related ideas sit together. Each entry is a short definition only — for how to actually do something, follow the link to the page that covers it.
+
+<Note>
+New to RakerOne? Read [What RakerOne is](/get-started/introduction) for the mental model first, then use this page as a reference whenever a word is unfamiliar.
+</Note>
+
+## The big picture
+
+The handful of words that describe how the whole product fits together.
+
+{/* TODO: Screenshot — A simple labeled diagram: Organization → Building Blocks + Projects → Runs → Tasks → Records */}
+
+<AccordionGroup>
+  <Accordion title="Organization">
+    Your whole RakerOne workspace — your people, projects, building blocks, and data. If you belong to more than one organization, switch between them from the sidebar header; switching reloads the app so nothing carries across. See [Organization settings](/admin/organization-settings).
+  </Accordion>
+  <Accordion title="Florent">
+    The built-in AI assistant. Florent reads documents, pre-fills forms, drafts records and documents, and helps shape work. Florent only ever proposes **drafts** — a person always approves, activates, submits, starts, and deletes. See [Chat with Florent](/work/florent).
+  </Accordion>
+  <Accordion title="Draft">
+    A proposed value, record, or document produced by AI or automation that has not yet been approved. Nothing a draft contains becomes real data until a person approves it. See [Reviewing AI work](/work/reviewing-ai-work).
+  </Accordion>
+  <Accordion title="Building Blocks">
+    The sidebar group holding the reusable definitions you set up once and reuse everywhere: project templates, playbooks, actions, record types, and document templates. See [What RakerOne is](/get-started/introduction) for where it sits in the sidebar, and the building-block entries below for each definition.
+  </Accordion>
+  <Accordion title="Status">
+    The state of a piece of work — a task, a run, an action run, or a building-block definition — shown as a colored badge throughout the app (for example **Available**, **Running**, **Published**). Each kind of work has its own set of statuses.
+  </Accordion>
+</AccordionGroup>
+
+## Working day to day
+
+The terms you meet while doing and tracking your own work.
+
+<AccordionGroup>
+  <Accordion title="My work">
+    Your personal page, opened from **Home** in the sidebar. It lists the tasks waiting on you across all projects, grouped by urgency. See [My work](/work/my-work).
+  </Accordion>
+  <Accordion title="Inbox">
+    Your notifications overlay, opened from the sidebar. It collects mentions, task assignments, and approval requests. It pops over the current screen rather than being its own page. See [Collaboration](/work/collaboration).
+  </Accordion>
+  <Accordion title="Chat / conversation">
+    An "Ask Florent" thread. Conversations are private to you; your recent ones appear under the Chat group in the sidebar. See [Chat with Florent](/work/florent).
+  </Accordion>
+  <Accordion title="Comment">
+    A message on a task, record, or review-grid row. Comments support @mentions, and you can edit or delete your own. See [Collaboration](/work/collaboration).
+  </Accordion>
+  <Accordion title="@mention">
+    Tagging a teammate in a comment to pull them into the conversation and notify them. See [Collaboration](/work/collaboration).
+  </Accordion>
+  <Accordion title="Approval (task approval)">
+    The one-time human gate inside a run that lets a task's drafted output be written. Approval is required for all Florent and automated work, and for anything that writes records. See the [approval model](/playbooks/assignments-and-approvals) and the [act of approving](/work/reviewing-ai-work).
+  </Accordion>
+  <Accordion title="Field review">
+    Ongoing, per-field verification of an AI-extracted value. You **Approve** a value (verified correct) or **Reject** it (flagged wrong); both lock the value, and **Dismiss** unlocks it. Field review is separate from task approval. See [Reviewing AI work](/work/reviewing-ai-work).
+  </Accordion>
+  <Accordion title="Locked (field)">
+    An Approved or Rejected value that later AI runs won't overwrite and that can't be silently hand-edited. Dismiss it first to unlock it. See [Reviewing AI work](/work/reviewing-ai-work).
+  </Accordion>
+  <Accordion title="Grounding / citation / provenance">
+    The pointer from an AI-extracted value back to exactly where it came from in the source — the file, the page, the highlighted region, and the quoted text. Click a value to see its source. See [Reviewing AI work](/work/reviewing-ai-work).
+  </Accordion>
+  <Accordion title="Confidence score">
+    The AI's rating of how sure it is about a value, shown as an icon out of five — or **Confirmed absent** / **Not found — review** for empty values. See [Reviewing AI work](/work/reviewing-ai-work).
+  </Accordion>
+</AccordionGroup>
+
+## Building blocks
+
+The reusable definitions you set up once in the Building Blocks group and use across many projects.
+
+<Note>
+A **building-block definition** moves through three states: **Draft** (still being built), **Published** (live and usable), and **Archived** (retired). Document templates show **Active** instead of Published.
+</Note>
+
+<AccordionGroup>
+  <Accordion title="Project template">
+    A pre-built starting point for a project. Its contents are snapshot-copied when you create a project from it — later edits to the template do not change projects already created. See [Project templates](/projects/project-templates).
+  </Accordion>
+  <Accordion title="Playbook">
+    A reusable definition of a multi-step process: the tasks, their order and dependencies, who's assigned, and what needs approval. See [Playbooks overview](/playbooks/overview).
+  </Accordion>
+  <Accordion title="Playbook definition">
+    The playbook as it lives in the library — the blueprint. It has Draft / Published / Archived status and a version number that increases each time you publish. See [Playbooks overview](/playbooks/overview).
+  </Accordion>
+  <Accordion title="Action">
+    A reusable, single-purpose automation. Built-in actions run only inside playbooks; custom actions — extract, generate, or fill — are ones you build, test, and run yourself. See [Actions overview](/actions/overview).
+  </Accordion>
+  <Accordion title="Record type">
+    The shape, or set of fields, of a kind of data — for example "Invoice." A record type can live in three independent scopes: the org library, a project template, or a live project. See [Record types overview](/record-types/overview).
+  </Accordion>
+  <Accordion title="Field">
+    One attribute on a record type, with a type such as Text, Number, Currency, Date, or Select. Fields define what every record of that type captures. See [Build a record type](/record-types/build-a-record-type).
+  </Accordion>
+  <Accordion title="Document template">
+    A Word (.docx) file with placeholders, filled with record data by a generate action to produce a finished PDF or Word file. Distinct from a project template. See [Document templates](/actions/document-templates).
+  </Accordion>
+  <Accordion title="Binding">
+    The record type a document template's placeholders are checked and filled against. A template that isn't bound to a record type works from "Free-form data." See [Document templates](/actions/document-templates).
+  </Accordion>
+</AccordionGroup>
+
+## Projects, runs, and tasks
+
+Where the actual work happens, and the steps it's made of.
+
+{/* TODO: Screenshot — A run workspace showing the task rail with a spread of task-type chips and status badges */}
+
+<AccordionGroup>
+  <Accordion title="Project">
+    The workspace for one piece of work. It holds that work's files, records, runs, and members in one place. See [Projects overview](/projects/overview).
+  </Accordion>
+  <Accordion title="Run (playbook run)">
+    One live execution of a playbook inside a project. A run is made up of tasks and is identified by a run number (for example PT-001). See [Run a playbook](/projects/run-a-playbook).
+  </Accordion>
+  <Accordion title="Run number">
+    The identifier for a run, set by the playbook's numbering settings. See [Run a playbook](/projects/run-a-playbook).
+  </Accordion>
+  <Accordion title="Brief">
+    A plain-English description of a process you type into "Ask Florent" inside a project. Florent shapes it into a reviewable playbook plan; it never runs on its own — you click **Run it** to create and start anything. See [Run a playbook](/projects/run-a-playbook).
+  </Accordion>
+  <Accordion title="Task">
+    A single step in a run. There are five task types: Form, File upload, Document, Action, and AI task. See [Task types](/playbooks/task-types).
+  </Accordion>
+  <Accordion title="Form task">
+    A task where a person fills in fields, and optionally creates or updates a record. See [Completing tasks](/work/completing-tasks).
+  </Accordion>
+  <Accordion title="File upload task">
+    A task where a person uploads one or more files. See [Completing tasks](/work/completing-tasks).
+  </Accordion>
+  <Accordion title="Document task">
+    A task where Florent reads files and extracts structured records, transcribes audio, finds facts, or annotates PDFs. The results are drafts that you review before they become records. See [Task types](/playbooks/task-types).
+  </Accordion>
+  <Accordion title="Action task">
+    A task that runs a registered action automatically. See [Task types](/playbooks/task-types).
+  </Accordion>
+  <Accordion title="AI task">
+    A bounded, open-ended step Florent works on automatically using a prompt and tools. See [Task types](/playbooks/task-types).
+  </Accordion>
+  <Accordion title="Form fill">
+    A related task type where Florent fills a blank PDF or image form with the run's values and parks the filled document for approval. See [Task types](/playbooks/task-types).
+  </Accordion>
+</AccordionGroup>
+
+## Data
+
+The records and files a project collects, and the batch tools that produce them.
+
+<AccordionGroup>
+  <Accordion title="Record">
+    One row of a record type — for example a single invoice. Records live only in live projects, and approved drafts become records. See [Project data](/projects/data).
+  </Accordion>
+  <Accordion title="Project files">
+    The per-project pool of files — uploaded, produced by tasks, or generated by runs and actions. Files are reusable across runs and outlive any single run. See [Files](/projects/files).
+  </Accordion>
+  <Accordion title="Batch action run / action run">
+    Running one action over many files (extract) or many records (generate or fill) at once, reviewed in a grid before any result is committed. See [Batch runs](/actions/batch-runs).
+  </Accordion>
+</AccordionGroup>
+
+## People and access
+
+How people join your organization and what they're allowed to do.
+
+<AccordionGroup>
+  <Accordion title="Member">
+    A person who can see and work in a project. See [Create a project](/projects/create-a-project).
+  </Accordion>
+  <Accordion title="Role">
+    A bundle of permissions assigned in your identity provider. The four roles are Admin, Manager, Builder, and Member. See [Roles and permissions](/admin/roles-and-permissions).
+  </Accordion>
+  <Accordion title="Permission">
+    A fine-grained capability that decides which menu items and actions you can see and use. See [Roles and permissions](/admin/roles-and-permissions).
+  </Accordion>
+  <Accordion title="Identity provider">
+    The external sign-in system your organization uses. People, invitations, deactivation, and role assignment all happen there — RakerOne only displays them. See [Members and invites](/admin/members-and-invites).
+  </Accordion>
+  <Accordion title="API key">
+    A credential that lets an external system call the RakerOne API. It carries its own permissions and is shown in full only once. See [API keys](/admin/api-keys).
+  </Accordion>
+</AccordionGroup>
+
+## Where to go next
+
+<CardGroup cols={2}>
+  <Card title="What RakerOne is" icon="compass" href="/get-started/introduction">
+    The mental model and a tour of the app.
+  </Card>
+  <Card title="Quickstart" icon="rocket" href="/get-started/quickstart">
+    Run your first playbook end to end.
+  </Card>
+  <Card title="My work" icon="inbox" href="/work/my-work">
+    Find and claim the tasks waiting on you.
+  </Card>
+  <Card title="Playbooks overview" icon="book-open" href="/playbooks/overview">
+    Understand the processes behind every run.
+  </Card>
+</CardGroup>

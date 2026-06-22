@@ -1,0 +1,171 @@
+---
+title: "Assignments and approvals"
+description: "Decide who owns each task, who signs it off, and how deadlines escalate."
+icon: "user-check"
+---
+
+A playbook breaks a piece of work into [tasks](/playbooks/task-types). Two rules decide how each task moves: the **assignment** decides who is allowed to do it, and the **approval** decides who has to sign off on the result before it counts. Whoever builds the playbook sets both in the [editor](/playbooks/build-a-playbook); as an operator you experience the result.
+
+This page explains the model — who can own a task, when a human signature is forced, and how due dates and escalation behave. For the hands-on steps, see [Approving and correcting AI output](/work/reviewing-ai-work) and [My work](/work/my-work).
+
+## The assignment model
+
+Every task carries an **assignment strategy**. It decides whose work list the task shows up in and who is allowed to take it on.
+
+| Strategy | Who can own the task |
+|---|---|
+| **Specific person** | One named person, from the start. It only ever appears in their work. |
+| **Role** | Anyone holding the matching [role](/admin/roles-and-permissions). The **first to claim wins** — once someone takes it, others can't edit it. |
+| **Chosen at kick-off** | The person who started the run picks the assignee on the start form. Left blank, it falls back to any project member. |
+| **Any project member** | Anyone with access to the project can claim it. |
+| **Florent** | The AI assistant does the task automatically. People can't claim it — they review and approve the result. |
+| **Unassigned** | Any member of the organization can claim it. Used by small teams; rare. |
+
+<Note>
+  A task you can take on shows a **Claim task** button. Claiming makes it yours and unlocks the work surface. The mechanics of claiming — first-to-claim-wins, the muted pre-claim surface, "Claimed by" with the claimer's name — live in [My work](/work/my-work).
+</Note>
+
+{/* TODO: Screenshot — The run task rail showing several tasks with claimer and approver avatars and their status badges */}
+
+### Tasks Florent owns
+
+A task assigned to **Florent** runs on its own when the run reaches it. People never claim it. The task panel shows a status banner — for example **"Florent will pick this up automatically when the run is ready"** while it waits, then **"Florent is working on this task"** while it runs.
+
+Florent only ever produces a **draft**. Every task Florent owns must pass through a human approval before its result becomes real data — that's the next section. To learn how Florent drafts records and documents, see [Task types](/playbooks/task-types); to learn how to chat with it directly, see [Florent](/work/florent).
+
+<Info>
+  Reassignment — handing a task to someone else mid-run — is part of the model, but there's no reassignment control in the app yet. For now, a task stays with whoever claimed it.
+</Info>
+
+## The approval model
+
+The defining rule of RakerOne is **AI drafts, humans approve**. Florent and automated steps never commit data on their own. They produce drafts; a person reviews and approves before anything becomes committed data.
+
+Approval is the gate that enforces this. When a task needs approval, finishing the work doesn't make it count — it moves the task to **Pending approval** and waits for a person to approve or reject it.
+
+### When approval is forced
+
+A playbook can't go live unless certain task kinds carry an approval. You won't see these rules directly, but the consequence is simple: **anything the AI does to your data passes through a human approve-or-reject step.** Approval is always required for:
+
+- Any task owned by **Florent**.
+- Any **AI task** or [Document task](/playbooks/task-types) that writes records.
+- Any [action](/actions/overview) that creates or updates records.
+
+Plain human steps that don't touch records — a simple form, a read-only lookup — can skip approval and finish on their own.
+
+### The do-then-approve flow
+
+<Steps>
+  <Step title="The doer submits">
+    The person or Florent finishes the work and submits it.
+  </Step>
+  <Step title="The task waits">
+    If approval is required, the task moves to **Pending approval** and the resolved approver is notified in their [Inbox](/work/collaboration).
+  </Step>
+  <Step title="The approver decides">
+    The approver opens the task and sees an **Approval** panel describing what to check, then approves or rejects.
+  </Step>
+</Steps>
+
+{/* TODO: Screenshot — The Approval panel on a Pending approval task, showing the heading, instructions, and the Approve and Reject buttons */}
+
+The act of approving — opening citations, checking values against their source, and the per-field review that follows — is owned by [Approving and correcting AI output](/work/reviewing-ai-work). This page covers only the model.
+
+### Who the approver can be
+
+The approver is set on the task. You simply see whether it's asking for you. An approver can be:
+
+- A **specific person**.
+- Anyone holding a given **role**.
+- The **run starter** (whoever kicked off the run).
+- The **assignee's manager**, pulled from your organization's directory.
+- **Any project member**, or **all project admins and managers**.
+
+<Warning>
+  **The manager-as-approver gotcha.** If a task is set to be approved by the assignee's manager and that manager isn't recorded in your directory, the playbook can't be published. If the manager leaves the organization mid-run, the approval falls back to the project's admins and Florent leaves a note on the task.
+</Warning>
+
+### Rejecting sends it back
+
+Rejecting always requires a reason. The approver types why the work is going back, then confirms — there's no silent rejection. What happens next depends on how the task was set up:
+
+<AccordionGroup>
+  <Accordion title="Retry">
+    The task returns to the doer with the rejection reason shown at the top and the previous output kept as a starting point. They fix it and resubmit. Some tasks allow a limited number of retries; when the limit is hit, the task **Fails**.
+  </Accordion>
+  <Accordion title="Fail">
+    The task fails immediately and the tasks that depend on it stay blocked until someone intervenes.
+  </Accordion>
+  <Accordion title="Escalate">
+    The task goes to a second, backup approver and shows the status **Escalated**. That approver sees both the original submission and the rejection reason. Escalation is one hop only — if the backup approver also rejects, the task **Fails** no matter what.
+  </Accordion>
+</AccordionGroup>
+
+<Note>
+  Approving a filled form or a generated document is final for that file — approved documents become part of the project's [files](/projects/files), and a filled form can't be edited as a form afterward.
+</Note>
+
+### Task approval is not field review
+
+Operators meet two gates that sound alike but do different jobs:
+
+- **Task approval** (this page) is the one-time gate inside a run that lets a task's drafted output be written at all.
+- **Field review** is the ongoing, per-value verification you do on a record afterward — approving or rejecting each AI-extracted value.
+
+Approving the task does not approve the fields, and approving fields does not approve the task. Field review and its citations are owned by [Approving and correcting AI output](/work/reviewing-ai-work).
+
+## Due dates, overdue, and escalation
+
+A task can carry a **due date**. It shows on every work surface as **Due** followed by the date.
+
+- When a task passes its due date, the date text turns red and an **Overdue** badge appears on the task — in your [My work](/work/my-work) list, on the run task, and everywhere the task is shown.
+- Overdue tasks always sort first and form their own group.
+- Going overdue notifies the assignee and the run starter. An overdue run notifies the run starter and the project's admins.
+
+There's no separate deadline dashboard or countdown — **Overdue** is the only deadline state RakerOne surfaces. **Escalation** is the approval-side mechanic above: a rejected task can be bumped one hop to a backup approver, shown as **Escalated**.
+
+<Info>
+  Notifications are in-app only today. You'll see assignments, approval requests, and overdue alerts in your [Inbox](/work/collaboration) — there's no email yet.
+</Info>
+
+## Task statuses
+
+As a task moves through assignment and approval, its status changes. These are the exact labels you'll see on the badge.
+
+<AccordionGroup>
+  <Accordion title="Before work starts">
+    - **Waiting** — an earlier task must finish first; your turn comes later. (This is the **Blocked** status; the run task rail labels it **Waiting**.)
+    - **Available** — ready to be claimed or started.
+  </Accordion>
+  <Accordion title="While work is happening">
+    - **In progress** — claimed and being worked, by a person or Florent.
+    - **Submitted** — handed in.
+    - **Pending approval** — done by the doer, waiting for a human to approve or reject.
+    - **Escalated** — bumped to a backup approver after a rejection.
+  </Accordion>
+  <Accordion title="Finished or stopped">
+    - **Approved** — an approver accepted it.
+    - **Completed** — finished.
+    - **Rejected** — an approver sent it back with a reason.
+    - **Failed** — the task didn't finish.
+    - **Skipped** — a project manager skipped it; no values were submitted.
+    - **Cancelled** — the whole run was cancelled before this task was submitted.
+  </Accordion>
+</AccordionGroup>
+
+## Where to go next
+
+<CardGroup cols={2}>
+  <Card title="Approving and correcting AI output" icon="circle-check" href="/work/reviewing-ai-work">
+    Do the actual approving — check values against citations, then approve or reject.
+  </Card>
+  <Card title="My work" icon="inbox" href="/work/my-work">
+    Find and claim the tasks waiting on you across every project.
+  </Card>
+  <Card title="Build a playbook" icon="wrench" href="/playbooks/build-a-playbook">
+    Set assignments, approvals, and due dates as you build a playbook.
+  </Card>
+  <Card title="Roles and permissions" icon="users" href="/admin/roles-and-permissions">
+    See which role can claim, approve, and manage tasks.
+  </Card>
+</CardGroup>

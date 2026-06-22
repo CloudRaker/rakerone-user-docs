@@ -1,0 +1,144 @@
+---
+title: "Project files"
+description: "Upload, organize, and reuse the files a project works with."
+icon: "files"
+---
+
+Every project has a shared pool of files. It's where the documents you upload live, alongside the files your runs and actions produce. The same file can be used in many runs without uploading it again, and files outlive any single run — they belong to the project, not to one task.
+
+Files arrive in a project three ways:
+
+- You **upload** them directly.
+- A **File upload** task in a run adds them. See [Completing tasks](/work/completing-tasks).
+- A run or action **generates** them — for example, a finished document from a [document template](/actions/document-templates).
+
+Open a project and stay on the **Files** tab (it's the default tab), or open the standalone Files workspace from the project. You'll see a folder rail on the left, the file list on the right, and a toolbar across the top.
+
+{/* TODO: Screenshot — The Files workspace: folder rail on the left, file list on the right, toolbar with Search and Upload files at the top */}
+
+## Upload files
+
+<Steps>
+  <Step title="Click Upload files">
+    Use the **Upload files** button in the toolbar, or drag files from your computer and drop them anywhere on the page. While you drag, a full-page overlay reads **Drop files to upload** — release anywhere.
+  </Step>
+  <Step title="Watch the progress panel">
+    Each file moves through **Waiting**, a percentage while it transfers, **Saving** as it's confirmed, then **Uploaded**. A file that can't be added shows **Failed**.
+  </Step>
+  <Step title="Confirm where they landed">
+    If a folder is selected when you drop files, they go into that folder. Otherwise they land in the **Inbox** (unfiled). Move them later if you need to.
+  </Step>
+</Steps>
+
+{/* TODO: Screenshot — The "Drop files to upload" drag-and-drop overlay and the upload progress panel mid-upload showing per-file states */}
+
+<Warning>
+Each file can be up to **50 MiB**. Larger files are rejected before they upload — split or compress them first.
+</Warning>
+
+## Organize your files
+
+Use folders, the Inbox, and tags to keep a project's files findable.
+
+### Folders and the Inbox
+
+The folder rail on the left filters the list. Select any entry to show only its files.
+
+- **All files** — everything in the project.
+- **Inbox** — files that aren't filed into a folder yet.
+- Your **folder** tree below.
+
+To add a folder, click **New folder**, type a name, and click **Create**. Each folder has a **...** menu with **Add folder inside**, **Rename**, and (with the right permission) archive. The breadcrumb above the list — **All files** > folder path — lets you jump back up at any time.
+
+### Tags
+
+Tags are short, free-form labels you attach to files for filtering and search — for example `invoice`, `contract`, or `needs review`. Use the **Filter by tag** control above the list to narrow the list to one tag, and **Clear** to reset it. You can tag files one at a time from the file details panel, or many at once with the bulk **Tag** action.
+
+### Search and archived files
+
+Type in the toolbar **Search** box to find files by name. Flip the **Show archived** switch to bring archived files back into view; turn it off to keep them out of the way.
+
+{/* TODO: Screenshot — Folder rail with All files / Inbox / a folder tree, plus the Filter by tag control and the Show archived switch */}
+
+## The file list
+
+Each row shows the file's **Name**, **Tags**, and when it was **Updated**. Badges tell you where a file came from and its state at a glance:
+
+| Badge | What it means |
+| --- | --- |
+| **Generated** | The file was produced by a run or action, not uploaded by a person. |
+| **Needs approval** | A generated file that's waiting on its run's approval. It joins the pool only once that approval is complete. |
+| **Archived** | The file is archived (visible only when **Show archived** is on). |
+| **Action** | The file has been processed by one or more actions. |
+
+<Note>
+A file marked **Needs approval** isn't part of the project's file pool yet. Its detail panel reads "This document becomes part of the project's files once its run approval is complete." Approve the run's output to release it — see [Reviewing AI work](/work/reviewing-ai-work).
+</Note>
+
+If a list looks empty, the message tells you why: **No files yet** (nothing uploaded), **No matching files** (your search found nothing), or **No files here** (the selected folder or tag is empty). Use **Load more files** to page through a long list.
+
+## Act on files
+
+Open a file row's **...** menu to act on a single file, or select several with their checkboxes to act on all of them at once. The toolbar shows how many are selected.
+
+<Tabs>
+  <Tab title="One file">
+    From the row **...** menu:
+
+    - **Run action with this file** — start a project action using this file. See [Batch action runs](/actions/batch-runs).
+    - **Download** — save a copy to your computer.
+    - **Move** — send it to the **Inbox** (top level) or pick a destination folder.
+    - **Archive** — tuck it away. Archived files stay accessible behind the **Show archived** switch.
+  </Tab>
+  <Tab title="Several files">
+    Select files, then use the toolbar:
+
+    - **Run action** — run a project action over everything you selected.
+    - **Download** — save all selected files.
+    - **Move** — to the **Inbox** or a folder.
+    - **Archive** — archive the whole selection.
+    - **Tag** — apply one tag to every selected file at once.
+    - **Clear selection** — deselect everything.
+  </Tab>
+</Tabs>
+
+{/* TODO: Screenshot — A file row's "..." menu open showing Run action with this file / Download / Move / Archive, and the bulk toolbar with "N items selected" */}
+
+<Warning>
+Files are shared across the whole project. Archiving a file affects every run that uses it, and a file attached to an active run can't be freely removed. Archive only when you're sure no live work still needs it.
+</Warning>
+
+## File details
+
+Click a file to open its **File details** panel. Everything known about that file lives here.
+
+- **Preview** — for supported types. If a file can't be previewed, you'll see "Preview isn't available for this file type. Download the file to review it."
+- **Properties** — **Type**, **Size**, when it was **Added**, and its **Status**.
+- **Tags** — add or remove tags for this file.
+- **Location** — the **Inbox** or the folder it lives in.
+- **Produced records** — any records this file generated. Empty until a run or action extracts data from it.
+- **Action history** — the runs and actions that have processed this file.
+- **Where this file came from** — for generated files, a line such as "Generated by &#123;action&#125; from &#123;records&#125;" with a link to **Open the run that created this file**.
+
+{/* TODO: Screenshot — File details panel showing the preview, properties, tags, location, and the "Where this file came from" provenance line with the run link */}
+
+<Tip>
+The **Produced records** and **Action history** sections trace a file's whole story — what it created and what touched it — without leaving the panel. Use them to check whether a document has already been processed before you run an action on it again.
+</Tip>
+
+## Where to go next
+
+<CardGroup cols={2}>
+  <Card title="Run an action over files" icon="play" href="/actions/batch-runs">
+    Pull data out of many files at once and review every result in a grid.
+  </Card>
+  <Card title="Complete a File upload task" icon="upload" href="/work/completing-tasks">
+    Add files as part of working through a run.
+  </Card>
+  <Card title="Generate documents" icon="file-text" href="/actions/document-templates">
+    Fill a Word template with record data to produce a finished PDF or Word file.
+  </Card>
+  <Card title="Work in a run" icon="list-checks" href="/projects/run-a-playbook">
+    See how a run uses the files attached to it.
+  </Card>
+</CardGroup>

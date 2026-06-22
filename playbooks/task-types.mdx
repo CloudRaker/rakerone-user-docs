@@ -1,0 +1,223 @@
+---
+title: "Task types"
+description: "The five kinds of task you can add to a playbook, and when to use each."
+icon: "list-checks"
+---
+
+A [playbook](/playbooks/overview) is a step-by-step process. When you start it in a project you get a [run](/projects/run-a-playbook), and a run is made of **tasks** — the individual steps a person or [Florent](/work/florent) works through. There are five task types. Some are done by a person; the rest run automatically.
+
+This page explains what each type is, who does the work, and when a builder picks it. For how to actually fill in or upload a task, see [Completing tasks](/work/completing-tasks). For how to approve what Florent produces, see [Reviewing AI work](/work/reviewing-ai-work).
+
+## The five types at a glance
+
+| Type | What it is | Who does the work |
+|---|---|---|
+| **Form** | A person fills in fields | A person |
+| **File upload** | A person provides documents | A person |
+| **Document** | Florent reads files and extracts records, transcribes, or finds facts | Florent (automatic) |
+| **Action** | Runs a packaged automation | Automatic |
+| **AI task** | Florent does open-ended work | Florent (automatic) |
+
+Every task shares the same wrapper, whatever its type: a **Name**, a **Description** (the instructions whoever does it sees), an optional **Group** label that clusters related tasks, who it's assigned to, whether it needs approval, and which tasks must finish first. Only the **Configuration** changes by type. Builders set all of this in the [no-code editor](/playbooks/build-a-playbook).
+
+<Note>
+A sixth entry, **Form fill**, also appears in the builder's **Add task** menu. It's a close relative of the others — covered at the end of this page.
+</Note>
+
+{/* TODO: Screenshot — The Add task dropdown open in the playbook builder, showing the type list: Form, File upload, Document, Action, AI task, Form fill */}
+
+## Human tasks vs. automatic tasks
+
+The single most useful thing to know about task types is who runs them:
+
+- **Form** and **File upload** are **human tasks**. A person has to claim them and do the work. They appear in that person's [My work](/work/my-work) queue.
+- **Document**, **Action**, and **AI task** are **automatic**. Florent or the playbook starts them by itself the moment they're ready — you don't (and can't) "start" them.
+
+Either way, a task only becomes **Available** once every task it waits for has finished. Until then it shows **Blocked** (shown as **Waiting** in the run). A blocked task early in a run is normal — it flips to **Available** on its own.
+
+<Note>
+If an automatic task is just sitting there, check the [run workspace](/projects/run-a-playbook) — a task it waits for is probably still **Blocked**.
+</Note>
+
+---
+
+## Form — a person fills fields
+
+A **Form** task collects structured information from a person. Use it whenever someone needs to type in or confirm data: intake details, a decision, a manual record entry.
+
+- **Who does it:** the assigned person. Not automatic.
+- **When it's ready:** as soon as its dependencies finish, it lands in the assignee's [My work](/work/my-work) under **Available**.
+- **What comes out:** either the values the person submits, or a created/updated [record](/projects/data) — depending on how the builder set it up.
+
+A builder configures a Form one of two ways:
+
+<Tabs>
+  <Tab title="Custom fields">
+    The form has its own fields, used only by this task. The output is just the submitted values — no record is created. Use this for one-off inputs a later step will read.
+  </Tab>
+  <Tab title="Record type">
+    The form creates or updates a [record](/record-types/overview) in a chosen record type. The builder picks the record type and a record mode — **Create record**, **Update from context**, or **Lookup then edit**. Use this when the form's job is to add or change real data.
+  </Tab>
+</Tabs>
+
+Florent can pre-fill a form with suggestions (marked **Suggested by AI**) when the builder turns on Florent assist. You can accept, edit, or discard those suggestions — but a person always submits the form. Florent never completes a form on its own.
+
+<Note>
+If the form writes to a record type, that record type has to exist first. When none exist, the builder's picker says **Create a record type in the Library** — see [Record types](/record-types/overview).
+</Note>
+
+See [Completing tasks](/work/completing-tasks) for how to claim and submit a Form.
+
+---
+
+## File upload — a person provides documents
+
+A **File upload** task asks a person to upload one or more files. Use it whenever the process needs source documents from someone before anything can be read, extracted, or generated — for example "Upload the signed agreement" or "Upload the invoice PDFs."
+
+- **Who does it:** the assigned person. Not automatic.
+- **When it's ready:** when its dependencies finish.
+- **What comes out:** the uploaded files, which become [project files](/projects/files).
+
+A builder sets up each upload field with a label, the allowed file types, a maximum size (50 MB by default), whether it's required, and whether multiple files are allowed.
+
+<Warning>
+Uploaded files are **project-wide**. A file uploaded in one task is visible to every task in the run and to every other run in the same project — files belong to the project, not to a single task. This is what lets a later Document task read the files someone just uploaded.
+</Warning>
+
+See [Completing tasks](/work/completing-tasks) for how to upload and complete one. Files also live in the project's [Files](/projects/files) pool.
+
+---
+
+## Document — Florent reads files into records, facts, or annotations
+
+A **Document** task is the workhorse for getting data *out of* documents. Florent reads one or more project files and — depending on configuration — writes structured records into a record type, answers specific questions, transcribes audio, or marks up PDFs. Pick it whenever the goal is to turn a pile of documents into clean, structured data.
+
+- **Who does it:** Florent, automatically. The task says "Florent works on this automatically when it becomes available." You can leave the page — the run keeps going and posts results here for review.
+- **When it's ready:** it auto-triggers once its dependencies finish.
+
+While it runs, you'll see progress states such as **Reading document**, **Transcribing audio**, or **Filling the form**. When Florent is done, the drafts park at **Pending approval**.
+
+{/* TODO: Screenshot — A Document task mid-run at Reading document with the "Florent is reading documents and preparing results for review" message */}
+
+### What the builder chooses
+
+A Document task has two main decisions: where the files come from, and what to produce.
+
+<AccordionGroup>
+  <Accordion title="Where the files come from">
+    - **Attached files** — files uploaded when the run starts.
+    - **Files from another task** — file output produced earlier in this run.
+    - **Project files** — files already on the project, optionally filtered by tag.
+    - **Context path** — file references carried in a run value.
+  </Accordion>
+  <Accordion title="What the step produces (Mode)">
+    - **Extract from each file** — one record per file.
+    - **Extract one combined result** — read everything together, produce one record.
+    - **Extract table rows** — one record per table-like row in the document.
+    - **Fill known context rows** — extract values for a fixed list of rows the builder defines.
+    - **Find facts** — answer specific questions (each fact is a key plus a question). Results go to the run, not a record.
+    - **Annotate PDF** — produce marked-up PDF files from an annotation brief.
+  </Accordion>
+</AccordionGroup>
+
+For the record-writing modes, the builder points the output at a [record type](/record-types/overview). Florent fills exactly the fields defined on that record type — there's no separate column-mapping step.
+
+### What you get and what you must do
+
+For the record-writing modes, **nothing is saved automatically.** Florent produces drafts that wait at **Pending approval**. An approver opens the drafts panel, checks each value against its source [citation](/work/reviewing-ai-work), then edits, approves, rejects, or discards. Approval is the only thing that writes records into the project.
+
+<Warning>
+A record-writing Document task can't be activated without approval turned on. Approval is the gate that writes records — by design, there's no way to skip it.
+</Warning>
+
+On approval, the records appear in the run summary's **Records created** section and on the record type. The diagnostic modes — **Find facts** and **Annotate PDF** — don't write records, so they can finish without the records-approval flow.
+
+<Note>
+Florent can read text files, PDFs, and Word (.docx) files. It can't read an image-only file, a `.doc`, or a corrupt or password-protected PDF — those fail with a clear message before any AI work happens.
+</Note>
+
+The approval and review steps are owned by [Reviewing AI work](/work/reviewing-ai-work). For the standalone equivalent — extracting across hundreds of files at once — see [Extract data](/actions/extract-data).
+
+{/* TODO: Screenshot — The Drafts to review panel: a drafted record with its fields, a needs-verification note, citations, and the Approve values / Reject buttons */}
+
+---
+
+## Action — runs a packaged automation
+
+An **Action** task runs a pre-built automation from the [Actions](/actions/overview) library — extracting fields from files, generating documents from records, or filling forms. Pick it when a packaged automation already does the job and you want it to run automatically inside the flow.
+
+- **Who does it:** automatic. The task says "This task is handled by the playbook." No one starts it.
+- **When it's ready:** it auto-triggers once its dependencies finish.
+- **What comes out:** whatever the action produces, shown in the task panel if the builder turned on **Show output for review**.
+
+The builder picks the action, maps each of its inputs to a value produced earlier in the run, and can set retry-on-failure rules. If a required input can't be resolved, the task fails and names the missing value.
+
+<Note>
+You can also run an action directly over many of a project's files or records at once, outside any playbook — that's a [batch action run](/actions/batch-runs), launched from a project's **Project actions** tab.
+</Note>
+
+To build the underlying actions, see [Extract data](/actions/extract-data) and [Document templates](/actions/document-templates).
+
+---
+
+## AI task — Florent does open-ended work
+
+An **AI task** is a free-form step you hand to Florent. The builder writes a prompt describing what to do; Florent works through it — searching records, reading files, running actions, leaving comments — and returns text or structured output.
+
+- **Who does it:** Florent, automatically. The task says "Florent works on this automatically when it becomes available."
+- **When it's ready:** it auto-triggers once its dependencies finish.
+- **What comes out:** free text or structured output. If Florent wrote any records, or the task needs approval, it parks at **Pending approval** and nothing downstream can use the result until an approver accepts it — the same drafts-review flow as a Document task.
+
+The builder sets the prompt, the model, and a turn limit, and grants Florent the capabilities it's allowed to use. Anything that writes records is staged as drafts and forces approval.
+
+Pick an **AI task** for judgment or multi-step work that isn't a clean "extract into a record type" — summarizing, cross-referencing a contract against a customer record, drafting a comment, or chaining a few tools together. Pick **Document** instead when the job is specifically reading files into a record type, and **Action** when a packaged automation already exists.
+
+{/* TODO: Screenshot — An AI task running, showing "Florent is working on this task" */}
+
+---
+
+## Form fill — Florent fills a blank form
+
+**Form fill** is the sixth entry in the **Add task** menu. Florent takes a blank PDF or image form, fills it with the run's values, and parks the completed file for approval. It's a close relative of the Document and Action types — Florent does the work automatically, and a person approves the result before it counts. Use it when you have a fixed form template that needs the run's data dropped into it.
+
+---
+
+## Which type should a builder pick?
+
+<AccordionGroup>
+  <Accordion title="A person types in or confirms structured information">
+    **Form** — intake details, a decision, manual record entry. Add a record type if the form should create or update real data.
+  </Accordion>
+  <Accordion title="A person needs to provide source documents">
+    **File upload** — the source files a later step will read, extract, or generate from.
+  </Accordion>
+  <Accordion title="Turn documents into records, transcribe, answer fixed questions, or mark up PDFs">
+    **Document** — Florent reads the files and drafts the results for review.
+  </Accordion>
+  <Accordion title="Run a packaged automation automatically in the flow">
+    **Action** — when an extract, generate, or fill automation already exists in the library.
+  </Accordion>
+  <Accordion title="Open-ended AI work, judgment, or multi-step reasoning">
+    **AI task** — for work that doesn't fit a clean extraction, with light tool use.
+  </Accordion>
+  <Accordion title="Drop the run's values into a blank PDF or image form">
+    **Form fill** — Florent fills the form and parks it for approval.
+  </Accordion>
+</AccordionGroup>
+
+## Where to go next
+
+<CardGroup cols={2}>
+  <Card title="Build a playbook" icon="hammer" href="/playbooks/build-a-playbook">
+    Add tasks, set their order, and configure each type in the no-code editor.
+  </Card>
+  <Card title="Completing tasks" icon="square-check" href="/work/completing-tasks">
+    Claim, fill, and submit Form and File upload tasks.
+  </Card>
+  <Card title="Reviewing AI work" icon="badge-check" href="/work/reviewing-ai-work">
+    Approve, correct, or reject the drafts a Document or AI task produces.
+  </Card>
+  <Card title="Assignments and approvals" icon="user-check" href="/playbooks/assignments-and-approvals">
+    Who owns a task and who signs it off.
+  </Card>
+</CardGroup>

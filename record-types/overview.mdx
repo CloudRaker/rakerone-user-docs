@@ -1,0 +1,126 @@
+---
+title: "Record types overview"
+description: "What record types are and where they live."
+icon: "database"
+---
+
+A **record type** is the shape you define for a kind of data a project collects — for example *Invoice*, *Vendor*, *Patient*, or *Claim*. It says which details every entry of that kind carries: an invoice number, a total amount, a due date, a status, and so on.
+
+Think of a record type as a reusable form template. One filled-in entry is a **record** — one specific invoice. People enter records by hand, or Florent writes them automatically when it extracts data from documents.
+
+<Note>
+Records always come from a person or get approved by one before they become real data. Florent drafts records; you review and approve them. See [Reviewing AI work](/work/reviewing-ai-work).
+</Note>
+
+## What a record type is made of
+
+Every record type has a few defining parts:
+
+- A **name**, in both singular and plural form (*Invoice* / *Invoices*).
+- An **icon** that marks it in tables and lists.
+- An ordered list of **fields** — the individual details to capture, each with its own type (Text, Number, Currency, Date, Select, and so on).
+
+The fields and settings live in the visual schema editor. Building that schema — adding fields, choosing field types, picking the title field — is covered in [Build a record type](/record-types/build-a-record-type).
+
+## The three scopes: where a record type lives
+
+The same record-type concept exists in three places, each for a different job. This matters because **the three are independent copies** — editing one never changes the others.
+
+<Tabs>
+  <Tab title="Org library">
+    The reusable master definition for your whole organization — a catalogue you build once and reuse.
+
+    **Where to find it:** the **Building Blocks** group in the sidebar, then **Record types**.
+
+    A library record type is a template, not a place data lives. It **holds no records**. You add it to projects and project templates, where it starts collecting data.
+  </Tab>
+  <Tab title="Project template">
+    A record type baked into a [project template](/projects/project-templates) so every project started from that template gets it automatically.
+
+    **Where to find it:** inside a project template's setup.
+
+    Like the library version, a template record type is a definition only — it **holds no records**.
+  </Tab>
+  <Tab title="Live project">
+    The working record type that actually collects data inside one project.
+
+    **Where to find it:** open a project, then the **Record types** tab.
+
+    This is the only scope that **holds records**. Records attach here and nowhere else.
+  </Tab>
+</Tabs>
+
+{/* TODO: Screenshot — A project's Record types tab listing the project's record types with their Fields counts */}
+
+{/* TODO: Screenshot — The Building Blocks sidebar group expanded, showing Record types alongside Project templates, Playbooks, Actions, Document templates */}
+
+<Info>
+**Records only live in live projects.** Library and template record types are blueprints — they never hold data. To collect records, you need a record type inside an actual project.
+</Info>
+
+## How copies flow
+
+Whenever a record type moves from one scope to another, it becomes a fully independent copy:
+
+- Adding a library record type to a **template** makes its own copy on the template.
+- Adding a library record type to a **project** makes its own copy in that project.
+- Creating a project **from a template** copies every template record type into the new project automatically.
+- A project created from scratch (not from a template) starts with **no record types** — you add them in the project's **Record types** tab.
+
+After any copy, the project's version is entirely its own. Editing a project's record type never touches the template or the library, and editing the library never reaches projects that already exist.
+
+<Warning>
+There is no "update from library" sync. Changing a library record type does **not** flow into projects or templates that already use it. Update each copy where you need the change.
+</Warning>
+
+## Where record types appear in the app
+
+You'll come across record types in a few places, depending on what you're doing:
+
+<AccordionGroup>
+  <Accordion title="Building Blocks → Record types">
+    The organization's master library. A table lists every record type with its **Name**, its field count, and a description. Builders and Admins create and edit them here. This is the catalogue you reuse across projects.
+  </Accordion>
+  <Accordion title="A project's Record types tab">
+    Each project lists the record types it tracks, with a field count for each. Clicking one opens its **records table** — the rows of data this project has collected. Working with records and saved views is covered in [Project data](/projects/data).
+  </Accordion>
+  <Accordion title="Inside playbook tasks">
+    Form, Document, and AI tasks can read from or write to a record type — for example a **Document** task where Florent extracts invoices into records. See [Task types](/playbooks/task-types) for which tasks touch records.
+  </Accordion>
+  <Accordion title="In actions">
+    An extract action points its output at a record type so the values it pulls from documents land as records. See [Extract data](/actions/extract-data).
+  </Accordion>
+</AccordionGroup>
+
+{/* TODO: Screenshot — The Building Blocks Record types library table with several record types (Invoice, Vendor) showing the Fields counts */}
+
+## Who can work with record types
+
+What you can do depends on your role:
+
+- **Builders** and **Admins** create and edit record types in the org library and in projects.
+- **Managers** add and edit record types inside projects they can access, and work with the records.
+- **Members** can view record types and work with records, but can't change a record type's shape.
+
+For the full breakdown of who can do what, see [Roles and permissions](/admin/roles-and-permissions).
+
+<Info>
+If you lack access, you'll see a banner reading *"You don't have access to record types. Ask an admin if you need it."*
+</Info>
+
+## Where to go next
+
+<CardGroup cols={2}>
+  <Card title="Build a record type" icon="square-pen" href="/record-types/build-a-record-type">
+    Add fields, choose field types, and set the title field in the schema editor.
+  </Card>
+  <Card title="Project data" icon="table" href="/projects/data">
+    Enter records, work with the records table, and save views inside a project.
+  </Card>
+  <Card title="Task types" icon="list-checks" href="/playbooks/task-types">
+    See which playbook tasks read from and write to record types.
+  </Card>
+  <Card title="Extract data" icon="file-search" href="/actions/extract-data">
+    Build an action that pulls values from documents into records.
+  </Card>
+</CardGroup>
