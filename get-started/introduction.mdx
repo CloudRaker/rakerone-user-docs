@@ -10,12 +10,12 @@ RakerOne is a back-office automation platform where you and a built-in AI assist
 
 RakerOne is built for business and operations teams who run document-heavy, multi-step processes and want AI to remove the grunt work without giving up control. You do not need to be technical. If your job involves collecting files, pulling data out of them, filling forms, and producing documents — over and over — RakerOne is for you.
 
-A typical moment: a team drops 400 PDFs into a project and types *"Extract these into my Invoice table."* Florent turns that sentence into a concrete run, you review the shape and start it, the documents get read by AI, and every extracted value lands as a draft for you to check. You approve, edit, or reject each row — and only then does it become real data.
+A typical moment: a team drops 400 PDFs into a project and types _"Extract these into my Invoice table."_ Florent turns that sentence into a concrete run, you review the shape and start it, the documents get read by AI, and every extracted value lands as a draft for you to check. You approve, edit, or reject each row — and only then does it become real data.
 
 ## The one rule that defines RakerOne
 
 <Warning>
-**AI drafts, humans approve.** Florent and automated steps never commit data on their own. They produce drafts — proposed records, pre-filled forms, generated documents — and a person reviews, edits, approves, or rejects before anything becomes committed data.
+  **AI drafts, humans approve.** Florent and automated steps never commit data on their own. They produce drafts — proposed records, pre-filled forms, generated documents — and a person reviews, edits, approves, or rejects before anything becomes committed data.
 </Warning>
 
 This is the promise behind everything in the product. Florent will **never**:
@@ -35,6 +35,10 @@ Hold this one picture in your head and the rest of the app makes sense.
 
 Your **organization** is your whole workspace. Inside it you keep two things: **Building Blocks** (reusable definitions you set up once — project templates, playbooks, actions, record types, document templates) and **projects** (where the actual work happens, one project per piece of work). When you run a playbook inside a project you get a **run**, which is made of **tasks** — the individual steps a person or Florent works through. As tasks finish, they produce **records** (rows of data) and files. A human approves before any AI-produced data is committed.
 
+<Frame>
+  ![SCR 20260623 Iidt](/images/SCR-20260623-iidt.png)
+</Frame>
+
 {/* TODO: Screenshot — A simple labeled diagram of Organization → Building Blocks + Projects → Runs → Tasks → Records */}
 
 A few relationships worth fixing in your mind:
@@ -45,12 +49,16 @@ A few relationships worth fixing in your mind:
 - **Project templates are snapshot-copied** — creating a project from a template copies its contents, and later edits to the template do not change projects you already created.
 
 <Note>
-This page gives you the mental model. For a one-line definition of every term — playbook, run, record, brief, grounding, and the rest — see [Concepts](/get-started/concepts).
+  This page gives you the mental model. For a one-line definition of every term — playbook, run, record, brief, grounding, and the rest — see [Concepts](/get-started/concepts).
 </Note>
 
 ## A tour of the app
 
 Every screen sits inside the same frame: a **left sidebar** for navigation, a top **breadcrumb trail** showing where you are, and the main content area on the right.
+
+<Frame>
+  ![SCR 20260623 Ijmp](/images/SCR-20260623-ijmp.png)
+</Frame>
 
 {/* TODO: Screenshot — Full sidebar, expanded, with a real org name and a few projects, so all groups are visible at once */}
 
@@ -68,7 +76,7 @@ Every screen sits inside the same frame: a **left sidebar** for navigation, a to
     - **Chat** is where you talk to Florent. [Learn more](/work/florent).
   </Step>
   <Step title="Projects">
-    Under the **Projects** label, your open projects are listed (up to 10, then a **Show more...** link). A **+** button next to the label starts a new project — you only see it if you can create projects. You can drag projects to reorder them.
+    Under the **Projects** label, your open projects are listed (up to 10, then a **Show more...** link). A **\+** button next to the label starts a new project — you only see it if you can create projects. You can drag projects to reorder them.
   </Step>
   <Step title="Building Blocks">
     The **Building Blocks** group holds the reusable definitions you set up once and reuse: **Project templates**, **Playbooks**, **Actions**, **Record types**, and **Document templates**. You only see this group, and only the items within it, if you have the matching permissions.
@@ -82,7 +90,7 @@ Every screen sits inside the same frame: a **left sidebar** for navigation, a to
 </Steps>
 
 <Tip>
-The Building Blocks links are grouped under **Building Blocks**, not Admin. If you're looking for Playbooks or Record types, go to **Building Blocks** — the **Admin** group is only for managing people and the organization.
+  The Building Blocks links are grouped under **Building Blocks**, not Admin. If you're looking for Playbooks or Record types, go to **Building Blocks** — the **Admin** group is only for managing people and the organization.
 </Tip>
 
 ### The breadcrumb
@@ -90,7 +98,7 @@ The Building Blocks links are grouped under **Building Blocks**, not Admin. If y
 The top bar shows a breadcrumb trail of where you are — for example, **Projects · Smith family · Files**. It always shows human-readable names (project names, playbook names, run numbers), never internal IDs. The breadcrumb is hidden on the Home page, which is its own starting point.
 
 <Note>
-Your sidebar may look different from a teammate's. Items appear and disappear based on what your role lets you do, so two people in the same organization can see different menus. See [Roles and permissions](/admin/roles-and-permissions).
+  Your sidebar may look different from a teammate's. Items appear and disappear based on what your role lets you do, so two people in the same organization can see different menus. See [Roles and permissions](/admin/roles-and-permissions).
 </Note>
 
 ## Where to go next
@@ -99,15 +107,19 @@ Your sidebar may look different from a teammate's. Items appear and disappear ba
   <Card title="Run your first playbook" icon="play" href="/get-started/quickstart">
     The fastest path to value — create a project, start a playbook, and see records appear.
   </Card>
+
   <Card title="Concepts" icon="book" href="/get-started/concepts">
     Plain-language definitions of every term you'll meet in RakerOne.
   </Card>
+
   <Card title="My work" icon="house" href="/work/my-work">
     Find and claim the tasks waiting on you across every project.
   </Card>
+
   <Card title="Projects" icon="folder" href="/projects/overview">
     See what a project is and how its tabs are organized.
   </Card>
+
   <Card title="Playbooks" icon="repeat" href="/playbooks/overview">
     Understand the blueprints that drive your repeatable processes.
   </Card>
