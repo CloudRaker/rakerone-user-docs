@@ -24,7 +24,9 @@ Every task shares the same wrapper, whatever its type: a **Name**, a **Descripti
 A sixth entry, **Form fill**, also appears in the builder's **Add task** menu. It's a close relative of the others — covered at the end of this page.
 </Note>
 
-{/* TODO: Screenshot — The Add task dropdown open in the playbook builder, showing the type list: Form, File upload, Document, Action, AI task, Form fill */}
+<Frame>
+  <img src="/images/playbooks/add-task-dropdown.png" alt="The Add task dropdown listing Form, File upload, Document, Action, AI task, Form fill" />
+</Frame>
 
 ## Human tasks vs. automatic tasks
 
@@ -97,7 +99,7 @@ A **Document** task is the workhorse for getting data *out of* documents. Floren
 
 While it runs, you'll see progress states such as **Reading document**, **Transcribing audio**, or **Filling the form**. When Florent is done, the drafts park at **Pending approval**.
 
-{/* TODO: Screenshot — A Document task mid-run at Reading document with the "Florent is reading documents and preparing results for review" message */}
+{/* TODO: Screenshot [Non Automatable: live AI streaming state — capture manually during a run] — A Document task mid-run at Reading document with the "Florent is reading documents and preparing results for review" message */}
 
 ### What the builder chooses
 
@@ -172,7 +174,7 @@ The builder sets the prompt, the model, and a turn limit, and grants Florent the
 
 Pick an **AI task** for judgment or multi-step work that isn't a clean "extract into a record type" — summarizing, cross-referencing a contract against a customer record, drafting a comment, or chaining a few tools together. Pick **Document** instead when the job is specifically reading files into a record type, and **Action** when a packaged automation already exists.
 
-{/* TODO: Screenshot — An AI task running, showing "Florent is working on this task" */}
+{/* TODO: Screenshot [Non Automatable: live AI streaming state — capture manually during a run] — An AI task running, showing "Florent is working on this task" */}
 
 ---
 

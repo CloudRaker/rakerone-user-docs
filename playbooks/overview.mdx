@@ -39,7 +39,9 @@ Playbooks appear on three surfaces. The labels and what you can do differ on eac
 | The playbook editor | The no-code authoring screen for one definition — where you add tasks, set the order, and publish. |
 | A project's **Playbooks** page | Inside one project: the playbooks you can run here, plus past runs and the **Ask Florent** option. |
 
-{/* TODO: Screenshot — Sidebar with the Building Blocks group expanded and Playbooks highlighted */}
+<Frame>
+  <img src="/images/playbooks/sidebar-playbooks.png" alt="The Building Blocks sidebar group with Playbooks highlighted" />
+</Frame>
 
 <Info>
   Building and publishing playbooks is a [Builder](/admin/roles-and-permissions) job. If you open the library and see "You don't have access to playbooks," ask an admin for the access you need.
@@ -67,7 +69,9 @@ Each time you publish changes, the version number increases — `v1`, `v2`, and 
 
 This matters for one reason: **active runs keep the version they started with.** Improving a published playbook never changes a run that's already underway. New runs use the newest version; in-flight runs finish on the version they began with.
 
-{/* TODO: Screenshot — The editor header showing the playbook name, the v2 version chip, the Published status badge, and the Validate and Activate buttons */}
+<Frame>
+  <img src="/images/playbooks/editor-tasks.png" alt="The playbook editor header with version chip, Published badge, and Validate/Activate" />
+</Frame>
 
 <Warning>
   You must **publish** a playbook before anyone can run it. A Draft playbook shows no **Run** button in a project. Publishing also **validates** the playbook first — if anything is wrong, it won't publish and lists each issue by task name. Fix those, then publish again.

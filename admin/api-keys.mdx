@@ -16,7 +16,9 @@ Use an API key when you want another system to do something in RakerOne without 
 
 Open **Admin → API keys** in the sidebar. The page lists every key in your organization.
 
-{/* TODO: Screenshot — The API keys page: the table with Name, Permissions, Last used, and Created columns, a "Revoke" button on a row, and the "Create API key" button top-right */}
+<Frame>
+  <img src="/images/admin/api-keys-table.png" alt="The API keys table with name, permissions, last used, and created columns" />
+</Frame>
 
 Each row shows:
 
@@ -52,7 +54,9 @@ If there are no keys yet, you'll see **No API keys yet** with a prompt to create
   </Step>
 </Steps>
 
-{/* TODO: Screenshot — The "Create API key" dialog: the Name field, the Permissions checkbox grid, and the "Can impersonate users" switch */}
+<Frame>
+  <img src="/images/admin/api-key-create-dialog.png" alt="The Create API key dialog with name, permissions, and impersonation" />
+</Frame>
 
 ## Copy the key now
 
@@ -64,7 +68,9 @@ After you create a key, RakerOne shows you the full value once, on a screen titl
 
 On this screen, click **Copy** (it changes to **Copied**), paste the key into your secure store, then click **Done** to close. Clicking outside the dialog won't close it here — that's deliberate, so you don't lose an uncopied key by accident.
 
-{/* TODO: Screenshot — The "Copy your API key" screen: the full key value, the "Copy" button, the "You won't be able to view this key again" banner, and the "Done" button */}
+<Frame>
+  <img src="/images/admin/api-key-copy.png" alt="The Copy your API key screen shown once after creation" />
+</Frame>
 
 ## Revoke a key
 
@@ -79,7 +85,9 @@ Revoke a key when it's no longer needed or might be exposed. Revoking takes effe
   </Step>
 </Steps>
 
-{/* TODO: Screenshot — The "Revoke this API key?" confirmation dialog with the "Revoke key" and "Cancel" buttons */}
+<Frame>
+  <img src="/images/admin/api-key-revoke.png" alt="The Revoke this API key confirmation dialog" />
+</Frame>
 
 <Warning>
   Revoking is immediate and permanent. Any integration using that key stops working right away, and the key can't be brought back. If you only meant to rotate the key, create the new one first, switch your integration over to it, then revoke the old one.
